@@ -38,6 +38,14 @@ export interface Contact {
   created_at: string
 }
 
+export interface Lead {
+  id: string
+  name: string
+  email: string
+  message: string
+  created_at: string
+}
+
 const DEFAULT_TESTIMONIALS: Testimonial[] = [
   {
     id: '1',
@@ -116,6 +124,21 @@ export const db = {
       contacts.push(newContact)
       localStorage.setItem('skip_db_contacts', JSON.stringify(contacts))
       return newContact
+    },
+  },
+  leads: {
+    async create(data: Omit<Lead, 'id' | 'created_at'>): Promise<Lead> {
+      await delay(500)
+      const leadsStr = localStorage.getItem('skip_db_leads')
+      const leads: Lead[] = leadsStr ? JSON.parse(leadsStr) : []
+      const newLead: Lead = {
+        ...data,
+        id: crypto.randomUUID(),
+        created_at: new Date().toISOString(),
+      }
+      leads.push(newLead)
+      localStorage.setItem('skip_db_leads', JSON.stringify(leads))
+      return newLead
     },
   },
 }
