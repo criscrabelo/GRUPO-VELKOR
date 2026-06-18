@@ -1,46 +1,8 @@
-import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { VelkorLogo } from '@/components/VelkorLogo'
-import { Building2, ShieldCheck, ArrowRight, Send, CheckCircle2 } from 'lucide-react'
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Textarea } from '@/components/ui/textarea'
-import { Label } from '@/components/ui/label'
-import { useToast } from '@/hooks/use-toast'
-import { db } from '@/lib/db'
-import { cn } from '@/lib/utils'
+import { Building2, ShieldCheck, ArrowRight } from 'lucide-react'
 
 export default function Gateway() {
-  const { toast } = useToast()
-  const [loading, setLoading] = useState(false)
-  const [success, setSuccess] = useState(false)
-  const [form, setForm] = useState({ name: '', email: '', message: '' })
-  const [errors, setErrors] = useState<Record<string, string>>({})
-
-  const submit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    const errs: Record<string, string> = {}
-    if (!form.name.trim()) errs.name = 'Obrigatório'
-    if (!form.email.trim() || !/^\S+@\S+\.\S+$/.test(form.email)) errs.email = 'Inválido'
-    if (!form.message.trim()) errs.message = 'Obrigatório'
-    setErrors(errs)
-
-    if (Object.keys(errs).length > 0) return
-
-    setLoading(true)
-    try {
-      await db.leads.create(form)
-      setSuccess(true)
-      toast({ title: 'Interesse Registrado!', description: 'Entraremos em contato em breve.' })
-      setForm({ name: '', email: '', message: '' })
-      setTimeout(() => setSuccess(false), 5000)
-    } catch {
-      toast({ title: 'Erro', description: 'Tente novamente.', variant: 'destructive' })
-    } finally {
-      setLoading(false)
-    }
-  }
-
   return (
     <div className="min-h-screen bg-slate-900 flex flex-col items-center justify-center relative overflow-hidden">
       <div className="absolute inset-0 z-0">
@@ -63,7 +25,7 @@ export default function Gateway() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-6 w-full max-w-4xl animate-fade-in-up mb-12">
+        <div className="grid md:grid-cols-2 gap-6 w-full max-w-4xl animate-fade-in-up">
           <Link
             to="/solucoes"
             className="group relative bg-white rounded-2xl p-8 shadow-2xl transition-all hover:-translate-y-2 hover:border-cyan border-2 border-transparent flex flex-col items-center text-center overflow-hidden"
@@ -92,70 +54,6 @@ export default function Gateway() {
               Proteção completa para patrimônio, vida e negócios. Soluções personalizadas.
             </p>
           </div>
-        </div>
-
-        <div className="w-full max-w-2xl bg-slate-800/80 backdrop-blur-xl rounded-2xl p-6 shadow-2xl border border-slate-700/50 animate-fade-in-up mx-auto">
-          <div className="text-center mb-6">
-            <h3 className="text-xl font-bold text-white">Fale com um Especialista</h3>
-          </div>
-          {success ? (
-            <div className="bg-cyan/10 border border-cyan/20 rounded-xl p-6 text-center">
-              <CheckCircle2 className="w-8 h-8 text-cyan mx-auto mb-3" />
-              <h4 className="text-lg font-bold text-white">Recebemos seu contato!</h4>
-            </div>
-          ) : (
-            <form onSubmit={submit} className="space-y-4">
-              <div className="grid md:grid-cols-2 gap-4">
-                <div className="space-y-1 text-left">
-                  <Label className="text-slate-200">Nome</Label>
-                  <Input
-                    value={form.name}
-                    onChange={(e) => setForm({ ...form, name: e.target.value })}
-                    className={cn(
-                      'bg-slate-900 border-slate-700 text-white',
-                      errors.name && 'border-red-500',
-                    )}
-                  />
-                </div>
-                <div className="space-y-1 text-left">
-                  <Label className="text-slate-200">E-mail Corporativo</Label>
-                  <Input
-                    value={form.email}
-                    onChange={(e) => setForm({ ...form, email: e.target.value })}
-                    className={cn(
-                      'bg-slate-900 border-slate-700 text-white',
-                      errors.email && 'border-red-500',
-                    )}
-                  />
-                </div>
-              </div>
-              <div className="space-y-1 text-left">
-                <Label className="text-slate-200">Mensagem</Label>
-                <Textarea
-                  rows={3}
-                  value={form.message}
-                  onChange={(e) => setForm({ ...form, message: e.target.value })}
-                  className={cn(
-                    'bg-slate-900 border-slate-700 text-white resize-none',
-                    errors.message && 'border-red-500',
-                  )}
-                />
-              </div>
-              <Button
-                type="submit"
-                disabled={loading}
-                className="w-full bg-cyan hover:bg-cyan/90 text-slate-900 font-bold"
-              >
-                {loading ? (
-                  'Enviando...'
-                ) : (
-                  <>
-                    <Send className="w-4 h-4 mr-2" /> Enviar
-                  </>
-                )}
-              </Button>
-            </form>
-          )}
         </div>
       </div>
       <div className="relative text-white/40 text-xs text-center z-10 w-full font-medium pb-4">
