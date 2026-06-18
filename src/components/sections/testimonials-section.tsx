@@ -12,31 +12,31 @@ import {
 const testimonials = [
   {
     name: 'Ana Silva',
-    role: 'Diretora de Marketing, TechVibe',
+    role: 'Investidora Imobiliária',
     image: 'https://img.usecurling.com/ppl/thumbnail?gender=female&seed=1',
     content:
-      'Desde que implementamos o NexFlow, nossa produtividade aumentou em 40%. A interface intuitiva fez com que a adoção pela equipe fosse instantânea.',
+      'A assessoria em leilões da VELKOR me deu a segurança que eu precisava para investir. O processo foi conduzido com extrema transparência e profissionalismo.',
   },
   {
     name: 'Carlos Mendes',
-    role: 'CTO, DataCorp',
+    role: 'Diretor de Expansão, VarejoCorp',
     image: 'https://img.usecurling.com/ppl/thumbnail?gender=male&seed=2',
     content:
-      'As integrações nativas e as automações robustas economizaram centenas de horas de desenvolvimento. É a melhor ferramenta do mercado hoje.',
+      'A Due Diligence Documental executada pela rede de parceiros da VELKOR evitou que entrássemos em um negócio de alto risco. Eles são meticulosos em cada detalhe.',
   },
   {
     name: 'Juliana Costa',
-    role: 'Fundadora, StartupX',
+    role: 'Compradora de Imóvel',
     image: 'https://img.usecurling.com/ppl/thumbnail?gender=female&seed=3',
     content:
-      'O suporte ao cliente é excepcional e a plataforma continua evoluindo com recursos que realmente precisamos. Essencial para nosso crescimento.',
+      'Graças ao serviço de Compra Segura, realizei o sonho da casa própria sem surpresas desagradáveis. A organização documental feita por eles foi impecável.',
   },
   {
     name: 'Roberto Alves',
-    role: 'Gerente de Produto, Innova',
+    role: 'Gestor Patrimonial',
     image: 'https://img.usecurling.com/ppl/thumbnail?gender=male&seed=4',
     content:
-      'Testamos várias ferramentas antes de escolher o NexFlow. Nenhuma ofereceu o mesmo equilíbrio entre poder e facilidade de uso.',
+      'Centralizamos todas as regularizações do nosso portfólio no Hub da VELKOR. É muito prático ter um único ponto de contato orquestrando todas as soluções.',
   },
 ]
 
@@ -47,26 +47,30 @@ export function TestimonialsSection() {
     <section
       id="depoimentos"
       ref={ref}
-      className="py-20 md:py-32 bg-indigo-900 overflow-hidden relative"
+      className="py-20 md:py-32 bg-petrol overflow-hidden relative"
     >
-      <div className="absolute top-0 right-0 -z-10 w-96 h-96 bg-indigo-600 rounded-full blur-3xl opacity-30 translate-x-1/2 -translate-y-1/2" />
-      <div className="absolute bottom-0 left-0 -z-10 w-96 h-96 bg-cyan-600 rounded-full blur-3xl opacity-20 -translate-x-1/2 translate-y-1/2" />
+      <div className="absolute top-0 right-0 -z-10 w-96 h-96 bg-cyan/20 rounded-full blur-3xl opacity-30 translate-x-1/2 -translate-y-1/2" />
+      <div className="absolute bottom-0 left-0 -z-10 w-96 h-96 bg-cyan/20 rounded-full blur-3xl opacity-20 -translate-x-1/2 translate-y-1/2" />
 
       <div className="container mx-auto px-4 md:px-6 relative z-10">
         <div className="text-center max-w-2xl mx-auto mb-16">
+          <span className="text-cyan font-bold tracking-wider uppercase text-sm mb-4 block">
+            Depoimentos
+          </span>
           <h2
             className={cn(
-              'text-3xl md:text-4xl font-bold text-white mb-4 opacity-0',
+              'text-3xl md:text-4xl font-display font-bold text-white mb-4 opacity-0',
               isVisible && 'animate-fade-in-up',
             )}
           >
-            Amado por milhares de equipes
+            Reconhecimento de quem confia em nós
           </h2>
           <p
-            className={cn('text-lg text-indigo-200 opacity-0', isVisible && 'animate-fade-in-up')}
+            className={cn('text-lg text-white/70 opacity-0', isVisible && 'animate-fade-in-up')}
             style={{ animationDelay: '100ms' }}
           >
-            Não acredite apenas na nossa palavra. Veja o que nossos clientes têm a dizer.
+            Veja o que nossos clientes têm a dizer sobre a excelência dos serviços orquestrados pela
+            VELKOR.
           </p>
         </div>
 
@@ -97,11 +101,11 @@ export function TestimonialsSection() {
                       <img
                         src={testimonial.image}
                         alt={testimonial.name}
-                        className="w-12 h-12 rounded-full border-2 border-indigo-400"
+                        className="w-12 h-12 rounded-full border-2 border-cyan"
                       />
                       <div>
                         <h4 className="font-semibold text-white">{testimonial.name}</h4>
-                        <p className="text-sm text-indigo-300">{testimonial.role}</p>
+                        <p className="text-sm text-white/60">{testimonial.role}</p>
                       </div>
                     </div>
                   </div>

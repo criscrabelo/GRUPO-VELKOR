@@ -7,6 +7,7 @@ import { SocialProofSection } from '@/components/sections/social-proof-section'
 import { FaqSection } from '@/components/sections/faq-section'
 import { PartnersSection } from '@/components/sections/partners-section'
 import { AuctionsSection } from '@/components/sections/auctions-section'
+import { TestimonialsSection } from '@/components/sections/testimonials-section'
 
 export default function Index() {
   return (
@@ -38,6 +39,7 @@ export default function Index() {
         </div>
       </section>
       <SocialProofSection />
+      <TestimonialsSection />
       <EcosystemSection />
       <PartnersSection />
       <ServicesSection />

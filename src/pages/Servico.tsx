@@ -1,0 +1,123 @@
+import { useParams, Navigate } from 'react-router-dom'
+import { SERVICE_CATALOG } from '@/lib/catalog'
+import { ContactForm } from '@/components/ContactForm'
+import { CheckCircle, Shield, Briefcase, ChevronRight } from 'lucide-react'
+
+export default function Servico() {
+  const { id } = useParams<{ id: string }>()
+  const service = SERVICE_CATALOG.find((s) => s.id === id)
+
+  if (!service) {
+    return <Navigate to="/contratar" replace />
+  }
+
+  const handleScrollToForm = () => {
+    document.getElementById('contact-section')?.scrollIntoView({ behavior: 'smooth' })
+  }
+
+  return (
+    <div className="min-h-screen bg-white">
+      {/* Hero Section */}
+      <section className="pt-32 pb-20 bg-petrol text-white relative overflow-hidden">
+        <div className="absolute inset-0 bg-[url('https://img.usecurling.com/p/1200/800?q=modern%20architecture')] opacity-10 bg-cover bg-center mix-blend-luminosity" />
+        <div className="absolute inset-0 bg-gradient-to-t from-petrol via-petrol/90 to-transparent" />
+
+        <div className="container mx-auto px-4 max-w-5xl relative z-10">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan/20 text-cyan text-sm font-bold mb-6">
+            <Briefcase className="w-4 h-4" /> {service.type}
+          </div>
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-6 leading-tight">
+            {service.name}
+          </h1>
+          <p className="text-lg md:text-xl text-white/80 max-w-3xl leading-relaxed mb-10">
+            {service.description}
+          </p>
+
+          <div className="flex flex-col sm:flex-row gap-4">
+            <button
+              onClick={handleScrollToForm}
+              className="px-8 py-4 bg-cyan text-petrol font-bold rounded-xl hover:bg-cyan/90 transition-colors shadow-lg shadow-cyan/20 text-lg flex items-center justify-center gap-2"
+            >
+              Solicitar Orçamento <ChevronRight className="w-5 h-5" />
+            </button>
+            <button
+              onClick={handleScrollToForm}
+              className="px-8 py-4 bg-white/10 text-white font-bold rounded-xl hover:bg-white/20 transition-colors border border-white/20 text-lg flex items-center justify-center"
+            >
+              Falar com Consultor
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* Details Section */}
+      <section className="py-20 bg-slate-50">
+        <div className="container mx-auto px-4 max-w-5xl">
+          <div className="grid md:grid-cols-3 gap-10">
+            <div className="md:col-span-2 space-y-8">
+              <div>
+                <h2 className="text-3xl font-display font-bold text-petrol mb-6">Como funciona</h2>
+                <p className="text-slate-600 text-lg leading-relaxed mb-6">
+                  Nossa atuação como Hub Orquestrador garante que cada etapa do serviço seja
+                  conduzida com excelência, acionando parceiros técnicos e jurídicos especializados
+                  apenas quando necessário. O processo é transparente, seguro e focado em resultados
+                  rápidos.
+                </p>
+                <ul className="space-y-4">
+                  {[
+                    'Análise inicial detalhada da sua demanda',
+                    'Alocação dos parceiros técnicos mais qualificados',
+                    'Gestão centralizada de todo o fluxo de trabalho',
+                    'Acompanhamento em tempo real pela Área do Cliente',
+                  ].map((item, i) => (
+                    <li key={i} className="flex items-start gap-3 text-slate-700">
+                      <CheckCircle className="w-6 h-6 text-cyan shrink-0" />
+                      <span className="text-lg">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            <div>
+              <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm sticky top-32">
+                <Shield className="w-10 h-10 text-cyan mb-4" />
+                <h3 className="text-xl font-bold text-petrol mb-2">Investimento Seguro</h3>
+                <p className="text-slate-500 mb-6">Condições transparentes e sem custos ocultos.</p>
+                <div className="py-4 border-y border-slate-100 mb-6">
+                  <span className="text-sm text-slate-500 block mb-1">Valor Estimado</span>
+                  <span className="text-2xl font-bold text-petrol">{service.price}</span>
+                </div>
+                <button
+                  onClick={handleScrollToForm}
+                  className="w-full py-3 bg-petrol text-white font-bold rounded-lg hover:bg-petrol/90 transition-colors"
+                >
+                  Solicitar Orçamento Agora
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Form Section */}
+      <section id="contact-section" className="py-20 bg-white">
+        <div className="container mx-auto px-4 max-w-3xl">
+          <div className="text-center mb-10">
+            <h2 className="text-3xl font-display font-bold text-petrol mb-4">
+              Solicite um Orçamento
+            </h2>
+            <p className="text-slate-600 text-lg">
+              Preencha o formulário abaixo e entraremos em contato para apresentar a melhor proposta
+              para o serviço de <strong>{service.name}</strong>.
+            </p>
+          </div>
+
+          <div className="bg-white p-8 rounded-2xl shadow-xl shadow-petrol/5 border border-slate-100">
+            <ContactForm preselectedServiceId={service.id} />
+          </div>
+        </div>
+      </section>
+    </div>
+  )
+}

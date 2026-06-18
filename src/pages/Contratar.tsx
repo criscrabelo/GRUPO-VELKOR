@@ -171,7 +171,12 @@ export default function Contratar() {
                           onClick={() => setSelectedServiceId(service.id)}
                         >
                           <TableCell className="font-bold text-petrol align-top pt-4">
-                            {service.name}
+                            <a
+                              href={`/servicos/${service.id}`}
+                              className="hover:text-cyan hover:underline transition-colors block"
+                            >
+                              {service.name}
+                            </a>
                           </TableCell>
                           <TableCell className="text-slate-500 text-sm align-top pt-4">
                             {service.description}
@@ -185,27 +190,37 @@ export default function Contratar() {
                             {service.price}
                           </TableCell>
                           <TableCell className="text-right align-top pt-4">
-                            <Button
-                              variant={selectedServiceId === service.id ? 'default' : 'outline'}
-                              className={cn(
-                                'w-full shadow-none',
-                                selectedServiceId === service.id
-                                  ? 'bg-petrol text-white hover:bg-petrol/90'
-                                  : 'hover:bg-slate-50 hover:text-cyan border-slate-200',
-                              )}
-                              onClick={(e) => {
-                                e.stopPropagation()
-                                setSelectedServiceId(service.id)
-                              }}
-                            >
-                              {selectedServiceId === service.id ? (
-                                <>
-                                  <Check className="w-4 h-4 mr-1" /> Selecionado
-                                </>
-                              ) : (
-                                'Contratar'
-                              )}
-                            </Button>
+                            <div className="flex flex-col gap-2">
+                              <Button
+                                variant={selectedServiceId === service.id ? 'default' : 'outline'}
+                                className={cn(
+                                  'w-full shadow-none',
+                                  selectedServiceId === service.id
+                                    ? 'bg-petrol text-white hover:bg-petrol/90'
+                                    : 'hover:bg-slate-50 hover:text-cyan border-slate-200',
+                                )}
+                                onClick={(e) => {
+                                  e.stopPropagation()
+                                  setSelectedServiceId(service.id)
+                                }}
+                              >
+                                {selectedServiceId === service.id ? (
+                                  <>
+                                    <Check className="w-4 h-4 mr-1" /> Selecionado
+                                  </>
+                                ) : (
+                                  'Contratar Online'
+                                )}
+                              </Button>
+                              <a href={`/servicos/${service.id}`} className="w-full">
+                                <Button
+                                  variant="ghost"
+                                  className="w-full text-xs text-slate-500 hover:text-cyan h-8"
+                                >
+                                  Ver Detalhes
+                                </Button>
+                              </a>
+                            </div>
                           </TableCell>
                         </TableRow>
                       ))}

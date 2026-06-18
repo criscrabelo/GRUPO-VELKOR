@@ -83,6 +83,12 @@ export function Header() {
             >
               FAQ
             </a>
+            <Link
+              to="/contato"
+              className="text-sm font-semibold text-petrol hover:text-cyan transition-colors"
+            >
+              Contato
+            </Link>
           </nav>
 
           <div className="hidden md:flex items-center gap-4">
@@ -156,6 +162,13 @@ export function Header() {
           >
             FAQ
           </a>
+          <Link
+            to="/contato"
+            onClick={() => setIsMobileMenuOpen(false)}
+            className="text-base font-bold text-petrol p-3 hover:bg-cyan/5 rounded-lg"
+          >
+            Contato
+          </Link>
 
           <div className="flex flex-col gap-3 mt-6 pt-6 border-t border-slate-100">
             <Link to="/cliente" className="w-full" onClick={() => setIsMobileMenuOpen(false)}>

@@ -1,5 +1,5 @@
 import { SITE_CONFIG } from '@/lib/config'
-import { MapPin, Mail, Phone, Instagram, Linkedin } from 'lucide-react'
+import { MapPin, Mail, Phone, Instagram, Linkedin, Facebook } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { VelkorLogo } from '@/components/VelkorLogo'
 
@@ -34,6 +34,14 @@ export function Footer() {
                   <Linkedin className="w-5 h-5" />
                 </a>
               )}
+              <a
+                href="#"
+                target="_blank"
+                rel="noreferrer"
+                className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-cyan hover:text-petrol transition-colors"
+              >
+                <Facebook className="w-5 h-5" />
+              </a>
             </div>
           </div>
 
@@ -79,6 +87,11 @@ export function Footer() {
               <li>
                 <Link to="/contratar" className="text-white/60 hover:text-cyan text-sm">
                   Contratar Serviço
+                </Link>
+              </li>
+              <li>
+                <Link to="/contato" className="text-white/60 hover:text-cyan text-sm">
+                  Contato
                 </Link>
               </li>
             </ul>
