@@ -51,8 +51,8 @@ export default function Gateway() {
 
           {/* Insurance Card (Coming Soon) */}
           <div className="group relative bg-slate-800/60 backdrop-blur-md rounded-2xl p-6 sm:p-8 md:p-10 shadow-xl border-2 border-slate-700 flex flex-col items-center text-center overflow-hidden w-full">
-            <div className="absolute top-6 right-6 bg-cyan/20 text-cyan text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider flex items-center gap-1.5 z-10">
-              <span className="w-1.5 h-1.5 rounded-full bg-cyan animate-pulse"></span>
+            <div className="absolute top-6 right-6 bg-cyan/20 text-cyan text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider flex items-center gap-1.5 z-10 animate-pulse">
+              <span className="w-1.5 h-1.5 rounded-full bg-cyan"></span>
               Em Breve
             </div>
             <div className="w-20 h-20 bg-slate-700/50 rounded-2xl -rotate-3 flex items-center justify-center mb-6 relative z-10">
@@ -63,9 +63,12 @@ export default function Gateway() {
               Proteção completa para seu patrimônio, vida e negócios. Soluções personalizadas em
               seguros com a excelência do Grupo VELKOR.
             </p>
-            <div className="flex items-center text-slate-500 font-bold cursor-not-allowed uppercase tracking-wide text-sm relative z-10">
-              Aguarde Novidades
-            </div>
+            <button
+              disabled
+              className="flex items-center bg-cyan/10 text-cyan px-6 py-2.5 rounded-full font-bold cursor-not-allowed uppercase tracking-wide text-sm relative z-10 animate-pulse border border-cyan/20 hover:bg-cyan/20 transition-colors"
+            >
+              Em Breve
+            </button>
           </div>
         </div>
       </div>
