@@ -1,12 +1,21 @@
-/* Home Page - Replace this page layout, components, content, behavior with what you want and translate to the language of the user */
-const Index = () => {
+import { HeroSection } from '@/components/sections/hero-section'
+import { SocialProofSection } from '@/components/sections/social-proof-section'
+import { FeaturesSection } from '@/components/sections/features-section'
+import { ComparisonSection } from '@/components/sections/comparison-section'
+import { PricingSection } from '@/components/sections/pricing-section'
+import { TestimonialsSection } from '@/components/sections/testimonials-section'
+import { FaqSection } from '@/components/sections/faq-section'
+
+export default function Index() {
   return (
-    <div className="container mx-auto py-8 px-4">
-      <h1 className="text-3xl font-bold mb-6">
-        This is a example page ready to be rewritten with your own content
-      </h1>
+    <div className="flex flex-col w-full bg-white">
+      <HeroSection />
+      <SocialProofSection />
+      <FeaturesSection />
+      <ComparisonSection />
+      <PricingSection />
+      <TestimonialsSection />
+      <FaqSection />
     </div>
   )
 }
-
-export default Index
