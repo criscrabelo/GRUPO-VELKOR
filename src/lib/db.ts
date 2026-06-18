@@ -46,6 +46,16 @@ export interface Lead {
   created_at: string
 }
 
+export interface SiteContent {
+  id: string
+  page_title: string
+  hero_description: string
+  logo_url: string
+  primary_cta_text: string
+  contact_email: string
+  contact_phone: string
+}
+
 export interface GatewayLink {
   id: string
   title: string
@@ -54,6 +64,17 @@ export interface GatewayLink {
   link_url: string
   order: number
   is_active: boolean
+}
+
+const DEFAULT_SITE_CONTENT: SiteContent = {
+  id: '1',
+  page_title: 'Seja bem-vindo ao GRUPO VELKOR',
+  hero_description: 'Selecione a unidade de negócio para acessar nossos serviços.',
+  logo_url:
+    'https://api.altan.ai/platform/media/c0352277-2fce-4c12-92ab-621cae528aab?account_id=45753086-63e2-45e0-81f1-0bc4cb5499dd',
+  primary_cta_text: 'Acessar Portal',
+  contact_email: 'contato@velkor.com.br',
+  contact_phone: '5512999999999',
 }
 
 const DEFAULT_GATEWAY_LINKS: GatewayLink[] = [
@@ -179,6 +200,15 @@ export const db = {
       if (data) return JSON.parse(data)
       localStorage.setItem('skip_db_gateway_links', JSON.stringify(DEFAULT_GATEWAY_LINKS))
       return DEFAULT_GATEWAY_LINKS
+    },
+  },
+  siteContent: {
+    async findFirst(): Promise<SiteContent> {
+      await delay(300)
+      const data = localStorage.getItem('skip_db_site_content')
+      if (data) return JSON.parse(data)
+      localStorage.setItem('skip_db_site_content', JSON.stringify(DEFAULT_SITE_CONTENT))
+      return DEFAULT_SITE_CONTENT
     },
   },
 }

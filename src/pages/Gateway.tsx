@@ -1,19 +1,30 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { ShieldCheck, ArrowRight, Loader2, AlertCircle } from 'lucide-react'
+import { ShieldCheck, ArrowRight, AlertCircle } from 'lucide-react'
 import { VelkorLogo } from '@/components/VelkorLogo'
-import { db, type GatewayLink } from '@/lib/db'
+import { db, type GatewayLink, type SiteContent } from '@/lib/db'
+import { Skeleton } from '@/components/ui/skeleton'
 
 export default function Gateway() {
   const [links, setLinks] = useState<GatewayLink[]>([])
+  const [siteContent, setSiteContent] = useState<SiteContent | null>(null)
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState(false)
 
   useEffect(() => {
-    db.gatewayLinks
-      .findMany()
-      .then((data) => {
-        setLinks(data.filter((l) => l.is_active).sort((a, b) => (a.order || 0) - (b.order || 0)))
+    Promise.all([
+      db.gatewayLinks.findMany().catch(() => []),
+      db.siteContent.findFirst().catch(() => null),
+    ])
+      .then(([linksData, contentData]) => {
+        if (!linksData || linksData.length === 0) {
+          setError(true)
+        } else {
+          setLinks(
+            linksData.filter((l) => l.is_active).sort((a, b) => (a.order || 0) - (b.order || 0)),
+          )
+        }
+        setSiteContent(contentData)
       })
       .catch(() => setError(true))
       .finally(() => setIsLoading(false))
@@ -31,19 +42,39 @@ export default function Gateway() {
       </div>
 
       <div className="z-10 container px-4 max-w-5xl flex flex-col items-center py-12 mb-8">
-        <div className="mb-12 text-center animate-fade-in-down">
-          <h1 className="text-white text-4xl md:text-6xl font-display font-bold tracking-tight mb-4">
-            Seja bem-vindo ao GRUPO VELKOR
-          </h1>
-          <p className="text-cyan text-lg md:text-xl max-w-2xl mx-auto">
-            Selecione a unidade de negócio para acessar nossos serviços.
-          </p>
+        <div className="mb-12 text-center animate-fade-in-down w-full flex flex-col items-center">
+          {isLoading ? (
+            <>
+              <Skeleton className="h-12 md:h-16 w-3/4 max-w-2xl mb-4 bg-slate-800/80 rounded-xl" />
+              <Skeleton className="h-6 md:h-7 w-2/3 max-w-xl bg-slate-800/50 rounded-lg" />
+            </>
+          ) : (
+            <>
+              <h1 className="text-white text-4xl md:text-6xl font-display font-bold tracking-tight mb-4">
+                {siteContent?.page_title || 'Seja bem-vindo ao GRUPO VELKOR'}
+              </h1>
+              <p className="text-cyan text-lg md:text-xl max-w-2xl mx-auto">
+                {siteContent?.hero_description ||
+                  'Selecione a unidade de negócio para acessar nossos serviços.'}
+              </p>
+            </>
+          )}
         </div>
 
         {isLoading ? (
-          <div className="flex flex-col items-center justify-center p-12 w-full animate-fade-in text-white/70">
-            <Loader2 className="w-8 h-8 text-cyan animate-spin mb-4" />
-            <p>Carregando portais...</p>
+          <div className="grid md:grid-cols-2 gap-6 w-full max-w-4xl animate-fade-in">
+            {[1, 2].map((i) => (
+              <div
+                key={i}
+                className="bg-slate-800/40 backdrop-blur-md rounded-2xl p-8 border-2 border-slate-700/50 flex flex-col items-center h-[320px]"
+              >
+                <Skeleton className="w-20 h-20 rounded-2xl mb-6 bg-slate-700/50" />
+                <Skeleton className="h-8 w-48 mb-4 bg-slate-700/50" />
+                <Skeleton className="h-4 w-64 mb-2 bg-slate-700/30" />
+                <Skeleton className="h-4 w-56 mb-8 bg-slate-700/30" />
+                <Skeleton className="h-5 w-32 bg-slate-700/40 mt-auto" />
+              </div>
+            ))}
           </div>
         ) : error ? (
           <div className="flex flex-col items-center justify-center p-12 w-full animate-fade-in text-red-400 bg-red-950/20 rounded-2xl border border-red-900/50 backdrop-blur-sm">
@@ -89,6 +120,12 @@ export default function Gateway() {
                         alt={link.title}
                         className="w-full h-full object-contain drop-shadow-sm group-hover:scale-105 transition-transform"
                       />
+                    ) : siteContent?.logo_url ? (
+                      <img
+                        src={siteContent.logo_url}
+                        alt="Logo"
+                        className="w-full h-full object-contain drop-shadow-sm group-hover:scale-105 transition-transform"
+                      />
                     ) : (
                       <VelkorLogo
                         variant="dark"
@@ -98,8 +135,9 @@ export default function Gateway() {
                   </div>
                   <h2 className="text-2xl font-bold text-petrol mb-4 z-10">{link.title}</h2>
                   <p className="text-slate-600 mb-8 z-10">{link.description}</p>
-                  <div className="flex items-center text-cyan font-bold group-hover:translate-x-2 transition-transform z-10">
-                    Acessar Portal <ArrowRight className="ml-2 w-5 h-5" />
+                  <div className="flex items-center text-cyan font-bold group-hover:translate-x-2 transition-transform z-10 mt-auto">
+                    {siteContent?.primary_cta_text || 'Acessar Portal'}{' '}
+                    <ArrowRight className="ml-2 w-5 h-5" />
                   </div>
                 </Link>
               ),

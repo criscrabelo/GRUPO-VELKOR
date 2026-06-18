@@ -42,3 +42,28 @@ CREATE POLICY "Allow public read on gateway links" ON gateway_links
 CREATE POLICY "Allow authenticated full access on gateway links" ON gateway_links
   FOR ALL TO authenticated
   USING (true) WITH CHECK (true);
+
+-- Create the site_content table for dynamic gateway page content
+CREATE TABLE IF NOT EXISTS site_content (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  page_title TEXT NOT NULL,
+  hero_description TEXT,
+  logo_url TEXT,
+  primary_cta_text TEXT,
+  contact_email TEXT,
+  contact_phone TEXT,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+-- Enable RLS for site_content
+ALTER TABLE site_content ENABLE ROW LEVEL SECURITY;
+
+-- Allow anonymous users to read site content
+CREATE POLICY "Allow public read on site content" ON site_content
+  FOR SELECT TO anon
+  USING (true);
+
+-- Allow authenticated users full access on site content
+CREATE POLICY "Allow authenticated full access on site content" ON site_content
+  FOR ALL TO authenticated
+  USING (true) WITH CHECK (true);
