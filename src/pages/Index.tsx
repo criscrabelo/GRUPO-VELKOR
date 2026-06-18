@@ -31,6 +31,10 @@ export default function Index() {
             execução de atos privativos (como laudos de engenharia ou peças jurídicas) se faz
             necessária.
           </p>
+          <p className="text-lg text-slate-600 leading-relaxed mt-6">
+            A <strong>VELKOR Seguros</strong> também faz parte do Grupo VELKOR, ampliando a sua
+            experiência e integrando a proteção patrimonial diretamente ao nosso hub de gestão.
+          </p>
         </div>
       </section>
       <SocialProofSection />

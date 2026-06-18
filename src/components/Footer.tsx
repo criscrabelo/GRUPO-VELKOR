@@ -61,6 +61,11 @@ export function Footer() {
                   Due Diligence
                 </Link>
               </li>
+              <li>
+                <Link to="/" className="text-white/60 hover:text-cyan text-sm">
+                  Seguros (VELKOR Seguros)
+                </Link>
+              </li>
             </ul>
           </div>
 

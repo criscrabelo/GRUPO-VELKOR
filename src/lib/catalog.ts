@@ -53,4 +53,12 @@ export const SERVICE_CATALOG = [
       'Levantamento de certidões, débitos e pendências administrativas de imóveis e sócios. Serviços técnicos e peças jurídicas executados por nossa rede de parceiros especializados.',
     price: 'R$ 2.500 - R$ 8.000',
   },
+  {
+    id: 'seguros-patrimoniais',
+    name: 'Seguros Patrimoniais (VELKOR Seguros)',
+    type: 'Pessoa Física e Jurídica',
+    description:
+      'Gestão de apólices e proteção completa para imóveis e bens sob a orquestração do Grupo VELKOR.',
+    price: 'Sob Consulta',
+  },
 ]
