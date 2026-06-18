@@ -38,7 +38,7 @@ export default function Gateway() {
               <Building2 className="w-10 h-10 text-petrol group-hover:text-cyan transition-colors duration-300" />
             </div>
             <h2 className="text-2xl font-bold text-petrol mb-4 relative z-10">
-              Soluções Imobiliárias
+              VELKOR Soluções Imobiliárias
             </h2>
             <p className="text-slate-600 mb-8 flex-grow leading-relaxed relative z-10">
               Regularização patrimonial, due diligence, assessoria em leilões e compra segura com
@@ -58,7 +58,7 @@ export default function Gateway() {
             <div className="w-20 h-20 bg-slate-700/50 rounded-2xl -rotate-3 flex items-center justify-center mb-6 relative z-10">
               <ShieldCheck className="w-10 h-10 text-slate-400" />
             </div>
-            <h2 className="text-2xl font-bold text-white mb-4 relative z-10">Seguros</h2>
+            <h2 className="text-2xl font-bold text-white mb-4 relative z-10">VELKOR Seguros</h2>
             <p className="text-slate-400 mb-8 flex-grow leading-relaxed relative z-10">
               Proteção completa para seu patrimônio, vida e negócios. Soluções personalizadas em
               seguros com a excelência do Grupo VELKOR.
