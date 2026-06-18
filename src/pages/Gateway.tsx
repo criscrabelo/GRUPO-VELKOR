@@ -15,10 +15,10 @@ export default function Gateway() {
 
       <div className="z-10 container px-4 max-w-5xl flex flex-col items-center py-12 mb-8">
         <div className="mb-12 text-center animate-fade-in-down">
-          <h1 className="text-white text-3xl md:text-5xl font-display font-bold tracking-tight mb-4">
-            VELKOR SOLUÇÕES IMOBILIÁRIAS
+          <h1 className="text-white text-4xl md:text-6xl font-display font-bold tracking-tight mb-4">
+            Seja bem-vindo GRUPO VELKOR
           </h1>
-          <p className="text-cyan text-lg max-w-2xl mx-auto">
+          <p className="text-cyan text-lg md:text-xl max-w-2xl mx-auto">
             Selecione a unidade de negócio para acessar nossos serviços.
           </p>
         </div>
