@@ -33,33 +33,13 @@ export function ContactForm({ preselectedServiceId }: { preselectedServiceId?: s
     setIsSubmitting(true)
 
     try {
-      const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL
-      const SUPABASE_ANON_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY
-
-      if (SUPABASE_URL && SUPABASE_ANON_KEY) {
-        const response = await fetch(`${SUPABASE_URL}/rest/v1/contacts`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            apikey: SUPABASE_ANON_KEY,
-            Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
-            Prefer: 'return=minimal',
-          },
-          body: JSON.stringify({ message: formData.message }),
-        })
-
-        if (!response.ok) {
-          throw new Error('Falha ao conectar com o banco de dados')
-        }
-      } else {
-        await db.contacts.create({
-          name: 'Visitante',
-          email: 'visitante@site.com',
-          phone: 'N/A',
-          message: formData.message,
-          service_id: preselectedServiceId || undefined,
-        })
-      }
+      await db.contacts.create({
+        name: 'Visitante',
+        email: 'visitante@site.com',
+        phone: 'N/A',
+        message: formData.message,
+        service_id: preselectedServiceId || undefined,
+      })
 
       setIsSubmitting(false)
       setIsSuccess(true)

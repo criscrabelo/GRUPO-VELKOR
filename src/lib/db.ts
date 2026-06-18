@@ -140,6 +140,15 @@ const DEFAULT_TESTIMONIALS: Testimonial[] = [
 // Simulate network delay for mock backend API calls
 const delay = (ms: number) => new Promise((res) => setTimeout(res, ms))
 
+const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL
+const SUPABASE_ANON_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY
+
+const getHeaders = () => ({
+  'Content-Type': 'application/json',
+  apikey: SUPABASE_ANON_KEY,
+  Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+})
+
 export const db = {
   services: {
     async findMany(): Promise<Service[]> {
@@ -165,6 +174,21 @@ export const db = {
   },
   contacts: {
     async create(data: Omit<Contact, 'id' | 'created_at'>): Promise<Contact> {
+      if (SUPABASE_URL && SUPABASE_ANON_KEY) {
+        try {
+          const res = await fetch(`${SUPABASE_URL}/rest/v1/contacts`, {
+            method: 'POST',
+            headers: { ...getHeaders(), Prefer: 'return=representation' },
+            body: JSON.stringify(data),
+          })
+          if (res.ok) {
+            const json = await res.json()
+            return json[0]
+          }
+        } catch (e) {
+          console.error('Supabase contact create error:', e)
+        }
+      }
       await delay(500)
       const contactsStr = localStorage.getItem('skip_db_contacts')
       const contacts: Contact[] = contactsStr ? JSON.parse(contactsStr) : []
@@ -180,6 +204,21 @@ export const db = {
   },
   leads: {
     async create(data: Omit<Lead, 'id' | 'created_at'>): Promise<Lead> {
+      if (SUPABASE_URL && SUPABASE_ANON_KEY) {
+        try {
+          const res = await fetch(`${SUPABASE_URL}/rest/v1/leads`, {
+            method: 'POST',
+            headers: { ...getHeaders(), Prefer: 'return=representation' },
+            body: JSON.stringify(data),
+          })
+          if (res.ok) {
+            const json = await res.json()
+            return json[0]
+          }
+        } catch (e) {
+          console.error('Supabase lead create error:', e)
+        }
+      }
       await delay(500)
       const leadsStr = localStorage.getItem('skip_db_leads')
       const leads: Lead[] = leadsStr ? JSON.parse(leadsStr) : []
@@ -195,6 +234,22 @@ export const db = {
   },
   gatewayLinks: {
     async findMany(): Promise<GatewayLink[]> {
+      if (SUPABASE_URL && SUPABASE_ANON_KEY) {
+        try {
+          const res = await fetch(
+            `${SUPABASE_URL}/rest/v1/gateway_links?select=*&order=order.asc`,
+            {
+              headers: getHeaders(),
+            },
+          )
+          if (res.ok) {
+            const data = await res.json()
+            if (data && data.length > 0) return data
+          }
+        } catch (e) {
+          console.error('Supabase gateway_links fetch error:', e)
+        }
+      }
       await delay(300)
       const data = localStorage.getItem('skip_db_gateway_links')
       if (data) return JSON.parse(data)
@@ -204,6 +259,19 @@ export const db = {
   },
   siteContent: {
     async findFirst(): Promise<SiteContent> {
+      if (SUPABASE_URL && SUPABASE_ANON_KEY) {
+        try {
+          const res = await fetch(`${SUPABASE_URL}/rest/v1/site_content?select=*&limit=1`, {
+            headers: getHeaders(),
+          })
+          if (res.ok) {
+            const data = await res.json()
+            if (data && data.length > 0) return data[0]
+          }
+        } catch (e) {
+          console.error('Supabase site_content fetch error:', e)
+        }
+      }
       await delay(300)
       const data = localStorage.getItem('skip_db_site_content')
       if (data) return JSON.parse(data)
