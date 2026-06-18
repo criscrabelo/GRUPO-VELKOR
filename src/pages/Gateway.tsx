@@ -34,7 +34,10 @@ export default function Gateway() {
     <div className="min-h-screen bg-slate-900 flex flex-col items-center justify-center relative overflow-hidden">
       <div className="absolute inset-0 z-0">
         <img
-          src="https://img.usecurling.com/p/1920/1080?q=modern%20architecture&color=black&dpr=2"
+          src={
+            siteContent?.background_image_url ||
+            'https://img.usecurling.com/p/1920/1080?q=modern%20architecture&color=black&dpr=2'
+          }
           alt="Bg"
           className="w-full h-full object-cover opacity-30 mix-blend-overlay"
         />
@@ -90,9 +93,11 @@ export default function Gateway() {
                   key={link.id}
                   className="group relative bg-slate-800/60 backdrop-blur-md rounded-2xl p-8 shadow-xl border-2 border-slate-700 flex flex-col items-center text-center"
                 >
-                  <div className="absolute top-6 right-6 bg-cyan/20 text-cyan text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1.5 animate-pulse">
-                    <span className="w-1.5 h-1.5 rounded-full bg-cyan"></span> EM BREVE
-                  </div>
+                  {link.badge_text && (
+                    <div className="absolute top-6 right-6 bg-cyan/20 text-cyan text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1.5 animate-pulse">
+                      <span className="w-1.5 h-1.5 rounded-full bg-cyan"></span> {link.badge_text}
+                    </div>
+                  )}
                   <div className="w-20 h-20 bg-slate-700/50 rounded-2xl -rotate-3 flex items-center justify-center mb-6 z-10 p-3">
                     {link.image_url ? (
                       <img
@@ -146,8 +151,8 @@ export default function Gateway() {
         )}
       </div>
       <div className="relative text-white/40 text-xs text-center z-10 w-full font-medium pb-4">
-        &copy; {new Date().getFullYear()} VELKOR SOLUÇÕES IMOBILIÁRIAS. Todos os direitos
-        reservados.
+        &copy; {new Date().getFullYear()}{' '}
+        {siteContent?.footer_text || 'VELKOR SOLUÇÕES IMOBILIÁRIAS. Todos os direitos reservados.'}
       </div>
     </div>
   )

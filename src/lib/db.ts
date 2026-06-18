@@ -54,6 +54,8 @@ export interface SiteContent {
   primary_cta_text: string
   contact_email: string
   contact_phone: string
+  background_image_url?: string
+  footer_text?: string
 }
 
 export interface GatewayLink {
@@ -64,6 +66,7 @@ export interface GatewayLink {
   link_url: string
   order: number
   is_active: boolean
+  badge_text?: string
 }
 
 const DEFAULT_SITE_CONTENT: SiteContent = {
@@ -75,6 +78,9 @@ const DEFAULT_SITE_CONTENT: SiteContent = {
   primary_cta_text: 'Acessar Portal',
   contact_email: 'contato@velkor.com.br',
   contact_phone: '5512999999999',
+  background_image_url:
+    'https://img.usecurling.com/p/1920/1080?q=modern%20architecture&color=black&dpr=2',
+  footer_text: 'VELKOR SOLUÇÕES IMOBILIÁRIAS. Todos os direitos reservados.',
 }
 
 const DEFAULT_GATEWAY_LINKS: GatewayLink[] = [
@@ -95,6 +101,7 @@ const DEFAULT_GATEWAY_LINKS: GatewayLink[] = [
     link_url: '#',
     order: 2,
     is_active: true,
+    badge_text: 'EM BREVE',
   },
 ]
 

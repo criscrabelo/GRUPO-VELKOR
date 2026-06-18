@@ -27,6 +27,7 @@ CREATE TABLE IF NOT EXISTS gateway_links (
   link_url TEXT NOT NULL,
   "order" INTEGER DEFAULT 0,
   is_active BOOLEAN DEFAULT true,
+  badge_text TEXT,
   created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
 
@@ -52,6 +53,8 @@ CREATE TABLE IF NOT EXISTS site_content (
   primary_cta_text TEXT,
   contact_email TEXT,
   contact_phone TEXT,
+  background_image_url TEXT,
+  footer_text TEXT,
   created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
 
