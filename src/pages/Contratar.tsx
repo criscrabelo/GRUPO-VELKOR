@@ -37,13 +37,6 @@ const SERVICES = [
     desc: 'Sessão de fotos em alta resolução para seu anúncio.',
     price: 400,
   },
-  {
-    id: '5',
-    title: 'Seguro Patrimonial (VELKOR Seguros)',
-    desc: 'Proteção completa para o seu imóvel e bens com a gestão e orquestração do Grupo VELKOR.',
-    price: 250,
-    suffix: '/mês (a partir)',
-  },
 ]
 
 export default function Contratar() {

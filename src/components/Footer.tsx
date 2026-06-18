@@ -61,11 +61,6 @@ export function Footer() {
                   Due Diligence
                 </Link>
               </li>
-              <li>
-                <Link to="/" className="text-white/60 hover:text-cyan text-sm">
-                  Seguros (VELKOR Seguros)
-                </Link>
-              </li>
             </ul>
           </div>
 
@@ -126,6 +121,7 @@ export function Footer() {
             <p className="text-white/40 text-xs">
               © {new Date().getFullYear()} {SITE_CONFIG.name}. Todos os direitos reservados.
             </p>
+            <p className="text-white/40 text-xs mt-1">VELKOR Seguros faz parte do Grupo VELKOR.</p>
             {SITE_CONFIG.cnpj && (
               <p className="text-white/40 text-xs mt-1 font-bold">CNPJ: {SITE_CONFIG.cnpj}</p>
             )}
