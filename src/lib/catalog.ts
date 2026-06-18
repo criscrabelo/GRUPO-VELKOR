@@ -10,14 +10,16 @@ export const SERVICE_CATALOG = [
     id: 'checkup-imobiliario',
     name: 'Check-up Imobiliário',
     type: 'Pessoa Física e Jurídica',
-    description: 'Diagnóstico completo da situação documental do imóvel, matrícula, ônus, IPTU.',
+    description:
+      'Diagnóstico completo da situação documental do imóvel, matrícula, ônus, IPTU. Serviços técnicos e peças jurídicas executados por nossa rede de parceiros especializados.',
     price: 'R$ 600 - R$ 1.500',
   },
   {
     id: 'compra-segura',
     name: 'Compra Segura',
     type: 'Compradores',
-    description: 'Análise de riscos documentais, certidões do vendedor e comprador.',
+    description:
+      'Análise de riscos documentais, certidões do vendedor e comprador. Serviços técnicos e peças jurídicas executados por nossa rede de parceiros especializados.',
     price: 'R$ 1.200 - R$ 2.800',
   },
   {
@@ -25,7 +27,7 @@ export const SERVICE_CATALOG = [
     name: 'Leilão Imobiliário Assistido',
     type: 'Investidores',
     description:
-      'Da análise administrativa do edital ao registro da arrematação. Atos privativos executados por advogados parceiros.',
+      'Da análise administrativa do edital ao registro da arrematação. Serviços técnicos e peças jurídicas executados por nossa rede de parceiros especializados.',
     price: 'Sob Consulta',
   },
   {
@@ -48,7 +50,7 @@ export const SERVICE_CATALOG = [
     name: 'Due Diligence Documental',
     type: 'Investidores/Empresas',
     description:
-      'Levantamento de certidões, débitos e pendências administrativas de imóveis e sócios.',
+      'Levantamento de certidões, débitos e pendências administrativas de imóveis e sócios. Serviços técnicos e peças jurídicas executados por nossa rede de parceiros especializados.',
     price: 'R$ 2.500 - R$ 8.000',
   },
 ]

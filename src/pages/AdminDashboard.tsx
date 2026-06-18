@@ -9,6 +9,7 @@ import { GovernanceView } from '@/components/admin/GovernanceView'
 import { FinanceView } from '@/components/admin/FinanceView'
 import { PortfolioView } from '@/components/admin/PortfolioView'
 import { VaultView } from '@/components/admin/VaultView'
+import { PartnersView } from '@/components/admin/PartnersView'
 import { useNavigate } from 'react-router-dom'
 import { LogOut } from 'lucide-react'
 import { Button } from '@/components/ui/button'
@@ -25,6 +26,7 @@ export default function AdminDashboard() {
     vault: 'Vault de Documentos',
     finance: 'Finanças & Projetos',
     portfolio: 'Carteira & Deliberação',
+    partners: 'Gestão de Parceiros',
     settings: 'Configurações',
   }
 
@@ -66,6 +68,7 @@ export default function AdminDashboard() {
             {activeView === 'finance' && <FinanceView />}
             {activeView === 'portfolio' && <PortfolioView />}
             {activeView === 'vault' && <VaultView />}
+            {activeView === 'partners' && <PartnersView />}
             {activeView === 'settings' && <SettingsView />}
           </main>
         </SidebarInset>

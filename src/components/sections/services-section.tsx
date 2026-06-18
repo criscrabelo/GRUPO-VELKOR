@@ -76,8 +76,8 @@ export function ServicesSection() {
                 <div className="mb-6 bg-slate-50 border border-slate-100 p-3 rounded-lg flex items-start gap-2">
                   <Info className="w-4 h-4 text-cyan shrink-0 mt-0.5" />
                   <span className="text-xs text-slate-500 font-medium">
-                    Atos técnicos e jurídicos deste serviço são realizados por profissionais
-                    parceiros especializados.
+                    Serviços técnicos e peças jurídicas executados por nossa rede de parceiros
+                    especializados.
                   </span>
                 </div>
               )}

@@ -9,13 +9,21 @@ import {
 } from '@/components/ui/table'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import { Plus, MoreHorizontal, FileEdit, Trash2, Mail, Phone } from 'lucide-react'
+import { Plus, MoreHorizontal, FileEdit, Trash2, Mail, Phone, FileText } from 'lucide-react'
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+} from '@/components/ui/sheet'
+import { ScrollArea } from '@/components/ui/scroll-area'
 
 type PartnerStatus = 'active' | 'inactive' | 'pending'
 type PartnerSpecialty = 'Legal' | 'Engenharia' | 'Arquitetura' | 'Advocacia'
@@ -28,7 +36,15 @@ interface Partner {
   status: PartnerStatus
   email: string
   phone: string
-  registrationNumber: string // OAB, CREA, CAU, etc.
+  registrationNumber: string
+}
+
+interface AssignedDossier {
+  id: string
+  title: string
+  client: string
+  status: string
+  assignedDate: string
 }
 
 const mockPartners: Partner[] = [
@@ -74,8 +90,26 @@ const mockPartners: Partner[] = [
   },
 ]
 
+const mockDossiers: AssignedDossier[] = [
+  {
+    id: 'DOS-2023-001',
+    title: 'Regularização de Imóvel - Matrícula 12345',
+    client: 'João da Silva',
+    status: 'Em Análise',
+    assignedDate: '2023-10-01',
+  },
+  {
+    id: 'DOS-2023-045',
+    title: 'Due Diligence - Terreno Industrial',
+    client: 'Construtora Alpha',
+    status: 'Concluído',
+    assignedDate: '2023-09-15',
+  },
+]
+
 export function PartnersView() {
   const [partners] = useState<Partner[]>(mockPartners)
+  const [selectedPartner, setSelectedPartner] = useState<Partner | null>(null)
 
   const getStatusBadge = (status: PartnerStatus) => {
     switch (status) {
@@ -128,9 +162,9 @@ export function PartnersView() {
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
-          <h2 className="text-2xl font-bold tracking-tight text-slate-900">Rede de Parceiros</h2>
+          <h2 className="text-2xl font-bold tracking-tight text-slate-900">Gestão de Parceiros</h2>
           <p className="text-sm text-slate-500 mt-1">
-            Gerencie os profissionais e empresas habilitadas para serviços privativos.
+            Visualize e gerencie os profissionais e empresas habilitadas para serviços privativos.
           </p>
         </div>
         <Button className="bg-petrol text-white hover:bg-petrol/90">
@@ -152,7 +186,11 @@ export function PartnersView() {
             </TableHeader>
             <TableBody>
               {partners.map((partner) => (
-                <TableRow key={partner.id} className="hover:bg-slate-50/50">
+                <TableRow
+                  key={partner.id}
+                  className="hover:bg-slate-50/50 cursor-pointer"
+                  onClick={() => setSelectedPartner(partner)}
+                >
                   <TableCell>
                     <div className="font-medium text-slate-900">{partner.name}</div>
                     <div className="text-sm text-slate-500">{partner.company}</div>
@@ -172,7 +210,7 @@ export function PartnersView() {
                   <TableCell>{getStatusBadge(partner.status)}</TableCell>
                   <TableCell className="text-right">
                     <DropdownMenu>
-                      <DropdownMenuTrigger asChild>
+                      <DropdownMenuTrigger asChild onClick={(e) => e.stopPropagation()}>
                         <Button variant="ghost" size="icon" className="h-8 w-8 text-slate-500">
                           <span className="sr-only">Abrir menu</span>
                           <MoreHorizontal className="h-4 w-4" />
@@ -203,6 +241,107 @@ export function PartnersView() {
           </Table>
         </div>
       </div>
+
+      <Sheet open={!!selectedPartner} onOpenChange={(open) => !open && setSelectedPartner(null)}>
+        <SheetContent className="sm:max-w-md w-full bg-slate-50 p-0 flex flex-col gap-0 border-l border-slate-200">
+          {selectedPartner && (
+            <>
+              <div className="p-6 bg-white border-b border-slate-200">
+                <SheetHeader className="text-left space-y-4">
+                  <div className="flex items-start justify-between">
+                    <div>
+                      <SheetTitle className="text-xl font-bold text-slate-900">
+                        {selectedPartner.name}
+                      </SheetTitle>
+                      <SheetDescription className="text-slate-500 mt-1">
+                        {selectedPartner.company}
+                      </SheetDescription>
+                    </div>
+                    {getStatusBadge(selectedPartner.status)}
+                  </div>
+
+                  <div className="flex flex-wrap gap-4 pt-2">
+                    <div className="space-y-1">
+                      <p className="text-xs font-medium text-slate-500 uppercase tracking-wider">
+                        Especialidade
+                      </p>
+                      <div>{getSpecialtyBadge(selectedPartner.specialty)}</div>
+                    </div>
+                    <div className="space-y-1">
+                      <p className="text-xs font-medium text-slate-500 uppercase tracking-wider">
+                        Registro
+                      </p>
+                      <p className="text-sm font-mono text-slate-700">
+                        {selectedPartner.registrationNumber}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex flex-col gap-2 pt-2 text-sm text-slate-600">
+                    <div className="flex items-center gap-2">
+                      <Mail className="w-4 h-4 text-slate-400" />
+                      {selectedPartner.email}
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Phone className="w-4 h-4 text-slate-400" />
+                      {selectedPartner.phone}
+                    </div>
+                  </div>
+                </SheetHeader>
+              </div>
+
+              <ScrollArea className="flex-1 p-6">
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <h3 className="text-sm font-bold text-slate-900 flex items-center gap-2">
+                      <FileText className="w-4 h-4 text-cyan" />
+                      Dossiês Atribuídos
+                    </h3>
+                    <Badge variant="secondary" className="bg-slate-200 text-slate-700">
+                      {mockDossiers.length}
+                    </Badge>
+                  </div>
+
+                  <div className="space-y-3">
+                    {mockDossiers.map((dossier) => (
+                      <div
+                        key={dossier.id}
+                        className="bg-white p-4 rounded-lg border border-slate-200 shadow-sm space-y-2"
+                      >
+                        <div className="flex items-start justify-between gap-2">
+                          <p className="font-medium text-sm text-slate-900 leading-tight">
+                            {dossier.title}
+                          </p>
+                          <Badge
+                            variant="outline"
+                            className="text-[10px] whitespace-nowrap bg-slate-50"
+                          >
+                            {dossier.status}
+                          </Badge>
+                        </div>
+                        <div className="flex items-center justify-between text-xs text-slate-500">
+                          <span>Cliente: {dossier.client}</span>
+                          <span className="font-mono">{dossier.id}</span>
+                        </div>
+                        <div className="text-xs text-slate-400 pt-2 border-t border-slate-100">
+                          Atribuído em: {new Date(dossier.assignedDate).toLocaleDateString('pt-BR')}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </ScrollArea>
+
+              <div className="p-4 bg-white border-t border-slate-200 flex justify-end gap-2 shrink-0">
+                <Button variant="outline" onClick={() => setSelectedPartner(null)}>
+                  Fechar
+                </Button>
+                <Button className="bg-petrol text-white hover:bg-petrol/90">Atribuir Dossiê</Button>
+              </div>
+            </>
+          )}
+        </SheetContent>
+      </Sheet>
     </div>
   )
 }

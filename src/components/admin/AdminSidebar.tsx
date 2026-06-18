@@ -29,6 +29,7 @@ export type AdminView =
   | 'vault'
   | 'finance'
   | 'portfolio'
+  | 'partners'
   | 'settings'
 
 interface AdminSidebarProps {
@@ -44,6 +45,7 @@ export function AdminSidebar({ activeView, onViewChange }: AdminSidebarProps) {
     { id: 'finance', label: 'Finanças & Projetos', icon: TrendingUp },
     { id: 'portfolio', label: 'Carteira & Deliberação', icon: Briefcase },
     { id: 'vault', label: 'Vault de Documentos', icon: Lock },
+    { id: 'partners', label: 'Gestão de Parceiros', icon: Users },
     { id: 'leads', label: 'Leads & CRM', icon: Users },
     { id: 'settings', label: 'Configurações', icon: Settings },
   ] as const

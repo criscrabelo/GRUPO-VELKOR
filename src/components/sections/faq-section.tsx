@@ -20,6 +20,10 @@ export function FaqSection() {
       a: 'O serviço engloba o levantamento completo da situação da matrícula imobiliária, verificação de ônus, apontamentos e bloqueios judiciais, além de pendências de IPTU e análise preliminar da cadeia sucessória do imóvel para garantir clareza no negócio.',
     },
     {
+      q: 'Como funciona a rede de especialistas?',
+      a: 'A VELKOR coordena e gerencia todo o processo, enquanto nossos parceiros especialistas (advogados, engenheiros, arquitetos) cuidam da emissão de laudos técnicos e peças jurídicas específicas. Isso garante agilidade, segurança e centralização da comunicação em um único lugar, mantendo nossa atuação como um hub orquestrador.',
+    },
+    {
       q: 'Como acompanho a evolução do meu serviço contratado?',
       a: 'Transparência é nossa prioridade. Todos os nossos clientes recebem acesso exclusivo ao Portal do Cliente (Área Logada), onde é possível acompanhar o status do serviço em tempo real, fazer download dos laudos e contratos, e visualizar extratos de pagamentos.',
     },

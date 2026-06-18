@@ -12,5 +12,10 @@ export const SITE_CONFIG = {
   logoUrl:
     'https://api.altan.ai/platform/media/c0352277-2fce-4c12-92ab-621cae528aab?account_id=45753086-63e2-45e0-81f1-0bc4cb5499dd',
   servicesDisclaimer:
-    'Não realizamos corretagem imobiliária, intermediação de compra e venda, intermediação de locação, avaliação de imóveis, administração imobiliária, aprovação de crédito, consultoria jurídica ou serviços privativos de engenheiros, arquitetos, advogados ou corretores de imóveis.',
+    'A VELKOR não presta serviços diretos de corretagem imobiliária ou advocacia. Atuamos como um HUB coordenador: toda a parte estratégica e administrativa é nossa, enquanto atos privativos (peças jurídicas, laudos, ART/RRT) são executados exclusivamente por nossa rede de parceiros técnicos credenciados.',
+  partnerCategories: [
+    { id: 'legal', label: 'Consultoria Jurídica', icon: 'Scale' },
+    { id: 'engineering', label: 'Engenharia Civil', icon: 'HardHat' },
+    { id: 'architecture', label: 'Arquitetura & Urbanismo', icon: 'Compass' },
+  ],
 }
