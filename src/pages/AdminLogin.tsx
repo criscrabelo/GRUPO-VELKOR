@@ -18,7 +18,7 @@ export default function AdminLogin() {
     setError(false)
 
     setTimeout(() => {
-      if (email === 'admin@velkor.com' && password === 'admin') {
+      if (email === 'admin' && password === 'velkor2026') {
         navigate('/admin/dashboard')
       } else {
         setError(true)
@@ -45,14 +45,14 @@ export default function AdminLogin() {
         <form onSubmit={handleLogin} className="space-y-6">
           <div className="space-y-2">
             <Label htmlFor="email" className="text-white/70">
-              E-mail
+              Usuário / E-mail
             </Label>
             <div className="relative">
               <Mail className="absolute left-3 top-3 h-5 w-5 text-white/40" />
               <Input
                 id="email"
-                type="email"
-                placeholder="admin@velkor.com"
+                type="text"
+                placeholder="admin"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="pl-10 bg-white/5 border-white/10 text-white placeholder:text-white/30 focus-visible:border-cyan focus-visible:ring-cyan/20"
@@ -80,7 +80,7 @@ export default function AdminLogin() {
           {error && (
             <div className="bg-red-500/10 border border-red-500/20 text-red-400 p-3 rounded-lg text-sm flex items-center">
               <AlertCircle className="w-4 h-4 mr-2" />
-              Credenciais inválidas. Tente admin@velkor.com / admin
+              Credenciais inválidas. Tente admin / velkor2026
             </div>
           )}
 

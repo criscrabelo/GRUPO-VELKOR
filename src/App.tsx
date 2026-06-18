@@ -24,6 +24,8 @@ const App = () => (
           <Route path="/success" element={<Success />} />
         </Route>
         <Route path="/admin/login" element={<AdminLogin />} />
+        <Route path="/admin" element={<AdminLogin />} />
+        <Route path="/painel" element={<AdminDashboard />} />
         <Route path="/admin/dashboard" element={<AdminDashboard />} />
         <Route path="*" element={<NotFound />} />
       </Routes>

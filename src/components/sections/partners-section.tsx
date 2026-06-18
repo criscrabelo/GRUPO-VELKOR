@@ -1,69 +1,50 @@
-import { Scale, HardHat, Ruler, Briefcase, CheckCircle2 } from 'lucide-react'
+import { Scale, HardHat, Compass } from 'lucide-react'
 
 export function PartnersSection() {
-  const categories = [
+  const partners = [
     {
-      title: 'Consultoria Jurídica',
-      icon: Briefcase,
-      desc: 'Escritórios especializados em due diligence, análise de riscos e estruturação legal de operações imobiliárias.',
-    },
-    {
-      title: 'Engenharia',
-      icon: HardHat,
-      desc: 'Laudos técnicos, vistorias de recebimento e avaliação estrutural de imóveis com engenheiros credenciados.',
-    },
-    {
-      title: 'Arquitetura',
-      icon: Ruler,
-      desc: 'Projetos de adequação, levantamentos as-built e aprovação junto a órgãos municipais.',
-    },
-    {
-      title: 'Advogados',
+      role: 'Consultoria Jurídica',
+      desc: 'Advogados especialistas em direito imobiliário (OAB) acionados para execução de atos privativos e defesas em regularizações.',
       icon: Scale,
-      desc: 'Profissionais habilitados para a execução de serviços privativos de advocacia, como contencioso e regularização.',
+    },
+    {
+      role: 'Engenharia Civil',
+      desc: 'Peritos e engenheiros (CREA) homologados para laudos estruturais, retificação de área e desmembramentos complexos.',
+      icon: HardHat,
+    },
+    {
+      role: 'Arquitetura & Urbanismo',
+      desc: 'Profissionais habilitados (CAU) focados em aprovações prefeiturais, projetos de regularização e alvarás.',
+      icon: Compass,
     },
   ]
 
   return (
-    <section id="parceiros" className="py-24 bg-white relative border-t border-slate-100">
-      <div className="container mx-auto px-4">
+    <section className="py-24 bg-slate-50 relative overflow-hidden">
+      <div className="container mx-auto px-4 max-w-6xl relative z-10">
         <div className="text-center mb-16">
-          <span className="text-cyan font-bold tracking-widest uppercase text-sm mb-2 block">
-            Hub de Soluções
-          </span>
           <h2 className="text-3xl md:text-4xl font-display font-bold text-petrol mb-4">
-            Nossos Parceiros Estratégicos
+            Ecossistema de Parceiros Técnicos
           </h2>
-          <p className="text-slate-600 text-lg max-w-2xl mx-auto">
-            A VELKOR atua como coordenadora central do seu processo. Para garantir a máxima
-            qualidade técnica e segurança legal, contamos com uma rede de profissionais e empresas
-            especializadas.
+          <p className="text-lg text-slate-500 max-w-2xl mx-auto">
+            A VELKOR coordena toda a esteira documental. Para a execução técnica de atos privativos,
+            acionamos nossa seleta rede de especialistas homologados, garantindo segurança total.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
-          {categories.map((c) => (
+        <div className="grid md:grid-cols-3 gap-8">
+          {partners.map((p, i) => (
             <div
-              key={c.title}
-              className="p-8 rounded-2xl bg-slate-50 border border-slate-100 hover:border-cyan/30 hover:shadow-lg hover:shadow-cyan/5 transition-all group"
+              key={i}
+              className="bg-white p-8 rounded-3xl shadow-lg shadow-petrol/5 border border-slate-100 hover:-translate-y-1 transition-transform duration-300"
             >
-              <div className="w-14 h-14 rounded-xl bg-white shadow-sm border border-slate-200 flex items-center justify-center text-petrol mb-6 group-hover:scale-110 group-hover:bg-cyan/10 group-hover:text-cyan transition-all">
-                <c.icon className="w-7 h-7" />
+              <div className="w-16 h-16 bg-cyan/10 rounded-2xl flex items-center justify-center mb-6 border border-cyan/20">
+                <p.icon className="w-8 h-8 text-cyan" />
               </div>
-              <h3 className="text-lg font-display font-bold text-petrol mb-3">{c.title}</h3>
-              <p className="text-slate-600 text-sm leading-relaxed">{c.desc}</p>
+              <h3 className="text-xl font-bold text-petrol mb-3">{p.role}</h3>
+              <p className="text-slate-500 leading-relaxed">{p.desc}</p>
             </div>
           ))}
-        </div>
-
-        <div className="mt-16 flex justify-center">
-          <div className="bg-petrol/5 rounded-full px-6 py-3 flex flex-col sm:flex-row items-center gap-3 border border-petrol/10 max-w-fit text-center sm:text-left">
-            <CheckCircle2 className="w-5 h-5 text-cyan shrink-0" />
-            <p className="text-sm text-petrol font-medium">
-              Todos os parceiros são homologados e devidamente credenciados em seus conselhos de
-              classe.
-            </p>
-          </div>
         </div>
       </div>
     </section>

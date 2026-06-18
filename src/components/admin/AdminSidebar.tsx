@@ -8,11 +8,28 @@ import {
   SidebarMenuItem,
   SidebarMenuButton,
 } from '@/components/ui/sidebar'
-import { LayoutDashboard, Users, FileText, BookOpen, Settings, Handshake } from 'lucide-react'
+import {
+  LayoutDashboard,
+  Users,
+  FileText,
+  Settings,
+  ShieldAlert,
+  TrendingUp,
+  Briefcase,
+  Lock,
+} from 'lucide-react'
 import { SITE_CONFIG } from '@/lib/config'
 import { cn } from '@/lib/utils'
 
-export type AdminView = 'overview' | 'leads' | 'processes' | 'catalog' | 'partners' | 'settings'
+export type AdminView =
+  | 'overview'
+  | 'leads'
+  | 'processes'
+  | 'governance'
+  | 'vault'
+  | 'finance'
+  | 'portfolio'
+  | 'settings'
 
 interface AdminSidebarProps {
   activeView: AdminView
@@ -22,11 +39,13 @@ interface AdminSidebarProps {
 export function AdminSidebar({ activeView, onViewChange }: AdminSidebarProps) {
   const menuItems = [
     { id: 'overview', label: 'Dashboard Overview', icon: LayoutDashboard },
-    { id: 'leads', label: 'Leads & Inquiries', icon: Users },
-    { id: 'processes', label: 'Process Tracking', icon: FileText },
-    { id: 'catalog', label: 'Service Catalog', icon: BookOpen },
-    { id: 'partners', label: 'Gestão de Parceiros', icon: Handshake },
-    { id: 'settings', label: 'Institutional Settings', icon: Settings },
+    { id: 'governance', label: 'Governança & Riscos', icon: ShieldAlert },
+    { id: 'processes', label: 'Processos & Dossiês', icon: FileText },
+    { id: 'finance', label: 'Finanças & Projetos', icon: TrendingUp },
+    { id: 'portfolio', label: 'Carteira & Deliberação', icon: Briefcase },
+    { id: 'vault', label: 'Vault de Documentos', icon: Lock },
+    { id: 'leads', label: 'Leads & CRM', icon: Users },
+    { id: 'settings', label: 'Configurações', icon: Settings },
   ] as const
 
   return (

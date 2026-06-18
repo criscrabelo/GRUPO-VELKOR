@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Bot, X, Send, ExternalLink } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { SITE_CONFIG } from '@/lib/config'
+import { SERVICE_CATALOG } from '@/lib/catalog'
 import { Sheet, SheetContent } from '@/components/ui/sheet'
 import { cn } from '@/lib/utils'
 
@@ -47,6 +48,26 @@ export function KoraChat({
           },
         ])
       }, 600)
+      return
+    }
+
+    // Catalog Check
+    const matchedService = SERVICE_CATALOG.find(
+      (s) =>
+        lowerInput.includes(s.name.toLowerCase().split(' ')[0]) ||
+        lowerInput.includes(s.id.replace('-', ' ')),
+    )
+
+    if (matchedService) {
+      setTimeout(() => {
+        setMessages((prev) => [
+          ...prev,
+          {
+            role: 'kora',
+            text: `Temos o serviço ideal para isso: **${matchedService.name}**. ${matchedService.description} O valor base é ${matchedService.price}. Deseja que eu transfira para um especialista seguir com a contratação?`,
+          },
+        ])
+      }, 800)
       return
     }
 

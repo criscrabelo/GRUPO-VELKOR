@@ -1,73 +1,60 @@
-import { Link } from 'react-router-dom'
 import { Button } from '@/components/ui/button'
+import { ArrowRight, ShieldCheck } from 'lucide-react'
+import { Link } from 'react-router-dom'
+import { SITE_CONFIG } from '@/lib/config'
 
 export function HeroSection() {
   return (
-    <section className="relative min-h-[90vh] flex flex-col md:flex-row overflow-hidden bg-white">
-      <div className="w-full md:w-1/2 flex items-center justify-center p-8 md:p-16 z-10 pt-24 md:pt-16">
-        <div className="max-w-xl animate-fade-in-up">
-          <span className="inline-block py-1 px-3 rounded-full bg-cyan/10 text-cyan text-xs font-bold uppercase tracking-widest mb-6">
-            Hub de Soluções Imobiliárias
-          </span>
-          <h1 className="text-4xl md:text-6xl font-display font-bold text-petrol mb-6 leading-tight">
-            Descomplique a Gestão do seu Patrimônio
-          </h1>
-          <p className="text-lg md:text-xl text-slate-600 mb-8 leading-relaxed">
-            Centralize sua documentação e regularização imobiliária no Vale do Paraíba. Uma única
-            plataforma para garantir segurança administrativa sem complicações.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4">
-            <Link to="/contratar" className="w-full sm:w-auto">
-              <Button
-                size="lg"
-                className="w-full bg-petrol hover:bg-petrol/90 text-white font-bold h-14 px-8 rounded-xl shadow-lg shadow-petrol/20"
-              >
-                Iniciar Contratação
-              </Button>
-            </Link>
-            <a href="#precos" className="w-full sm:w-auto">
-              <Button
-                size="lg"
-                variant="outline"
-                className="w-full border-2 border-slate-200 text-slate-600 font-bold h-14 px-8 rounded-xl hover:bg-slate-50"
-              >
-                Ver Valores
-              </Button>
-            </a>
-          </div>
-        </div>
-      </div>
+    <section className="relative pt-32 pb-24 lg:pt-48 lg:pb-32 overflow-hidden bg-white flex items-center min-h-[90vh]">
+      <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-cyan/5 rounded-full blur-3xl opacity-70 translate-x-1/3 -translate-y-1/3 pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-petrol/5 rounded-full blur-3xl opacity-50 -translate-x-1/3 translate-y-1/3 pointer-events-none" />
 
-      <div className="w-full md:w-1/2 relative min-h-[50vh] md:min-h-full flex flex-col sm:flex-row">
-        <div className="w-full sm:w-1/2 relative min-h-[30vh]">
-          <img
-            src="https://img.usecurling.com/p/800/1200?q=modern%20architecture&color=blue"
-            alt="Modern Architecture"
-            className="absolute inset-0 w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-petrol/20 mix-blend-multiply"></div>
-        </div>
-        <div className="w-full sm:w-1/2 bg-cyan flex flex-col items-center justify-center p-8 text-petrol text-center relative overflow-hidden min-h-[30vh]">
+      <div className="container mx-auto px-4 max-w-7xl relative z-10">
+        <div className="max-w-3xl">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan/10 text-cyan text-sm font-bold uppercase tracking-widest mb-8 border border-cyan/20 animate-fade-in-up">
+            <ShieldCheck className="w-4 h-4" />
+            Sua Central de Regularização
+          </div>
+
+          <h1
+            className="text-5xl lg:text-7xl font-display font-bold text-petrol leading-[1.1] mb-8 animate-fade-in-up"
+            style={{ animationDelay: '100ms' }}
+          >
+            Governança e segurança jurídica para o seu patrimônio.
+          </h1>
+
+          <p
+            className="text-xl text-slate-600 mb-10 leading-relaxed max-w-2xl animate-fade-in-up"
+            style={{ animationDelay: '200ms' }}
+          >
+            {SITE_CONFIG.slogan}. Estruturamos e coordenamos toda a esteira documental imobiliária
+            com inteligência, compliance e previsibilidade.
+          </p>
+
           <div
-            className="absolute inset-0 opacity-20"
-            style={{
-              backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)',
-              backgroundSize: '24px 24px',
-            }}
-          ></div>
-          <div className="relative z-10">
-            <h3 className="text-3xl font-display font-bold mb-4">100% Digital</h3>
-            <p className="font-medium text-petrol/80 mb-8">
-              Certidões, matrículas, registros e análises diretamente do seu dispositivo.
-            </p>
-            <Link to="/cliente">
-              <Button
-                size="lg"
-                className="bg-petrol hover:bg-petrol/90 text-white font-bold h-12 px-6 rounded-xl shadow-lg shadow-petrol/20"
-              >
-                Acessar Portal do Cliente
-              </Button>
-            </Link>
+            className="flex flex-col sm:flex-row gap-4 animate-fade-in-up"
+            style={{ animationDelay: '300ms' }}
+          >
+            <Button
+              asChild
+              size="lg"
+              className="bg-cyan text-petrol hover:bg-cyan/90 font-bold h-14 px-8 text-lg rounded-xl shadow-lg shadow-cyan/20"
+            >
+              <Link to="/contratar">
+                Consultar Soluções
+                <ArrowRight className="w-5 h-5 ml-2" />
+              </Link>
+            </Button>
+            <Button
+              asChild
+              size="lg"
+              variant="outline"
+              className="h-14 px-8 text-lg rounded-xl border-slate-200 hover:bg-slate-50 text-slate-700 font-bold"
+            >
+              <a href={`https://wa.me/${SITE_CONFIG.whatsapp}`} target="_blank" rel="noreferrer">
+                Falar com Especialista
+              </a>
+            </Button>
           </div>
         </div>
       </div>

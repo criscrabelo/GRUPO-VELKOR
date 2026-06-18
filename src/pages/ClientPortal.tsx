@@ -231,7 +231,37 @@ export default function ClientPortal() {
               </div>
             </div>
 
-            <div className="bg-petrol p-8 rounded-3xl shadow-lg shadow-petrol/20 text-white text-center border border-petrol relative overflow-hidden">
+            <div className="bg-white p-6 md:p-8 rounded-3xl shadow-lg shadow-petrol/5 border border-slate-100 animate-fade-in">
+              <h3 className="font-display font-bold text-xl text-petrol mb-6 flex items-center gap-3">
+                <CheckCircle2 className="w-6 h-6 text-cyan" /> Pagamentos e Saldos
+              </h3>
+              <div className="space-y-4">
+                <div className="flex justify-between items-center p-4 bg-slate-50 rounded-xl border border-slate-100">
+                  <div>
+                    <p className="text-sm font-bold text-slate-700">Sinal Inicial</p>
+                    <p className="text-xs text-slate-500">10/05/2026</p>
+                  </div>
+                  <span className="px-3 py-1 bg-green-100 text-green-700 text-xs font-bold rounded-full">
+                    Pago
+                  </span>
+                </div>
+                <div className="flex justify-between items-center p-4 bg-slate-50 rounded-xl border border-slate-100">
+                  <div>
+                    <p className="text-sm font-bold text-slate-700">Parcela 2/3</p>
+                    <p className="text-xs text-slate-500">10/06/2026</p>
+                  </div>
+                  <span className="px-3 py-1 bg-amber-100 text-amber-700 text-xs font-bold rounded-full">
+                    Pendente
+                  </span>
+                </div>
+                <div className="pt-4 border-t border-slate-100 flex justify-between items-center">
+                  <span className="text-sm font-bold text-slate-500">Saldo Devedor</span>
+                  <span className="text-lg font-bold text-petrol">R$ 1.800,00</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-petrol p-8 rounded-3xl shadow-lg shadow-petrol/20 text-white text-center border border-petrol relative overflow-hidden animate-fade-in">
               <div className="absolute top-0 left-0 w-full h-1 bg-cyan" />
               <h3 className="font-display font-bold text-xl mb-3">Dúvidas?</h3>
               <p className="text-sm text-white/70 mb-8 leading-relaxed">
