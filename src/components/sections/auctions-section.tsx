@@ -19,10 +19,9 @@ export function AuctionsSection() {
               Assessoria em Leilões Judiciais e Extrajudiciais
             </h2>
             <p className="text-lg text-slate-300 leading-relaxed mb-8">
-              Arrematar imóveis em leilão pode ser altamente rentável, mas exige análise rigorosa
-              para evitar passivos ocultos. O Grupo VELKOR oferece assessoria completa para
-              investidores, unindo nossa inteligência de mercado à expertise jurídica de nossos
-              parceiros especializados.
+              Hub de Soluções Imobiliárias e Regularização Patrimonial. Estruturamos e coordenamos
+              toda a esteira documental imobiliária. Tudo com inteligência, compliance e
+              previsibilidade.
             </p>
 
             <ul className="space-y-4 mb-10">
