@@ -56,10 +56,10 @@ const INITIAL_ORDERS: Order[] = [
   {
     id: '1',
     protocol: 'VK-1021',
-    service: 'Avaliação Imobiliária',
+    service: 'Check-up Imobiliário',
     client: 'João Silva',
     email: 'joao@email.com',
-    phone: '11999991111',
+    phone: '12999991111',
     date: '2026-06-12',
     status: 'novo',
     price: 800,
@@ -67,13 +67,13 @@ const INITIAL_ORDERS: Order[] = [
   {
     id: '2',
     protocol: 'VK-1022',
-    service: 'Gestão de Aluguel',
+    service: 'Compra Segura',
     client: 'TechCorp LTDA',
     email: 'contato@techcorp.com',
-    phone: '11988882222',
+    phone: '12988882222',
     date: '2026-06-11',
     status: 'andamento',
-    price: 150,
+    price: 1500,
   },
 ]
 

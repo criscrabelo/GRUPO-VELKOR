@@ -122,21 +122,21 @@ export function Header() {
                   onClick={() => setIsMobileMenuOpen(false)}
                   className="block py-2 text-slate-600 font-medium"
                 >
-                  Avaliação Imobiliária
+                  Check-up Imobiliário
                 </Link>
                 <Link
                   to="/contratar"
                   onClick={() => setIsMobileMenuOpen(false)}
                   className="block py-2 text-slate-600 font-medium"
                 >
-                  Gestão de Aluguel
+                  Compra Segura
                 </Link>
                 <Link
                   to="/contratar"
                   onClick={() => setIsMobileMenuOpen(false)}
                   className="block py-2 text-slate-600 font-medium"
                 >
-                  Assessoria Jurídica
+                  Leilão Assistido
                 </Link>
               </AccordionContent>
             </AccordionItem>

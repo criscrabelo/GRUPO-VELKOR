@@ -1,45 +1,44 @@
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
 import { useScrollReveal } from '@/hooks/use-scroll-reveal'
 import { cn } from '@/lib/utils'
-import { Button } from '@/components/ui/button'
-import { Switch } from '@/components/ui/switch'
-import { Check } from 'lucide-react'
+import { Check, Info } from 'lucide-react'
 
 const plans = [
   {
-    name: 'Básico',
-    description: 'Perfeito para indivíduos e pequenos projetos.',
-    monthlyPrice: 29,
-    yearlyPrice: 24,
-    features: ['Até 3 projetos', 'Análises básicas', 'Suporte por email', 'Automações limitadas'],
+    name: 'Consultoria Online',
+    description: 'Orientação documental e administrativa remota.',
+    price: 'R$ 120 - R$ 450',
+    type: 'por serviço',
+    features: [
+      'Triagem documental',
+      'Checklist personalizado',
+      'Análise de pendências',
+      '100% pagamento antecipado',
+    ],
     highlighted: false,
   },
   {
-    name: 'Pro',
-    description: 'Ideal para equipes em crescimento que precisam de mais poder.',
-    monthlyPrice: 79,
-    yearlyPrice: 65,
+    name: 'Escritura + Registro',
+    description: 'Fluxo completo até a matrícula atualizada.',
+    price: 'R$ 1.500 - R$ 3.500',
+    type: 'por operação',
     features: [
-      'Projetos ilimitados',
-      'Análises avançadas',
-      'Suporte prioritário 24/7',
-      'Automações ilimitadas',
-      'Colaboração em tempo real',
+      'Organização documental',
+      'Acompanhamento em tabelionato',
+      'Protocolo de registro',
+      'Pagamento: 50% sinal / 50% entrega',
     ],
     highlighted: true,
   },
   {
-    name: 'Enterprise',
-    description: 'Para grandes organizações com necessidades complexas.',
-    monthlyPrice: 199,
-    yearlyPrice: 169,
+    name: 'Diligência Regional',
+    description: 'Atuação presencial exclusiva no Vale do Paraíba.',
+    price: 'R$ 180 - R$ 350',
+    type: 'por saída',
     features: [
-      'Tudo do plano Pro',
-      'SSO e SAML',
-      'Gerente de conta dedicado',
-      'Treinamento presencial',
-      'SLA garantido',
+      'Cartórios e Prefeituras',
+      'SJC, Taubaté, Jacareí e região',
+      'Protocolos físicos e retiradas',
+      'Taxas de deslocamento incluídas',
     ],
     highlighted: false,
   },
@@ -47,19 +46,18 @@ const plans = [
 
 export function PricingSection() {
   const { ref, isVisible } = useScrollReveal()
-  const [isYearly, setIsYearly] = useState(true)
 
   return (
-    <section id="precos" ref={ref} className="py-20 md:py-32">
+    <section id="precos" ref={ref} className="py-20 md:py-32 bg-white">
       <div className="container mx-auto px-4 md:px-6">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2
             className={cn(
-              'text-3xl md:text-4xl font-bold text-slate-900 mb-4 opacity-0',
+              'text-3xl md:text-4xl font-display font-bold text-petrol mb-4 opacity-0',
               isVisible && 'animate-fade-in-up',
             )}
           >
-            Preços simples e transparentes
+            Tabela Base - Vale do Paraíba
           </h2>
           <p
             className={cn(
@@ -68,90 +66,55 @@ export function PricingSection() {
             )}
             style={{ animationDelay: '100ms' }}
           >
-            Comece de graça e escale conforme sua necessidade. Cancele a qualquer momento.
+            Honorários claros e transparentes. Valores sugeridos para serviços operacionais em nossa
+            matriz regional.
           </p>
-
-          <div
-            className={cn(
-              'flex items-center justify-center space-x-4 opacity-0',
-              isVisible && 'animate-fade-in-up',
-            )}
-            style={{ animationDelay: '200ms' }}
-          >
-            <span
-              className={cn('text-sm font-medium', !isYearly ? 'text-slate-900' : 'text-slate-500')}
-            >
-              Mensal
-            </span>
-            <Switch checked={isYearly} onCheckedChange={setIsYearly} />
-            <span
-              className={cn(
-                'text-sm font-medium flex items-center',
-                isYearly ? 'text-slate-900' : 'text-slate-500',
-              )}
-            >
-              Anual{' '}
-              <span className="ml-2 text-xs font-bold text-indigo-700 bg-indigo-100 px-2 py-0.5 rounded-full">
-                -20%
-              </span>
-            </span>
-          </div>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto items-center">
+        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto items-stretch">
           {plans.map((plan, index) => (
             <div
               key={plan.name}
               className={cn(
-                'relative rounded-3xl border bg-white p-8 shadow-sm transition-all duration-300 opacity-0 flex flex-col',
+                'relative rounded-3xl border bg-slate-50 p-8 shadow-sm transition-all duration-300 opacity-0 flex flex-col',
                 plan.highlighted
-                  ? 'border-primary shadow-xl md:-translate-y-4 ring-1 ring-primary/20'
-                  : 'border-slate-200 hover:border-primary/50',
+                  ? 'border-cyan shadow-xl md:-translate-y-4 ring-1 ring-cyan/50 bg-white'
+                  : 'border-slate-200 hover:border-cyan/50',
                 isVisible && 'animate-fade-in-up',
               )}
               style={{ animationDelay: `${(index + 3) * 100}ms` }}
             >
               {plan.highlighted && (
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 px-4 py-1 bg-gradient-to-r from-indigo-600 to-cyan-500 text-white text-xs font-bold uppercase tracking-wider rounded-full shadow-md">
-                  Mais Popular
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 px-4 py-1 bg-cyan text-petrol text-xs font-bold uppercase tracking-wider rounded-full shadow-sm">
+                  Destaque
                 </div>
               )}
-              <h3 className="text-xl font-semibold text-slate-900 mb-2">{plan.name}</h3>
+              <h3 className="text-xl font-display font-bold text-petrol mb-2">{plan.name}</h3>
               <p className="text-sm text-slate-500 mb-6 min-h-[40px]">{plan.description}</p>
               <div className="mb-6">
-                <span className="text-4xl font-bold text-slate-900">
-                  R$ {isYearly ? plan.yearlyPrice : plan.monthlyPrice}
-                </span>
-                <span className="text-slate-500">/mês</span>
+                <span className="text-3xl font-display font-bold text-petrol">{plan.price}</span>
+                <span className="text-slate-500 block text-sm mt-1">{plan.type}</span>
               </div>
 
               <ul className="space-y-4 mb-8 flex-1">
                 {plan.features.map((feature) => (
                   <li key={feature} className="flex items-start gap-3">
-                    <Check className="w-5 h-5 text-indigo-500 shrink-0" />
-                    <span className="text-slate-600 text-sm">{feature}</span>
+                    <Check className="w-5 h-5 text-cyan shrink-0" />
+                    <span className="text-slate-600 text-sm font-medium">{feature}</span>
                   </li>
                 ))}
               </ul>
-
-              <Button
-                asChild
-                variant={plan.highlighted ? 'default' : 'outline'}
-                className={cn('w-full h-12', plan.highlighted && 'shadow-lg shadow-primary/20')}
-              >
-                <Link
-                  to="/checkout"
-                  state={{
-                    plan: plan.name,
-                    price: isYearly ? plan.yearlyPrice : plan.monthlyPrice,
-                    billing: isYearly ? 'anual' : 'mensal',
-                  }}
-                >
-                  Assinar Agora
-                </Link>
-              </Button>
             </div>
           ))}
+        </div>
+
+        <div className="mt-12 max-w-3xl mx-auto flex items-start gap-4 p-5 bg-petrol/5 rounded-2xl border border-petrol/10 text-sm text-petrol font-medium">
+          <Info className="w-6 h-6 shrink-0 text-cyan" />
+          <p>
+            <strong>Atenção:</strong> Os valores acima referem-se exclusivamente aos honorários de
+            gestão e operação documental. Custas de cartórios, emolumentos, ITBI, taxas de
+            prefeitura e certidões pagas são cobrados separadamente mediante comprovação.
+          </p>
         </div>
       </div>
     </section>

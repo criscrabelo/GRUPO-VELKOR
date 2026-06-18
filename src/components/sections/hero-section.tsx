@@ -6,12 +6,15 @@ export function HeroSection() {
     <section className="relative min-h-[90vh] flex flex-col md:flex-row overflow-hidden bg-white">
       <div className="w-full md:w-1/2 flex items-center justify-center p-8 md:p-16 z-10 pt-24 md:pt-16">
         <div className="max-w-xl animate-fade-in-up">
+          <span className="inline-block py-1 px-3 rounded-full bg-cyan/10 text-cyan text-xs font-bold uppercase tracking-widest mb-6">
+            Hub de Soluções Imobiliárias
+          </span>
           <h1 className="text-4xl md:text-6xl font-display font-bold text-petrol mb-6 leading-tight">
-            Gestão Patrimonial do Futuro
+            Descomplique a Gestão do seu Patrimônio
           </h1>
           <p className="text-lg md:text-xl text-slate-600 mb-8 leading-relaxed">
-            Centralize sua operação imobiliária com segurança jurídica, inteligência de dados e a
-            eficiência estrutural do Grupo Velkor.
+            Centralize sua documentação e regularização imobiliária no Vale do Paraíba. Uma única
+            plataforma para garantir segurança administrativa sem complicações.
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <Link to="/contratar" className="w-full sm:w-auto">
@@ -22,39 +25,49 @@ export function HeroSection() {
                 Iniciar Contratação
               </Button>
             </Link>
-            <Link to="/cliente" className="w-full sm:w-auto">
+            <a href="#precos" className="w-full sm:w-auto">
               <Button
                 size="lg"
                 variant="outline"
-                className="w-full border-2 border-petrol text-petrol font-bold h-14 px-8 rounded-xl hover:bg-cyan/5"
+                className="w-full border-2 border-slate-200 text-slate-600 font-bold h-14 px-8 rounded-xl hover:bg-slate-50"
               >
-                Acessar Portal
+                Ver Valores
               </Button>
-            </Link>
+            </a>
           </div>
         </div>
       </div>
 
-      <div className="w-full md:w-1/2 relative min-h-[50vh] md:min-h-full bg-gradient-to-br from-petrol to-cyan flex items-center justify-center p-8 overflow-hidden">
-        <div
-          className="absolute inset-0 opacity-20"
-          style={{
-            backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)',
-            backgroundSize: '32px 32px',
-          }}
-        ></div>
-        <div className="relative z-10 bg-white/10 backdrop-blur-md border border-white/20 p-8 rounded-3xl shadow-2xl max-w-sm w-full animate-float">
-          <div className="h-48 rounded-xl bg-white/20 mb-6 flex flex-col items-center justify-center text-white p-4 text-center">
-            <div className="w-16 h-16 rounded-full bg-cyan/20 border border-cyan/50 flex items-center justify-center mb-4">
-              <div className="w-3 h-3 bg-cyan rounded-full animate-ping absolute"></div>
-              <div className="w-3 h-3 bg-cyan rounded-full relative z-10"></div>
-            </div>
-            <span className="font-display font-bold text-xl mb-1">100% Digital</span>
-            <span className="text-sm text-white/80">Plataforma integrada</span>
-          </div>
-          <div className="space-y-3">
-            <div className="h-3 bg-white/30 rounded-full w-3/4"></div>
-            <div className="h-3 bg-white/20 rounded-full w-1/2"></div>
+      <div className="w-full md:w-1/2 relative min-h-[50vh] md:min-h-full flex flex-col sm:flex-row">
+        <div className="w-full sm:w-1/2 relative min-h-[30vh]">
+          <img
+            src="https://img.usecurling.com/p/800/1200?q=modern%20architecture&color=blue"
+            alt="Modern Architecture"
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-petrol/20 mix-blend-multiply"></div>
+        </div>
+        <div className="w-full sm:w-1/2 bg-cyan flex flex-col items-center justify-center p-8 text-petrol text-center relative overflow-hidden min-h-[30vh]">
+          <div
+            className="absolute inset-0 opacity-20"
+            style={{
+              backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)',
+              backgroundSize: '24px 24px',
+            }}
+          ></div>
+          <div className="relative z-10">
+            <h3 className="text-3xl font-display font-bold mb-4">100% Digital</h3>
+            <p className="font-medium text-petrol/80 mb-8">
+              Certidões, matrículas, registros e análises diretamente do seu dispositivo.
+            </p>
+            <Link to="/cliente">
+              <Button
+                size="lg"
+                className="bg-petrol hover:bg-petrol/90 text-white font-bold h-12 px-6 rounded-xl shadow-lg shadow-petrol/20"
+              >
+                Acessar Portal do Cliente
+              </Button>
+            </Link>
           </div>
         </div>
       </div>

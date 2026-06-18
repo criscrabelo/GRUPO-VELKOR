@@ -27,7 +27,7 @@ export default function ClientPortal() {
     // Demo Mock Fallback
     setOrder({
       protocol: 'VK-8842',
-      service: 'Avaliação Imobiliária',
+      service: 'Check-up Imobiliário',
       date: new Date().toISOString(),
       status: 'andamento',
     })
@@ -196,6 +196,20 @@ export default function ClientPortal() {
                     <div className="text-left">
                       <p className="text-sm font-bold text-petrol mb-0.5">Contrato Padrão</p>
                       <p className="text-xs text-slate-500 font-medium">PDF • Assinado</p>
+                    </div>
+                  </div>
+                  <ChevronRight className="w-5 h-5 text-slate-300 group-hover:text-cyan transition-colors" />
+                </button>
+                <button className="w-full flex items-center justify-between p-4 rounded-xl border border-slate-100 hover:border-cyan hover:bg-cyan/5 transition-all duration-300 group">
+                  <div className="flex items-center gap-4">
+                    <div className="p-3 bg-slate-50 rounded-lg text-petrol group-hover:bg-white group-hover:shadow-sm transition-all duration-300">
+                      <CheckCircle2 className="w-5 h-5 text-green-500" />
+                    </div>
+                    <div className="text-left">
+                      <p className="text-sm font-bold text-petrol mb-0.5">
+                        Comprovante de Pagamento
+                      </p>
+                      <p className="text-xs text-slate-500 font-medium">1ª Parcela • Pago</p>
                     </div>
                   </div>
                   <ChevronRight className="w-5 h-5 text-slate-300 group-hover:text-cyan transition-colors" />

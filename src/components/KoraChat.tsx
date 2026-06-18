@@ -29,18 +29,21 @@ export function KoraChat({
     setInput('')
 
     const lowerInput = userMsg.toLowerCase()
+
+    // Knowledge Base Check
     if (
       lowerInput.includes('aluguel') ||
-      lowerInput.includes('alugueis') ||
       lowerInput.includes('locação') ||
-      lowerInput.includes('locacao')
+      lowerInput.includes('venda') ||
+      lowerInput.includes('corretagem') ||
+      lowerInput.includes('avaliar')
     ) {
       setTimeout(() => {
         setMessages((prev) => [
           ...prev,
           {
             role: 'kora',
-            text: 'Não, a VELKOR é especializada em soluções imobiliárias estratégicas, estruturação e consultoria. Não operamos com gestão de locação ou administração de aluguéis. Posso te ajudar com nossos serviços estratégicos?',
+            text: 'Atenção: A VELKOR atua exclusivamente como Despachante Documental e Hub de Soluções. Não realizamos corretagem, intermediação de compra/venda, avaliação de imóveis ou gestão de locação. Posso ajudar com a parte documental do seu imóvel?',
           },
         ])
       }, 600)
@@ -53,7 +56,7 @@ export function KoraChat({
         ...prev,
         {
           role: 'kora',
-          text: 'No momento, minha integração com inteligência artificial está em manutenção. Por favor, clique no botão abaixo para continuar seu atendimento de forma rápida pelo nosso WhatsApp corporativo.',
+          text: 'Como sou uma assistente virtual em treinamento, não encontrei a resposta exata em nossa base de catálogo. Por favor, clique no botão abaixo para falar diretamente com nosso time via WhatsApp corporativo.',
         },
       ])
     }, 1000)

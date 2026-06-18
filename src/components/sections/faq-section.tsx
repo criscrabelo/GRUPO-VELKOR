@@ -13,19 +13,19 @@ export function FaqSection() {
     },
     {
       q: 'Qual é a área de cobertura dos serviços?',
-      a: 'Temos cobertura nacional garantida, contando com bases operacionais estratégicas localizadas em todas as capitais do Brasil.',
+      a: 'Nosso foco de atuação física e diligências em órgãos está concentrado na região do Vale do Paraíba/SP. Para emissões 100% eletrônicas, atendemos demandas de âmbito nacional.',
     },
     {
-      q: 'As minhas informações e documentos estão seguros?',
-      a: 'Absolutamente. Atuamos em estrita conformidade com a LGPD e regulamentações do setor. Todos os dados e arquivos são armazenados de forma criptografada em nosso Secure Document Vault.',
+      q: 'Vocês realizam corretagem ou vendem imóveis?',
+      a: 'Não. A VELKOR atua exclusivamente na esfera documental, administrativa e de regularização, sem realizar corretagem ou intermediação imobiliária.',
     },
     {
       q: 'Como acompanho o status da minha solicitação?',
-      a: 'Ao contratar, você recebe acesso ao Portal do Cliente utilizando apenas o seu e-mail cadastrado, onde pode visualizar o status em tempo real e fazer download de documentos.',
+      a: 'Ao contratar, você recebe acesso ao Portal do Cliente utilizando apenas o seu e-mail cadastrado, onde pode visualizar o status em tempo real e fazer download de documentos no Document Vault.',
     },
     {
-      q: 'A VELKOR realiza a gestão de aluguéis?',
-      a: 'Não, a VELKOR é especializada em soluções imobiliárias estratégicas, estruturação e consultoria. Não operamos com gestão de locação ou administração de aluguéis.',
+      q: 'A VELKOR oferece consultoria jurídica?',
+      a: 'Não oferecemos defesa em processos ou emissão de pareceres jurídicos. Em caso de necessidade jurídica contenciosa, encaminhamos a advogados parceiros independentes.',
     },
   ]
 

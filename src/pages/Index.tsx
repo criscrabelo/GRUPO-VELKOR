@@ -1,6 +1,7 @@
 import { HeroSection } from '@/components/sections/hero-section'
 import { EcosystemSection } from '@/components/sections/ecosystem-section'
 import { ServicesSection } from '@/components/sections/services-section'
+import { PricingSection } from '@/components/sections/pricing-section'
 import { CoverageSection } from '@/components/sections/coverage-section'
 import { SocialProofSection } from '@/components/sections/social-proof-section'
 import { FaqSection } from '@/components/sections/faq-section'
@@ -12,6 +13,7 @@ export default function Index() {
       <SocialProofSection />
       <EcosystemSection />
       <ServicesSection />
+      <PricingSection />
       <CoverageSection />
       <FaqSection />
     </div>

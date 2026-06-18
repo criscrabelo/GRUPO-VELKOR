@@ -15,14 +15,15 @@ export function CoverageSection() {
       <div className="container mx-auto px-4 relative z-10 flex flex-col md:flex-row items-center gap-16">
         <div className="w-full md:w-1/2 space-y-6">
           <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan/20 border border-cyan/50 text-cyan text-sm font-bold tracking-wider uppercase">
-            <MapPin className="w-4 h-4" /> Regional & Nacional
+            <MapPin className="w-4 h-4" /> Vale do Paraíba / SP
           </span>
           <h2 className="text-3xl md:text-5xl font-display font-bold leading-tight">
-            Cobertura Total em Todo o Território
+            Presença Regional Fortalecida
           </h2>
           <p className="text-white/70 text-lg leading-relaxed">
-            Atuamos em todo o Brasil, com sedes operacionais estratégicas para garantir a agilidade
-            e a presença local que as suas demandas patrimoniais exigem.
+            Nossa matriz estratégica atende com excelência todo o Vale do Paraíba (São José dos
+            Campos, Taubaté, Jacareí e região), garantindo agilidade em diligências e protocolos
+            físicos nos cartórios locais.
           </p>
         </div>
         <div className="w-full md:w-1/2 flex justify-center">
