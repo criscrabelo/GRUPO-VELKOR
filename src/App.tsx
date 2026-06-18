@@ -12,6 +12,7 @@ import AdminLogin from './pages/AdminLogin'
 import AdminDashboard from './pages/AdminDashboard'
 import NotFound from './pages/NotFound'
 import { Layout } from './components/Layout'
+import Gateway from './pages/Gateway'
 
 const App = () => (
   <BrowserRouter>
@@ -19,8 +20,9 @@ const App = () => (
       <Toaster />
       <Sonner position="bottom-center" />
       <Routes>
+        <Route path="/" element={<Gateway />} />
         <Route element={<Layout />}>
-          <Route path="/" element={<Index />} />
+          <Route path="/imobiliaria" element={<Index />} />
           <Route path="/contratar" element={<Contratar />} />
           <Route path="/servicos/:id" element={<Servico />} />
           <Route path="/contato" element={<Contato />} />

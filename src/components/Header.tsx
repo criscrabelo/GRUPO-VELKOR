@@ -41,6 +41,10 @@ export function Header() {
               </span>
               <span className="lg:hidden">Taubaté, SP | Atendimento Nacional</span>
             </span>
+            <span className="hidden sm:inline text-white/50 px-2">|</span>
+            <Link to="/" className="hidden sm:inline hover:text-cyan transition-colors font-medium">
+              Voltar para Grupo VELKOR
+            </Link>
             <span className="hidden sm:flex items-center gap-1">
               <Mail className="w-3 h-3" /> {SITE_CONFIG.email}
             </span>
@@ -60,7 +64,7 @@ export function Header() {
         )}
       >
         <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
-          <Link to="/" className="flex items-center group">
+          <Link to="/imobiliaria" className="flex items-center group">
             <VelkorLogo
               variant="dark"
               className={cn(
@@ -72,13 +76,13 @@ export function Header() {
 
           <nav className="hidden md:flex items-center gap-8">
             <a
-              href="/#ecossistema"
+              href="/imobiliaria#ecossistema"
               className="text-sm font-semibold text-petrol hover:text-cyan transition-colors"
             >
               Ecossistema
             </a>
             <a
-              href="/#faq"
+              href="/imobiliaria#faq"
               className="text-sm font-semibold text-petrol hover:text-cyan transition-colors"
             >
               FAQ
@@ -118,6 +122,13 @@ export function Header() {
 
       {isMobileMenuOpen && (
         <div className="absolute top-full left-0 right-0 bg-white border-b border-gray-100 shadow-xl p-4 flex flex-col md:hidden animate-fade-in-down max-h-[80vh] overflow-y-auto">
+          <Link
+            to="/"
+            onClick={() => setIsMobileMenuOpen(false)}
+            className="text-base font-bold text-cyan p-3 hover:bg-cyan/5 rounded-lg mb-2 flex items-center"
+          >
+            &larr; Voltar para Grupo VELKOR
+          </Link>
           <Accordion type="single" collapsible className="w-full mb-2">
             <AccordionItem value="solucoes" className="border-none">
               <AccordionTrigger className="text-base font-bold text-petrol py-3 px-2 hover:bg-cyan/5 rounded-lg no-underline hover:no-underline">
@@ -149,14 +160,14 @@ export function Header() {
             </AccordionItem>
           </Accordion>
           <a
-            href="/#ecossistema"
+            href="/imobiliaria#ecossistema"
             onClick={() => setIsMobileMenuOpen(false)}
             className="text-base font-bold text-petrol p-3 hover:bg-cyan/5 rounded-lg"
           >
             Ecossistema
           </a>
           <a
-            href="/#faq"
+            href="/imobiliaria#faq"
             onClick={() => setIsMobileMenuOpen(false)}
             className="text-base font-bold text-petrol p-3 hover:bg-cyan/5 rounded-lg"
           >

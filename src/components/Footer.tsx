@@ -9,7 +9,10 @@ export function Footer() {
       <div className="container mx-auto px-4 max-w-7xl">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
           <div className="md:col-span-1">
-            <Link to="/" className="inline-block mb-6 hover:opacity-90 transition-opacity">
+            <Link
+              to="/imobiliaria"
+              className="inline-block mb-6 hover:opacity-90 transition-opacity"
+            >
               <VelkorLogo variant="light" className="h-12" />
             </Link>
             <p className="text-white/60 text-sm leading-relaxed mb-6">{SITE_CONFIG.slogan}</p>
@@ -49,22 +52,22 @@ export function Footer() {
             <h4 className="font-bold text-lg mb-6">Serviços</h4>
             <ul className="space-y-3">
               <li>
-                <Link to="/" className="text-white/60 hover:text-cyan text-sm">
+                <Link to="/imobiliaria" className="text-white/60 hover:text-cyan text-sm">
                   Check-up Imobiliário
                 </Link>
               </li>
               <li>
-                <Link to="/" className="text-white/60 hover:text-cyan text-sm">
+                <Link to="/imobiliaria" className="text-white/60 hover:text-cyan text-sm">
                   Compra Segura
                 </Link>
               </li>
               <li>
-                <Link to="/" className="text-white/60 hover:text-cyan text-sm">
+                <Link to="/imobiliaria" className="text-white/60 hover:text-cyan text-sm">
                   Assessoria em Leilões
                 </Link>
               </li>
               <li>
-                <Link to="/" className="text-white/60 hover:text-cyan text-sm">
+                <Link to="/imobiliaria" className="text-white/60 hover:text-cyan text-sm">
                   Due Diligence
                 </Link>
               </li>
@@ -74,6 +77,11 @@ export function Footer() {
           <div>
             <h4 className="font-bold text-lg mb-6">Links Rápidos</h4>
             <ul className="space-y-3">
+              <li>
+                <Link to="/" className="text-white/60 hover:text-cyan text-sm">
+                  Portal Grupo VELKOR
+                </Link>
+              </li>
               <li>
                 <Link to="/cliente" className="text-white/60 hover:text-cyan text-sm">
                   Área do Cliente
