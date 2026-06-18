@@ -27,9 +27,8 @@ export function HeroSection() {
             className="text-xl text-slate-600 mb-10 leading-relaxed max-w-2xl animate-fade-in-up"
             style={{ animationDelay: '200ms' }}
           >
-            {SITE_CONFIG.slogan}. Estruturamos e coordenamos toda a esteira documental imobiliária e
-            oferecemos proteção com a VELKOR Seguros. Tudo com inteligência, compliance e
-            previsibilidade.
+            {SITE_CONFIG.slogan}. Estruturamos e coordenamos toda a esteira documental imobiliária.
+            Tudo com inteligência, compliance e previsibilidade.
           </p>
 
           <div

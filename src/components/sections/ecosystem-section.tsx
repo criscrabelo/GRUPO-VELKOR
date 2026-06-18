@@ -1,5 +1,5 @@
 import { Card } from '@/components/ui/card'
-import { Building2, Landmark, ShieldCheck, Umbrella } from 'lucide-react'
+import { Building2, Landmark, ShieldCheck } from 'lucide-react'
 
 export function EcosystemSection() {
   const brands = [
@@ -18,11 +18,6 @@ export function EcosystemSection() {
       desc: 'Assessoria jurídica especializada, blindagem patrimonial e total compliance regulatório.',
       icon: ShieldCheck,
     },
-    {
-      name: 'Velkor Seguros',
-      desc: 'Proteção patrimonial completa. Governança e segurança integradas em um só lugar.',
-      icon: Umbrella,
-    },
   ]
   return (
     <section id="ecossistema" className="py-24 bg-slate-50">
@@ -35,11 +30,11 @@ export function EcosystemSection() {
             Ecossistema GRUPO VELKOR
           </h2>
           <p className="text-slate-600 mt-4 max-w-2xl mx-auto text-lg">
-            Nossas frentes de negócio trabalham em sinergia para oferecer a solução imobiliária e de
-            proteção patrimonial mais completa do mercado.
+            Nossas frentes de negócio trabalham em sinergia para oferecer a solução imobiliária mais
+            completa do mercado.
           </p>
         </div>
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid md:grid-cols-3 gap-8">
           {brands.map((b) => (
             <Card
               key={b.name}
