@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
-import { Building2, ShieldCheck, ArrowRight } from 'lucide-react'
+import { ShieldCheck, ArrowRight } from 'lucide-react'
+import { VelkorLogo } from '@/components/VelkorLogo'
 
 export default function Gateway() {
   return (
@@ -28,8 +29,11 @@ export default function Gateway() {
             to="/solucoes"
             className="group relative bg-white rounded-2xl p-8 shadow-2xl transition-all hover:-translate-y-2 hover:border-cyan border-2 border-transparent flex flex-col items-center text-center overflow-hidden"
           >
-            <div className="w-20 h-20 bg-petrol/5 rounded-2xl rotate-3 group-hover:rotate-6 flex items-center justify-center mb-6 z-10 transition-transform">
-              <Building2 className="w-10 h-10 text-petrol group-hover:text-cyan transition-colors" />
+            <div className="w-20 h-20 bg-slate-50 rounded-2xl rotate-3 group-hover:rotate-6 flex items-center justify-center mb-6 z-10 transition-transform p-3 shadow-sm">
+              <VelkorLogo
+                variant="dark"
+                className="w-full h-full object-contain drop-shadow-sm group-hover:scale-105 transition-transform"
+              />
             </div>
             <h2 className="text-2xl font-bold text-petrol mb-4 z-10">
               VELKOR SOLUÇÕES IMOBILIÁRIAS
