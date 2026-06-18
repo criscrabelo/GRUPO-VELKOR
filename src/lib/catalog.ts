@@ -60,4 +60,13 @@ export const SERVICE_CATALOG = [
     price: 'R$ 2.500 - R$ 8.000',
     basePrice: 2500,
   },
+  {
+    id: 'leiloes-orgaos-publicos',
+    name: 'Participação em Leilões de Órgãos Públicos',
+    type: 'Investidores/Empresas',
+    description:
+      'Gestão e representação estratégica em leilões promovidos por órgãos governamentais. Serviços técnicos e peças jurídicas executados por nossa rede de parceiros especializados.',
+    price: 'Sob Consulta',
+    basePrice: 0,
+  },
 ]

@@ -1,4 +1,4 @@
-import { Check, ArrowRight, ShieldCheck, Search, Gavel, Info } from 'lucide-react'
+import { Check, ArrowRight, ShieldCheck, Search, Gavel, Info, Landmark } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Link } from 'react-router-dom'
 import { SITE_CONFIG } from '@/lib/config'
@@ -41,6 +41,18 @@ export function ServicesSection() {
       featured: false,
       partnerNote: true,
     },
+    {
+      title: 'Participação em Leilões de Órgãos Públicos',
+      icon: Landmark,
+      desc: 'Gestão e representação estratégica em leilões promovidos por órgãos governamentais (municipais, estaduais e federais).',
+      features: [
+        'Análise técnica de editais públicos',
+        'Habilitação e representação',
+        'Desembaraço e registro da arrematação',
+      ],
+      featured: false,
+      partnerNote: true,
+    },
   ]
 
   return (
@@ -55,7 +67,7 @@ export function ServicesSection() {
             transações.
           </p>
         </div>
-        <div className="grid md:grid-cols-3 gap-8 items-stretch max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-2 gap-8 items-stretch max-w-5xl mx-auto">
           {services.map((s) => (
             <div
               key={s.title}
