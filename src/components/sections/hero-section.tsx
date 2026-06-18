@@ -20,7 +20,7 @@ export function HeroSection() {
             className="text-5xl lg:text-7xl font-display font-bold text-petrol leading-[1.1] mb-8 animate-fade-in-up"
             style={{ animationDelay: '100ms' }}
           >
-            Governança e segurança jurídica para o seu patrimônio.
+            Governança e segurança para o seu patrimônio.
           </h1>
 
           <p
