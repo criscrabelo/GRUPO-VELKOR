@@ -24,14 +24,15 @@ export function CatalogView() {
     <div className="space-y-6 animate-fade-in pb-10">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
         <div>
-          <h2 className="text-lg font-bold text-petrol">Gestão do Catálogo</h2>
+          <h2 className="text-lg font-bold text-slate-900">Gestão do Catálogo</h2>
           <p className="text-sm text-slate-500 mt-1">
-            Ative, desative ou edite as informações dos serviços oferecidos.
+            Ative, desative ou edite as informações dos serviços (Consultoria, Certidões,
+            Regularização, Soluções Patrimoniais).
           </p>
         </div>
         <Button
           onClick={handleSave}
-          className="bg-petrol hover:bg-petrol/90 font-bold w-full sm:w-auto"
+          className="bg-blue-600 text-white hover:bg-blue-700 font-bold w-full sm:w-auto"
         >
           Salvar Alterações
         </Button>
@@ -44,7 +45,7 @@ export function CatalogView() {
             className={`transition-all duration-300 ${!service.isActive ? 'opacity-60 bg-slate-50 grayscale-[0.2]' : 'shadow-sm border-slate-200'}`}
           >
             <CardHeader className="flex flex-row items-start justify-between space-y-0 pb-3 border-b border-slate-100 mb-4">
-              <CardTitle className="text-lg font-bold text-petrol">{service.name}</CardTitle>
+              <CardTitle className="text-lg font-bold text-blue-900">{service.name}</CardTitle>
               <Switch checked={service.isActive} onCheckedChange={() => toggleStatus(service.id)} />
             </CardHeader>
             <CardContent className="space-y-5">
@@ -54,7 +55,7 @@ export function CatalogView() {
                 </Label>
                 <Textarea
                   defaultValue={service.description}
-                  className="h-20 resize-none text-sm bg-white border-slate-200 focus-visible:ring-cyan"
+                  className="h-20 resize-none text-sm bg-white border-slate-200 focus-visible:ring-blue-500"
                   disabled={!service.isActive}
                 />
               </div>
@@ -65,7 +66,7 @@ export function CatalogView() {
                   </Label>
                   <Input
                     defaultValue={service.price}
-                    className="h-9 text-sm bg-white border-slate-200 focus-visible:ring-cyan"
+                    className="h-9 text-sm bg-white border-slate-200 focus-visible:ring-blue-500"
                     disabled={!service.isActive}
                   />
                 </div>
@@ -75,7 +76,7 @@ export function CatalogView() {
                   </Label>
                   <Input
                     defaultValue={service.type}
-                    className="h-9 text-sm bg-white border-slate-200 focus-visible:ring-cyan"
+                    className="h-9 text-sm bg-white border-slate-200 focus-visible:ring-blue-500"
                     disabled={!service.isActive}
                   />
                 </div>

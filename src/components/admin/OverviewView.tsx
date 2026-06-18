@@ -1,25 +1,31 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Users, FileText, CheckCircle2, AlertCircle } from 'lucide-react'
+import { Users, FileText, AlertCircle, Activity, Info } from 'lucide-react'
 
 export function OverviewView() {
   const metrics = [
-    { title: 'New Leads', value: 12, icon: Users, color: 'text-cyan', bg: 'bg-cyan/10' },
     {
-      title: 'Active Regularizations',
-      value: 8,
+      title: 'Novas Solicitações',
+      value: 12,
       icon: FileText,
-      color: 'text-petrol',
-      bg: 'bg-petrol/5',
+      color: 'text-blue-600',
+      bg: 'bg-blue-50',
     },
     {
-      title: 'Completed Destaques',
+      title: 'Processos em Andamento',
+      value: 8,
+      icon: Activity,
+      color: 'text-slate-900',
+      bg: 'bg-slate-100',
+    },
+    {
+      title: 'Leads da Semana',
       value: 24,
-      icon: CheckCircle2,
+      icon: Users,
       color: 'text-green-600',
       bg: 'bg-green-50',
     },
     {
-      title: 'Pending Document Reviews',
+      title: 'Pendências de Terceiros',
       value: 5,
       icon: AlertCircle,
       color: 'text-orange-500',
@@ -29,6 +35,20 @@ export function OverviewView() {
 
   return (
     <div className="space-y-6 animate-fade-in">
+      <div className="bg-blue-50 border border-blue-100 rounded-xl p-4 flex items-start gap-3">
+        <Info className="w-5 h-5 text-blue-600 shrink-0 mt-0.5" />
+        <div>
+          <h3 className="text-sm font-bold text-blue-900">
+            Aviso: Papel de Coordenadora Documental
+          </h3>
+          <p className="text-sm text-blue-800 mt-1">
+            A VELKOR atua exclusivamente na coordenação e gestão documental. Nossos parceiros
+            executam atividades privativas (CRECI, OAB, CREA). Não realize corretagem ou assessoria
+            jurídica direta.
+          </p>
+        </div>
+      </div>
+
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {metrics.map((metric, i) => (
           <Card key={i} className="border-slate-200 shadow-sm flex flex-col justify-between">
@@ -48,7 +68,7 @@ export function OverviewView() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <Card className="border-slate-200 shadow-sm lg:col-span-2">
           <CardHeader>
-            <CardTitle className="text-lg font-bold text-petrol">
+            <CardTitle className="text-lg font-bold text-blue-900">
               Fluxo de Entradas (Mês Atual)
             </CardTitle>
           </CardHeader>
@@ -61,7 +81,7 @@ export function OverviewView() {
 
         <Card className="border-slate-200 shadow-sm">
           <CardHeader>
-            <CardTitle className="text-lg font-bold text-petrol">Alertas do Sistema</CardTitle>
+            <CardTitle className="text-lg font-bold text-blue-900">Alertas do Sistema</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             {[1, 2, 3].map((i) => (

@@ -15,11 +15,11 @@ export default function AdminDashboard() {
   const navigate = useNavigate()
 
   const viewTitles: Record<AdminView, string> = {
-    overview: 'Dashboard Overview',
-    leads: 'Leads & Inquiries',
-    processes: 'Process Tracking',
-    catalog: 'Service Catalog',
-    settings: 'Institutional Settings',
+    overview: 'Painel Geral',
+    leads: 'Gestão de Leads',
+    processes: 'Acompanhamento de Dossiês',
+    catalog: 'Catálogo de Serviços',
+    settings: 'Configurações',
   }
 
   return (
@@ -27,23 +27,31 @@ export default function AdminDashboard() {
       <div className="flex min-h-screen w-full bg-slate-50">
         <AdminSidebar activeView={activeView} onViewChange={setActiveView} />
         <SidebarInset className="flex-1 flex flex-col min-w-0 bg-transparent">
-          <header className="flex items-center justify-between px-6 py-4 bg-white border-b border-slate-200 shrink-0 sticky top-0 z-10 shadow-sm">
+          <header className="flex flex-col sm:flex-row items-start sm:items-center justify-between px-6 py-4 bg-white border-b border-slate-200 shrink-0 sticky top-0 z-10 shadow-sm gap-4">
             <div className="flex items-center gap-4">
-              <SidebarTrigger className="text-slate-500 hover:text-petrol" />
+              <SidebarTrigger className="text-slate-500 hover:text-blue-600" />
               <div className="w-px h-6 bg-slate-200 hidden sm:block"></div>
-              <h1 className="font-bold text-petrol text-lg uppercase tracking-wider">
+              <h1 className="font-bold text-slate-900 text-lg uppercase tracking-wider">
                 {viewTitles[activeView]}
               </h1>
             </div>
-            <Button
-              variant="ghost"
-              onClick={() => navigate('/admin/login')}
-              className="text-slate-500 hover:text-red-600 hover:bg-red-50 font-semibold"
-            >
-              <LogOut className="w-4 h-4 mr-2" />
-              Sair
-            </Button>
+            <div className="flex items-center gap-4">
+              <div className="hidden md:flex bg-amber-50 border border-amber-200 text-amber-800 text-xs px-3 py-1.5 rounded-full font-medium">
+                Modo Mock: Conecte ao Skip Cloud/Supabase para persistência
+              </div>
+              <Button
+                variant="ghost"
+                onClick={() => navigate('/admin/login')}
+                className="text-slate-500 hover:text-red-600 hover:bg-red-50 font-semibold"
+              >
+                <LogOut className="w-4 h-4 mr-2" />
+                Sair
+              </Button>
+            </div>
           </header>
+          <div className="md:hidden bg-amber-50 border-b border-amber-200 text-amber-800 text-xs px-6 py-2 font-medium">
+            Modo Mock: Conecte ao Skip Cloud/Supabase para persistência
+          </div>
           <main className="flex-1 p-6 md:p-8 overflow-auto max-w-7xl mx-auto w-full">
             {activeView === 'overview' && <OverviewView />}
             {activeView === 'leads' && <LeadsView />}
