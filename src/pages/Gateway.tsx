@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom'
-import { VelkorLogo } from '@/components/VelkorLogo'
 import { Building2, ShieldCheck, ArrowRight } from 'lucide-react'
 
 export default function Gateway() {
@@ -16,9 +15,8 @@ export default function Gateway() {
 
       <div className="z-10 container px-4 max-w-5xl flex flex-col items-center py-12 mb-8">
         <div className="mb-12 text-center animate-fade-in-down">
-          <VelkorLogo variant="light" className="h-14 md:h-20 mx-auto mb-6" />
           <h1 className="text-white text-3xl md:text-5xl font-display font-bold tracking-tight mb-4">
-            Bem-vindo ao Grupo VELKOR
+            VELKOR SOLUÇÕES IMOBILIÁRIAS
           </h1>
           <p className="text-cyan text-lg max-w-2xl mx-auto">
             Selecione a unidade de negócio para acessar nossos serviços.
@@ -59,7 +57,8 @@ export default function Gateway() {
         </div>
       </div>
       <div className="relative text-white/40 text-xs text-center z-10 w-full font-medium pb-4">
-        &copy; {new Date().getFullYear()} Grupo VELKOR. Todos os direitos reservados.
+        &copy; {new Date().getFullYear()} VELKOR SOLUÇÕES IMOBILIÁRIAS. Todos os direitos
+        reservados.
       </div>
     </div>
   )
