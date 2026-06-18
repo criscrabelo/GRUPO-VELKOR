@@ -16,7 +16,7 @@ export function KoraChat({
   const [messages, setMessages] = useState<{ role: 'kora' | 'user'; text: string }[]>([
     {
       role: 'kora',
-      text: 'Olá! Sou a Kora, assistente virtual inteligente da VELKOR. Como posso te ajudar a gerenciar seu patrimônio hoje?',
+      text: 'Olá! Sou a Kora, assistente virtual inteligente da VELKOR - Sua Central de Regularização e Gestão Patrimonial. Como posso te ajudar hoje?',
     },
   ])
   const [input, setInput] = useState('')

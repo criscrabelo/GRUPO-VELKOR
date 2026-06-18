@@ -15,6 +15,7 @@ const SERVICES = [
     title: 'Avaliação Imobiliária',
     desc: 'Laudo técnico detalhado de valor de mercado e precificação.',
     price: 800,
+    isPartner: true,
   },
   {
     id: '2',
@@ -28,6 +29,7 @@ const SERVICES = [
     title: 'Assessoria Jurídica',
     desc: 'Análise de contratos, certidões e toda documentação.',
     price: 1200,
+    isPartner: true,
   },
   {
     id: '4',
@@ -188,17 +190,24 @@ export default function Contratar() {
                       }}
                     />
 
-                    <h3 className="font-display font-bold text-lg text-petrol mb-2 relative z-10">
-                      {service.title}
-                    </h3>
-                    <p className="text-slate-500 text-sm mb-6 leading-relaxed min-h-[40px] relative z-10">
-                      {service.desc}
-                    </p>
-                    <div className="font-display font-bold text-petrol text-2xl relative z-10">
-                      R$ {service.price.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
-                      <span className="text-sm font-normal text-slate-500 ml-1">
-                        {service.suffix}
-                      </span>
+                    <div className="flex flex-col h-full relative z-10">
+                      <h3 className="font-display font-bold text-lg text-petrol mb-2">
+                        {service.title}
+                      </h3>
+                      <p className="text-slate-500 text-sm mb-4 leading-relaxed flex-grow">
+                        {service.desc}
+                      </p>
+                      {service.isPartner && (
+                        <p className="text-xs text-amber-700 bg-amber-50 p-2 rounded-md mb-4 border border-amber-100 font-medium">
+                          Serviço executado por parceiros técnicos especializados sob gestão VELKOR.
+                        </p>
+                      )}
+                      <div className="font-display font-bold text-petrol text-2xl pt-2">
+                        R$ {service.price.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
+                        <span className="text-sm font-normal text-slate-500 ml-1">
+                          {service.suffix}
+                        </span>
+                      </div>
                     </div>
                   </button>
                 ))}
@@ -403,6 +412,11 @@ export default function Contratar() {
                     <div>
                       <p className="font-bold text-petrol">{selectedService?.title}</p>
                       <p className="text-sm text-slate-500 mt-1">{selectedService?.desc}</p>
+                      {selectedService?.isPartner && (
+                        <p className="text-xs text-amber-700 bg-amber-50 p-2 rounded-md mt-3 border border-amber-100 font-medium">
+                          Serviço executado por parceiros técnicos especializados sob gestão VELKOR.
+                        </p>
+                      )}
                     </div>
                     <div className="pt-4 border-t border-slate-200 flex justify-between items-center">
                       <span className="text-slate-600 font-medium">Investimento</span>

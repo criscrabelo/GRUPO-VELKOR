@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { Menu, X, MapPin, Phone } from 'lucide-react'
+import { Menu, X, MapPin, Phone, Mail } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import {
   Accordion,
@@ -37,10 +37,12 @@ export function Header() {
               <MapPin className="w-3 h-3" /> {SITE_CONFIG.cidade}
             </span>
             <span className="hidden sm:flex items-center gap-1">
-              <Phone className="w-3 h-3" /> {SITE_CONFIG.email}
+              <Mail className="w-3 h-3" /> {SITE_CONFIG.email}
             </span>
           </div>
-          <div>WhatsApp: +{SITE_CONFIG.whatsapp}</div>
+          <div className="flex items-center gap-1">
+            <Phone className="w-3 h-3" /> WhatsApp: +{SITE_CONFIG.whatsapp}
+          </div>
         </div>
       </div>
 

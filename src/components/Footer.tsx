@@ -100,14 +100,17 @@ export function Footer() {
               </li>
               <li className="flex items-center gap-3 text-sm text-white/60">
                 <Phone className="w-5 h-5 shrink-0 text-cyan" />
-                <a
-                  href={`https://wa.me/${SITE_CONFIG.whatsapp}`}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="hover:text-cyan font-bold"
-                >
-                  WhatsApp Oficial
-                </a>
+                <div className="flex flex-col">
+                  <a
+                    href={`https://wa.me/${SITE_CONFIG.whatsapp}`}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="hover:text-cyan font-bold"
+                  >
+                    WhatsApp Oficial
+                  </a>
+                  <span className="text-xs opacity-75">+{SITE_CONFIG.whatsapp}</span>
+                </div>
               </li>
             </ul>
           </div>
