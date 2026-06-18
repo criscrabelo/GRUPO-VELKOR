@@ -18,28 +18,27 @@ CREATE POLICY "Allow authenticated read" ON contacts
   FOR SELECT TO authenticated
   USING (true);
 
--- Create the gateway_services table for portal cards
-CREATE TABLE IF NOT EXISTS gateway_services (
+-- Create the gateway_links table for portal cards
+CREATE TABLE IF NOT EXISTS gateway_links (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   title TEXT NOT NULL,
-  logo_url TEXT,
   description TEXT,
-  action_text TEXT NOT NULL,
-  target_url TEXT NOT NULL,
+  image_url TEXT,
+  link_url TEXT NOT NULL,
+  "order" INTEGER DEFAULT 0,
   is_active BOOLEAN DEFAULT true,
-  is_coming_soon BOOLEAN DEFAULT false,
   created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
 
--- Enable RLS for gateway_services
-ALTER TABLE gateway_services ENABLE ROW LEVEL SECURITY;
+-- Enable RLS for gateway_links
+ALTER TABLE gateway_links ENABLE ROW LEVEL SECURITY;
 
--- Allow anonymous users to read gateway services
-CREATE POLICY "Allow public read on gateway services" ON gateway_services
+-- Allow anonymous users to read gateway links
+CREATE POLICY "Allow public read on gateway links" ON gateway_links
   FOR SELECT TO anon
-  USING (true);
+  USING (is_active = true);
 
 -- Allow authenticated users full access
-CREATE POLICY "Allow authenticated full access on gateway services" ON gateway_services
+CREATE POLICY "Allow authenticated full access on gateway links" ON gateway_links
   FOR ALL TO authenticated
   USING (true) WITH CHECK (true);

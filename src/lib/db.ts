@@ -46,36 +46,34 @@ export interface Lead {
   created_at: string
 }
 
-export interface GatewayService {
+export interface GatewayLink {
   id: string
   title: string
-  logo_url?: string
   description?: string
-  action_text: string
-  target_url: string
+  image_url?: string
+  link_url: string
+  order: number
   is_active: boolean
-  is_coming_soon?: boolean
 }
 
-const DEFAULT_GATEWAY_SERVICES: GatewayService[] = [
+const DEFAULT_GATEWAY_LINKS: GatewayLink[] = [
   {
     id: '1',
     title: 'VELKOR SOLUÇÕES IMOBILIÁRIAS',
     description: 'Regularização patrimonial, due diligence, leilões e compra segura.',
-    logo_url:
+    image_url:
       'https://api.altan.ai/platform/media/c0352277-2fce-4c12-92ab-621cae528aab?account_id=45753086-63e2-45e0-81f1-0bc4cb5499dd',
-    action_text: 'Acessar Portal',
-    target_url: '/solucoes',
+    link_url: '/solucoes',
+    order: 1,
     is_active: true,
   },
   {
     id: '2',
     title: 'VELKOR Seguros',
     description: 'Proteção completa para patrimônio, vida e negócios. Soluções personalizadas.',
-    action_text: 'Em Breve',
-    target_url: '#',
+    link_url: '#',
+    order: 2,
     is_active: true,
-    is_coming_soon: true,
   },
 ]
 
@@ -174,13 +172,13 @@ export const db = {
       return newLead
     },
   },
-  gatewayServices: {
-    async findMany(): Promise<GatewayService[]> {
+  gatewayLinks: {
+    async findMany(): Promise<GatewayLink[]> {
       await delay(300)
-      const data = localStorage.getItem('skip_db_gateway_services')
+      const data = localStorage.getItem('skip_db_gateway_links')
       if (data) return JSON.parse(data)
-      localStorage.setItem('skip_db_gateway_services', JSON.stringify(DEFAULT_GATEWAY_SERVICES))
-      return DEFAULT_GATEWAY_SERVICES
+      localStorage.setItem('skip_db_gateway_links', JSON.stringify(DEFAULT_GATEWAY_LINKS))
+      return DEFAULT_GATEWAY_LINKS
     },
   },
 }

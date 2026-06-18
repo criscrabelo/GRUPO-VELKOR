@@ -1,18 +1,22 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { ShieldCheck, ArrowRight, Loader2 } from 'lucide-react'
+import { ShieldCheck, ArrowRight, Loader2, AlertCircle } from 'lucide-react'
 import { VelkorLogo } from '@/components/VelkorLogo'
-import { db, type GatewayService } from '@/lib/db'
+import { db, type GatewayLink } from '@/lib/db'
 
 export default function Gateway() {
-  const [services, setServices] = useState<GatewayService[]>([])
+  const [links, setLinks] = useState<GatewayLink[]>([])
   const [isLoading, setIsLoading] = useState(true)
+  const [error, setError] = useState(false)
 
   useEffect(() => {
-    db.gatewayServices.findMany().then((data) => {
-      setServices(data.filter((s) => s.is_active))
-      setIsLoading(false)
-    })
+    db.gatewayLinks
+      .findMany()
+      .then((data) => {
+        setLinks(data.filter((l) => l.is_active).sort((a, b) => (a.order || 0) - (b.order || 0)))
+      })
+      .catch(() => setError(true))
+      .finally(() => setIsLoading(false))
   }, [])
 
   return (
@@ -37,46 +41,52 @@ export default function Gateway() {
         </div>
 
         {isLoading ? (
-          <div className="flex items-center justify-center p-12 w-full animate-fade-in">
-            <Loader2 className="w-8 h-8 text-cyan animate-spin" />
+          <div className="flex flex-col items-center justify-center p-12 w-full animate-fade-in text-white/70">
+            <Loader2 className="w-8 h-8 text-cyan animate-spin mb-4" />
+            <p>Carregando portais...</p>
+          </div>
+        ) : error ? (
+          <div className="flex flex-col items-center justify-center p-12 w-full animate-fade-in text-red-400 bg-red-950/20 rounded-2xl border border-red-900/50 backdrop-blur-sm">
+            <AlertCircle className="w-10 h-10 mb-4 text-red-500" />
+            <p className="text-lg">Não foi possível carregar os portais.</p>
+            <p className="text-sm opacity-80 mt-1">Tente atualizar a página.</p>
           </div>
         ) : (
           <div className="grid md:grid-cols-2 gap-6 w-full max-w-4xl animate-fade-in-up">
-            {services.map((service) =>
-              service.is_coming_soon ? (
+            {links.map((link) =>
+              link.link_url === '#' ? (
                 <div
-                  key={service.id}
+                  key={link.id}
                   className="group relative bg-slate-800/60 backdrop-blur-md rounded-2xl p-8 shadow-xl border-2 border-slate-700 flex flex-col items-center text-center"
                 >
                   <div className="absolute top-6 right-6 bg-cyan/20 text-cyan text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1.5 animate-pulse">
-                    <span className="w-1.5 h-1.5 rounded-full bg-cyan"></span>{' '}
-                    {service.action_text.toUpperCase()}
+                    <span className="w-1.5 h-1.5 rounded-full bg-cyan"></span> EM BREVE
                   </div>
                   <div className="w-20 h-20 bg-slate-700/50 rounded-2xl -rotate-3 flex items-center justify-center mb-6 z-10 p-3">
-                    {service.logo_url ? (
+                    {link.image_url ? (
                       <img
-                        src={service.logo_url}
-                        alt={service.title}
-                        className="w-full h-full object-contain drop-shadow-sm"
+                        src={link.image_url}
+                        alt={link.title}
+                        className="w-full h-full object-contain drop-shadow-sm opacity-60 grayscale"
                       />
                     ) : (
                       <ShieldCheck className="w-10 h-10 text-slate-400" />
                     )}
                   </div>
-                  <h2 className="text-2xl font-bold text-white mb-4 z-10">{service.title}</h2>
-                  <p className="text-slate-400 z-10">{service.description}</p>
+                  <h2 className="text-2xl font-bold text-white mb-4 z-10">{link.title}</h2>
+                  <p className="text-slate-400 z-10">{link.description}</p>
                 </div>
               ) : (
                 <Link
-                  key={service.id}
-                  to={service.target_url}
+                  key={link.id}
+                  to={link.link_url}
                   className="group relative bg-white rounded-2xl p-8 shadow-2xl transition-all hover:-translate-y-2 hover:border-cyan border-2 border-transparent flex flex-col items-center text-center overflow-hidden"
                 >
                   <div className="w-20 h-20 bg-slate-50 rounded-2xl rotate-3 group-hover:rotate-6 flex items-center justify-center mb-6 z-10 transition-transform p-3 shadow-sm">
-                    {service.logo_url ? (
+                    {link.image_url ? (
                       <img
-                        src={service.logo_url}
-                        alt={service.title}
+                        src={link.image_url}
+                        alt={link.title}
                         className="w-full h-full object-contain drop-shadow-sm group-hover:scale-105 transition-transform"
                       />
                     ) : (
@@ -86,10 +96,10 @@ export default function Gateway() {
                       />
                     )}
                   </div>
-                  <h2 className="text-2xl font-bold text-petrol mb-4 z-10">{service.title}</h2>
-                  <p className="text-slate-600 mb-8 z-10">{service.description}</p>
+                  <h2 className="text-2xl font-bold text-petrol mb-4 z-10">{link.title}</h2>
+                  <p className="text-slate-600 mb-8 z-10">{link.description}</p>
                   <div className="flex items-center text-cyan font-bold group-hover:translate-x-2 transition-transform z-10">
-                    {service.action_text} <ArrowRight className="ml-2 w-5 h-5" />
+                    Acessar Portal <ArrowRight className="ml-2 w-5 h-5" />
                   </div>
                 </Link>
               ),
