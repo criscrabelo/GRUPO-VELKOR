@@ -525,6 +525,12 @@ export default function Contratar() {
                       <ShieldCheck className="w-4 h-4 inline-block mr-1 text-green-600" />
                       Ambiente 100% seguro. Pagamento processado via Gateway Público.
                     </p>
+                    <div className="mb-4 p-3 bg-amber-50 border border-amber-200 rounded-lg text-xs text-amber-700">
+                      <strong>Nota de Integração:</strong> Atualmente sem conexão de backend. Os
+                      dados de contratação e "pagamento" são gerenciados localmente no estado do
+                      frontend. A persistência real exige uma conexão de banco de dados (Skip Cloud
+                      ou Supabase).
+                    </div>
                     <Button
                       onClick={handleSubmitPayment}
                       size="lg"

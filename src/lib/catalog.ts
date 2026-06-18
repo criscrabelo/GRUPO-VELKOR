@@ -26,13 +26,13 @@ export const SERVICE_CATALOG = [
     basePrice: 1200,
   },
   {
-    id: 'leilao-assistido',
-    name: 'Leilão Imobiliário Assistido',
+    id: 'assessoria-leiloes',
+    name: 'Assessoria em Leilões',
     type: 'Investidores',
     description:
-      'Da análise administrativa do edital ao registro da arrematação. Serviços técnicos e peças jurídicas executados por nossa rede de parceiros especializados.',
-    price: 'Sob Consulta',
-    basePrice: 500,
+      'Assessoria especializada para leilões judiciais e extrajudiciais. Da análise administrativa do edital ao registro da arrematação. Serviços técnicos e peças jurídicas executados por nossa rede de parceiros especializados.',
+    price: 'A partir de R$ 2.500',
+    basePrice: 2500,
   },
   {
     id: 'escritura-registro',

@@ -30,9 +30,9 @@ export function ServicesSection() {
       partnerNote: true,
     },
     {
-      title: 'Leilão Assistido',
+      title: 'Assessoria em Leilões',
       icon: Gavel,
-      desc: 'Suporte administrativo para investidores interessados em arrematar imóveis.',
+      desc: 'Assessoria especializada para investidores interessados em arrematar imóveis em leilões judiciais e extrajudiciais.',
       features: [
         'Análise administrativa do edital',
         'Levantamento de débitos e matrícula',
