@@ -1,13 +1,32 @@
+import { useEffect, useState } from 'react'
 import { useParams, Navigate, Link } from 'react-router-dom'
-import { SERVICE_CATALOG } from '@/lib/catalog'
+import { db, Service } from '@/lib/db'
 import { ContactForm } from '@/components/ContactForm'
 import { CheckCircle, Shield, Briefcase, ChevronRight, ArrowLeft, Zap, Layers } from 'lucide-react'
 
 export default function Servico() {
   const { id } = useParams<{ id: string }>()
-  const service = SERVICE_CATALOG.find((s) => s.id === id)
+  const [service, setService] = useState<Service | null>(null)
+  const [loading, setLoading] = useState(true)
 
-  if (!service) {
+  useEffect(() => {
+    if (id) {
+      db.services.findUnique(id).then((data) => {
+        setService(data)
+        setLoading(false)
+      })
+    }
+  }, [id])
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-slate-50">
+        <div className="w-12 h-12 border-4 border-cyan border-t-transparent rounded-full animate-spin"></div>
+      </div>
+    )
+  }
+
+  if (!service && !loading) {
     return <Navigate to="/contratar" replace />
   }
 
@@ -34,10 +53,10 @@ export default function Servico() {
             <Briefcase className="w-4 h-4" /> {service.type}
           </div>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-6 leading-tight">
-            {service.name}
+            {service?.title}
           </h1>
           <p className="text-lg md:text-xl text-white/80 max-w-3xl leading-relaxed mb-10">
-            {service.description}
+            {service?.short_description}
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4">
@@ -69,12 +88,12 @@ export default function Servico() {
                 </h2>
                 <p className="text-slate-600 text-lg leading-relaxed mb-6">
                   Nossa atuação como Hub Orquestrador garante que cada etapa seja conduzida com
-                  excelência. O processo de <strong>{service.name}</strong> é transparente, seguro e
-                  focado em resultados rápidos, com acompanhamento ponta a ponta.
+                  excelência. O processo de <strong>{service?.title}</strong> é transparente, seguro
+                  e focado em resultados rápidos, com acompanhamento ponta a ponta.
                 </p>
                 <ul className="space-y-4">
                   {(
-                    service.methodology || [
+                    service?.methodology || [
                       'Análise inicial detalhada da sua demanda',
                       'Alocação dos parceiros técnicos mais qualificados',
                       'Gestão centralizada de todo o fluxo de trabalho',
@@ -125,7 +144,9 @@ export default function Servico() {
                 <p className="text-slate-500 mb-6">Condições transparentes e sem custos ocultos.</p>
                 <div className="py-4 border-y border-slate-100 mb-6">
                   <span className="text-sm text-slate-500 block mb-1">Valor Estimado</span>
-                  <span className="text-2xl font-bold text-petrol">{service.price}</span>
+                  <span className="text-2xl font-bold text-petrol">
+                    {service?.price || 'Sob Consulta'}
+                  </span>
                 </div>
                 <button
                   onClick={handleScrollToForm}
@@ -148,12 +169,12 @@ export default function Servico() {
             </h2>
             <p className="text-slate-600 text-lg">
               Preencha o formulário abaixo e entraremos em contato para apresentar a melhor proposta
-              para o serviço de <strong>{service.name}</strong>.
+              para o serviço de <strong>{service?.title}</strong>.
             </p>
           </div>
 
           <div className="bg-white p-8 rounded-2xl shadow-xl shadow-petrol/5 border border-slate-100">
-            <ContactForm preselectedServiceId={service.id} />
+            <ContactForm preselectedServiceId={service?.id} />
           </div>
         </div>
       </section>

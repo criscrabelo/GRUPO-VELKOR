@@ -1,9 +1,13 @@
 export const SERVICE_CATALOG = [
   {
     id: 'consultoria-documental',
+    title: 'Consultoria Documental',
     name: 'Consultoria Documental',
     type: 'Pessoa Física e Jurídica',
+    short_description: 'Orientação por vídeo ou email sobre documentos e sequência de certidões.',
     description: 'Orientação por vídeo ou email sobre documentos e sequência de certidões.',
+    full_content: 'Análise documental inicial para direcionamento de regularizações.',
+    icon_name: 'FileSearch',
     price: 'A partir de R$ 180',
     basePrice: 180,
     methodology: [
@@ -17,13 +21,22 @@ export const SERVICE_CATALOG = [
       'Evita gastos desnecessários',
       'Atendimento personalizado com especialistas',
     ],
+    features: ['Análise de documentos', 'Sessão com especialista', 'Relatório final'],
+    featured: false,
+    partnerNote: false,
   },
   {
     id: 'checkup-imobiliario',
+    title: 'Check-up Imobiliário',
     name: 'Check-up Imobiliário',
     type: 'Pessoa Física e Jurídica',
+    short_description:
+      'Diagnóstico completo da situação documental do imóvel, matrícula, ônus, IPTU. Serviços técnicos e peças jurídicas executados por nossa rede de parceiros especializados.',
     description:
       'Diagnóstico completo da situação documental do imóvel, matrícula, ônus, IPTU. Serviços técnicos e peças jurídicas executados por nossa rede de parceiros especializados.',
+    full_content:
+      'Diagnóstico completo da situação documental do imóvel, ideal como primeiro passo para qualquer negociação.',
+    icon_name: 'Search',
     price: 'R$ 600 - R$ 1.500',
     basePrice: 600,
     methodology: [
@@ -37,13 +50,26 @@ export const SERVICE_CATALOG = [
       'Identificação antecipada de riscos e dívidas',
       'Segurança para planejar negociações ou reformas',
     ],
+    features: [
+      'Matrícula e Ônus atualizados',
+      'Consulta de IPTU e débitos municipais',
+      'Relatório de pendências identificadas',
+    ],
+    featured: false,
+    partnerNote: false,
   },
   {
     id: 'compra-segura',
+    title: 'Compra Segura',
     name: 'Compra Segura',
     type: 'Compradores',
+    short_description:
+      'Análise de riscos documentais, certidões do vendedor e comprador. Serviços técnicos e peças jurídicas executados por nossa rede de parceiros especializados.',
     description:
       'Análise de riscos documentais, certidões do vendedor e comprador. Serviços técnicos e peças jurídicas executados por nossa rede de parceiros especializados.',
+    full_content:
+      'Destinado a compradores que buscam reduzir riscos antes de concretizar a aquisição.',
+    icon_name: 'ShieldCheck',
     price: 'R$ 1.200 - R$ 2.800',
     basePrice: 1200,
     methodology: [
@@ -57,13 +83,26 @@ export const SERVICE_CATALOG = [
       'Tranquilidade durante o repasse de valores',
       'Negociação embasada em dados concretos',
     ],
+    features: [
+      'Certidões do Vendedor e Comprador',
+      'Análise de riscos documentais',
+      'Checklist detalhado para a compra',
+    ],
+    featured: true,
+    partnerNote: true,
   },
   {
     id: 'assessoria-leiloes',
+    title: 'Assessoria em Leilões',
     name: 'Assessoria em Leilões',
     type: 'Investidores',
+    short_description:
+      'Assessoria especializada para leilões judiciais e extrajudiciais. Da análise administrativa do edital ao registro da arrematação. Serviços técnicos e peças jurídicas executados por nossa rede de parceiros especializados.',
     description:
       'Assessoria especializada para leilões judiciais e extrajudiciais. Da análise administrativa do edital ao registro da arrematação. Serviços técnicos e peças jurídicas executados por nossa rede de parceiros especializados.',
+    full_content:
+      'Assessoria especializada para investidores interessados em arrematar imóveis em leilões judiciais e extrajudiciais.',
+    icon_name: 'Gavel',
     price: 'A partir de R$ 2.500',
     basePrice: 2500,
     methodology: [
@@ -77,13 +116,25 @@ export const SERVICE_CATALOG = [
       'Evita arrematações com passivos ocultos',
       'Todo o trâmite orquestrado em um só lugar',
     ],
+    features: [
+      'Análise administrativa do edital',
+      'Levantamento de débitos e matrícula',
+      'Apoio no registro da arrematação e ITBI',
+    ],
+    featured: false,
+    partnerNote: true,
   },
   {
     id: 'escritura-registro',
+    title: 'Escritura e Registro',
     name: 'Escritura e Registro',
     type: 'Geral',
+    short_description:
+      'Organização documental e apoio no tabelionato e Registro de Imóveis, incluindo regularizações por parceiros técnicos.',
     description:
       'Organização documental e apoio no tabelionato e Registro de Imóveis, incluindo regularizações por parceiros técnicos.',
+    full_content: 'Organização documental e apoio no tabelionato e Registro de Imóveis.',
+    icon_name: 'BookOpen',
     price: 'R$ 1.500 - R$ 3.500',
     basePrice: 1500,
     methodology: [
@@ -97,12 +148,19 @@ export const SERVICE_CATALOG = [
       'Evita exigências e atrasos cartorários',
       'Segurança jurídica na titularidade',
     ],
+    features: ['Análise de escrituras', 'Registro de imóveis', 'Apoio em cartório'],
+    featured: false,
+    partnerNote: false,
   },
   {
     id: 'diagnostico-patrimonial',
+    title: 'Diagnóstico Patrimonial Familiar',
     name: 'Diagnóstico Patrimonial Familiar',
     type: 'Famílias/Herdeiros',
+    short_description: 'Matrícula, certidões, débitos e organização para sucessão patrimonial.',
     description: 'Matrícula, certidões, débitos e organização para sucessão patrimonial.',
+    full_content: 'Matrícula, certidões, débitos e organização para sucessão patrimonial.',
+    icon_name: 'Home',
     price: 'R$ 1.200 - R$ 3.500',
     basePrice: 1200,
     methodology: [
@@ -116,13 +174,21 @@ export const SERVICE_CATALOG = [
       'Facilidade na sucessão e menor carga tributária',
       'Tranquilidade para as gerações futuras',
     ],
+    features: ['Mapeamento patrimonial', 'Análise sucessória', 'Recomendações estratégicas'],
+    featured: false,
+    partnerNote: false,
   },
   {
     id: 'due-diligence',
+    title: 'Due Diligence Documental',
     name: 'Due Diligence Documental',
     type: 'Investidores/Empresas',
+    short_description:
+      'Levantamento de certidões, débitos e pendências administrativas de imóveis e sócios. Serviços técnicos e peças jurídicas executados por nossa rede de parceiros especializados.',
     description:
       'Levantamento de certidões, débitos e pendências administrativas de imóveis e sócios. Serviços técnicos e peças jurídicas executados por nossa rede de parceiros especializados.',
+    full_content: 'Auditoria e investigação aprofundada para transações de alto valor.',
+    icon_name: 'FileCheck',
     price: 'R$ 2.500 - R$ 8.000',
     basePrice: 2500,
     methodology: [
@@ -136,13 +202,22 @@ export const SERVICE_CATALOG = [
       'Poder de barganha na negociação',
       'Compliance e adequação a normas vigentes',
     ],
+    features: ['Auditoria completa', 'Relatório de riscos', 'Análise societária'],
+    featured: false,
+    partnerNote: true,
   },
   {
     id: 'leiloes-orgaos-publicos',
+    title: 'Participação em Leilões de Órgãos Públicos',
     name: 'Participação em Leilões de Órgãos Públicos',
     type: 'Investidores/Empresas',
+    short_description:
+      'Gestão e representação estratégica em leilões promovidos por órgãos governamentais. Serviços técnicos e peças jurídicas executados por nossa rede de parceiros especializados.',
     description:
       'Gestão e representação estratégica em leilões promovidos por órgãos governamentais. Serviços técnicos e peças jurídicas executados por nossa rede de parceiros especializados.',
+    full_content:
+      'Gestão e representação estratégica em leilões de órgãos governamentais. Nossa expertise técnica assegura conformidade em todas as etapas de editais públicos.',
+    icon_name: 'Landmark',
     price: 'Sob Consulta',
     basePrice: 0,
     methodology: [
@@ -156,5 +231,12 @@ export const SERVICE_CATALOG = [
       'Especialização técnica garantindo conformidade com a lei de licitações',
       'Assessoria ponta a ponta até a posse',
     ],
+    features: [
+      'Análise técnica de editais públicos',
+      'Habilitação e representação',
+      'Desembaraço e registro da arrematação',
+    ],
+    featured: false,
+    partnerNote: true,
   },
 ]

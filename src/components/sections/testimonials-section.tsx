@@ -1,6 +1,7 @@
+import { useEffect, useState } from 'react'
 import { useScrollReveal } from '@/hooks/use-scroll-reveal'
 import { cn } from '@/lib/utils'
-import { Star } from 'lucide-react'
+import { Star, User } from 'lucide-react'
 import Autoplay from 'embla-carousel-autoplay'
 import {
   Carousel,
@@ -9,40 +10,17 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/components/ui/carousel'
-
-const testimonials = [
-  {
-    name: 'Ana Silva',
-    role: 'Investidora Imobiliária',
-    image: 'https://img.usecurling.com/ppl/thumbnail?gender=female&seed=1',
-    content:
-      'A assessoria em leilões da VELKOR me deu a segurança que eu precisava para investir. O processo foi conduzido com extrema transparência e profissionalismo.',
-  },
-  {
-    name: 'Carlos Mendes',
-    role: 'Diretor de Expansão, VarejoCorp',
-    image: 'https://img.usecurling.com/ppl/thumbnail?gender=male&seed=2',
-    content:
-      'A Due Diligence Documental executada pela rede de parceiros da VELKOR evitou que entrássemos em um negócio de alto risco. Eles são meticulosos em cada detalhe.',
-  },
-  {
-    name: 'Juliana Costa',
-    role: 'Compradora de Imóvel',
-    image: 'https://img.usecurling.com/ppl/thumbnail?gender=female&seed=3',
-    content:
-      'Graças ao serviço de Compra Segura, realizei o sonho da casa própria sem surpresas desagradáveis. A organização documental feita por eles foi impecável.',
-  },
-  {
-    name: 'Roberto Alves',
-    role: 'Gestor Patrimonial',
-    image: 'https://img.usecurling.com/ppl/thumbnail?gender=male&seed=4',
-    content:
-      'Centralizamos todas as regularizações do nosso portfólio no Hub da VELKOR. É muito prático ter um único ponto de contato orquestrando todas as soluções.',
-  },
-]
+import { db, Testimonial } from '@/lib/db'
 
 export function TestimonialsSection() {
   const { ref, isVisible } = useScrollReveal()
+  const [testimonials, setTestimonials] = useState<Testimonial[]>([])
+
+  useEffect(() => {
+    db.testimonials.findMany().then(setTestimonials)
+  }, [])
+
+  if (testimonials.length === 0) return null
 
   return (
     <section
@@ -93,25 +71,36 @@ export function TestimonialsSection() {
           >
             <CarouselContent className="-ml-4 md:-ml-6">
               {testimonials.map((testimonial, index) => (
-                <CarouselItem key={index} className="pl-4 md:pl-6 md:basis-1/2 lg:basis-1/3">
+                <CarouselItem
+                  key={testimonial.id || index}
+                  className="pl-4 md:pl-6 md:basis-1/2 lg:basis-1/3"
+                >
                   <div className="bg-white/10 backdrop-blur-md border border-white/10 p-8 rounded-2xl h-full flex flex-col hover:bg-white/15 transition-colors">
                     <div className="flex gap-1 mb-6">
-                      {[...Array(5)].map((_, i) => (
+                      {[...Array(testimonial.rating || 5)].map((_, i) => (
                         <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
                       ))}
                     </div>
                     <p className="text-white text-lg leading-relaxed mb-8 flex-1">
-                      "{testimonial.content}"
+                      "{testimonial.feedback_text}"
                     </p>
                     <div className="flex items-center gap-4">
-                      <img
-                        src={testimonial.image}
-                        alt={testimonial.name}
-                        className="w-12 h-12 rounded-full border-2 border-cyan"
-                      />
+                      {testimonial.image ? (
+                        <img
+                          src={testimonial.image}
+                          alt={testimonial.client_name}
+                          className="w-12 h-12 rounded-full border-2 border-cyan object-cover"
+                        />
+                      ) : (
+                        <div className="w-12 h-12 rounded-full border-2 border-cyan bg-white/20 flex items-center justify-center">
+                          <User className="w-6 h-6 text-cyan" />
+                        </div>
+                      )}
                       <div>
-                        <h4 className="font-semibold text-white">{testimonial.name}</h4>
-                        <p className="text-sm text-white/60">{testimonial.role}</p>
+                        <h4 className="font-semibold text-white">{testimonial.client_name}</h4>
+                        {testimonial.position && (
+                          <p className="text-sm text-white/60">{testimonial.position}</p>
+                        )}
                       </div>
                     </div>
                   </div>

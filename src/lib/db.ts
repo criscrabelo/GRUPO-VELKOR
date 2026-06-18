@@ -1,0 +1,121 @@
+import { SERVICE_CATALOG } from './catalog'
+
+export interface Service {
+  id: string
+  title: string
+  short_description: string
+  full_content?: string
+  icon_name?: string
+  image_url?: string
+  name?: string // backward compat
+  description?: string // backward compat
+  price?: string
+  basePrice?: number
+  type?: string
+  methodology?: string[]
+  benefits?: string[]
+  featured?: boolean
+  partnerNote?: boolean
+  features?: string[]
+}
+
+export interface Testimonial {
+  id: string
+  client_name: string
+  position?: string
+  feedback_text: string
+  rating: number
+  image?: string
+}
+
+export interface Contact {
+  id: string
+  name: string
+  email: string
+  phone?: string
+  message: string
+  service_id?: string
+  created_at: string
+}
+
+const DEFAULT_TESTIMONIALS: Testimonial[] = [
+  {
+    id: '1',
+    client_name: 'Ana Silva',
+    position: 'Investidora Imobiliária',
+    image: 'https://img.usecurling.com/ppl/thumbnail?gender=female&seed=1',
+    feedback_text:
+      'A assessoria em leilões da VELKOR me deu a segurança que eu precisava para investir. O processo foi conduzido com extrema transparência e profissionalismo.',
+    rating: 5,
+  },
+  {
+    id: '2',
+    client_name: 'Carlos Mendes',
+    position: 'Diretor de Expansão, VarejoCorp',
+    image: 'https://img.usecurling.com/ppl/thumbnail?gender=male&seed=2',
+    feedback_text:
+      'A Due Diligence Documental executada pela rede de parceiros da VELKOR evitou que entrássemos em um negócio de alto risco. Eles são meticulosos em cada detalhe.',
+    rating: 5,
+  },
+  {
+    id: '3',
+    client_name: 'Juliana Costa',
+    position: 'Compradora de Imóvel',
+    image: 'https://img.usecurling.com/ppl/thumbnail?gender=female&seed=3',
+    feedback_text:
+      'Graças ao serviço de Compra Segura, realizei o sonho da casa própria sem surpresas desagradáveis. A organização documental feita por eles foi impecável.',
+    rating: 5,
+  },
+  {
+    id: '4',
+    client_name: 'Roberto Alves',
+    position: 'Gestor Patrimonial',
+    image: 'https://img.usecurling.com/ppl/thumbnail?gender=male&seed=4',
+    feedback_text:
+      'Centralizamos todas as regularizações do nosso portfólio no Hub da VELKOR. É muito prático ter um único ponto de contato orquestrando todas as soluções.',
+    rating: 5,
+  },
+]
+
+// Simulate network delay for mock backend API calls
+const delay = (ms: number) => new Promise((res) => setTimeout(res, ms))
+
+export const db = {
+  services: {
+    async findMany(): Promise<Service[]> {
+      await delay(300)
+      const data = localStorage.getItem('skip_db_services')
+      if (data) return JSON.parse(data)
+      localStorage.setItem('skip_db_services', JSON.stringify(SERVICE_CATALOG))
+      return SERVICE_CATALOG as Service[]
+    },
+    async findUnique(id: string): Promise<Service | null> {
+      const services = await this.findMany()
+      return services.find((s) => s.id === id) || null
+    },
+  },
+  testimonials: {
+    async findMany(): Promise<Testimonial[]> {
+      await delay(300)
+      const data = localStorage.getItem('skip_db_testimonials')
+      if (data) return JSON.parse(data)
+      localStorage.setItem('skip_db_testimonials', JSON.stringify(DEFAULT_TESTIMONIALS))
+      return DEFAULT_TESTIMONIALS
+    },
+  },
+  contacts: {
+    async create(data: Omit<Contact, 'id' | 'created_at'>): Promise<Contact> {
+      await delay(500)
+      const contactsStr = localStorage.getItem('skip_db_contacts')
+      const contacts: Contact[] = contactsStr ? JSON.parse(contactsStr) : []
+      const newContact: Contact = {
+        ...data,
+        id: crypto.randomUUID(),
+        created_at: new Date().toISOString(),
+      }
+      contacts.push(newContact)
+      localStorage.setItem('skip_db_contacts', JSON.stringify(contacts))
+      return newContact
+    },
+  },
+}

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
@@ -10,15 +10,20 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
-import { SERVICE_CATALOG } from '@/lib/catalog'
 import { Send, CheckCircle2 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { useToast } from '@/hooks/use-toast'
+import { db, Service } from '@/lib/db'
 
 export function ContactForm({ preselectedServiceId }: { preselectedServiceId?: string }) {
   const { toast } = useToast()
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSuccess, setIsSuccess] = useState(false)
+  const [services, setServices] = useState<Service[]>([])
+
+  useEffect(() => {
+    db.services.findMany().then(setServices)
+  }, [])
 
   const [formData, setFormData] = useState({
     name: '',
@@ -44,14 +49,21 @@ export function ContactForm({ preselectedServiceId }: { preselectedServiceId?: s
     return Object.keys(newErrors).length === 0
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (!validate()) return
 
     setIsSubmitting(true)
 
-    // Simulate API call
-    setTimeout(() => {
+    try {
+      await db.contacts.create({
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        message: formData.message,
+        service_id: formData.serviceId || undefined,
+      })
+
       setIsSubmitting(false)
       setIsSuccess(true)
 
@@ -62,9 +74,15 @@ export function ContactForm({ preselectedServiceId }: { preselectedServiceId?: s
 
       setFormData({ name: '', email: '', phone: '', serviceId: '', message: '' })
 
-      // Reset success message after 5 seconds
       setTimeout(() => setIsSuccess(false), 5000)
-    }, 1500)
+    } catch (error) {
+      setIsSubmitting(false)
+      toast({
+        title: 'Erro ao enviar',
+        description: 'Ocorreu um erro ao enviar sua mensagem. Tente novamente mais tarde.',
+        variant: 'destructive',
+      })
+    }
   }
 
   if (isSuccess) {
@@ -133,9 +151,9 @@ export function ContactForm({ preselectedServiceId }: { preselectedServiceId?: s
               <SelectValue placeholder="Selecione um serviço (opcional)" />
             </SelectTrigger>
             <SelectContent>
-              {SERVICE_CATALOG.map((service) => (
+              {services.map((service) => (
                 <SelectItem key={service.id} value={service.id}>
-                  {service.name}
+                  {service.title}
                 </SelectItem>
               ))}
             </SelectContent>
