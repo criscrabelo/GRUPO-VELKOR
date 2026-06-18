@@ -34,7 +34,11 @@ export function Header() {
         <div className="container mx-auto px-4 md:px-6 flex justify-between items-center h-full">
           <div className="flex items-center gap-4">
             <span className="flex items-center gap-1">
-              <MapPin className="w-3 h-3" /> {SITE_CONFIG.cidade}
+              <MapPin className="w-3 h-3 shrink-0" />
+              <span className="hidden lg:inline">
+                Sediados em {SITE_CONFIG.cidade} | Atendimento em todo o Brasil
+              </span>
+              <span className="lg:hidden">Taubaté, SP | Atendimento Nacional</span>
             </span>
             <span className="hidden sm:flex items-center gap-1">
               <Mail className="w-3 h-3" /> {SITE_CONFIG.email}
@@ -138,7 +142,7 @@ export function Header() {
                   onClick={() => setIsMobileMenuOpen(false)}
                   className="block py-2 text-slate-600 font-medium"
                 >
-                  Leilão Assistido
+                  Assessoria em Leilões
                 </Link>
               </AccordionContent>
             </AccordionItem>

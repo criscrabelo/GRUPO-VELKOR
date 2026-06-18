@@ -15,15 +15,17 @@ export function CoverageSection() {
       <div className="container mx-auto px-4 relative z-10 flex flex-col md:flex-row items-center gap-16">
         <div className="w-full md:w-1/2 space-y-6">
           <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan/20 border border-cyan/50 text-cyan text-sm font-bold tracking-wider uppercase">
-            <MapPin className="w-4 h-4" /> Vale do Paraíba / SP
+            <MapPin className="w-4 h-4" /> Sediados em Taubaté, Vale do Paraíba
           </span>
           <h2 className="text-3xl md:text-5xl font-display font-bold leading-tight">
-            Presença Regional Fortalecida
+            Atendimento em todo o Brasil
           </h2>
           <p className="text-white/70 text-lg leading-relaxed">
-            Nossa matriz estratégica atende com excelência todo o Vale do Paraíba (São José dos
-            Campos, Taubaté, Jacareí e região), garantindo agilidade em diligências e protocolos
-            físicos nos cartórios locais.
+            Nossa matriz estratégica está localizada no Vale do Paraíba, o que nos garante agilidade
+            em diligências e protocolos físicos nos cartórios locais. Ao mesmo tempo, estruturamos
+            nossa operação de forma digital e conectada, permitindo que nossos serviços de
+            assessoria, leilões e regularização alcancem clientes em{' '}
+            <strong>todo o território nacional</strong>.
           </p>
         </div>
         <div className="w-full md:w-1/2 flex justify-center">

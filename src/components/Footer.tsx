@@ -53,7 +53,7 @@ export function Footer() {
               </li>
               <li>
                 <Link to="/" className="text-white/60 hover:text-cyan text-sm">
-                  Leilão Assistido
+                  Assessoria em Leilões
                 </Link>
               </li>
               <li>
@@ -90,7 +90,12 @@ export function Footer() {
             <ul className="space-y-4">
               <li className="flex items-start gap-3 text-sm text-white/60">
                 <MapPin className="w-5 h-5 shrink-0 text-cyan" />
-                <span>{SITE_CONFIG.cidade}</span>
+                <div className="flex flex-col">
+                  <span>Sediados em {SITE_CONFIG.cidade}</span>
+                  <span className="font-bold text-cyan text-xs mt-0.5">
+                    Atendimento em todo o Brasil
+                  </span>
+                </div>
               </li>
               <li className="flex items-center gap-3 text-sm text-white/60">
                 <Mail className="w-5 h-5 shrink-0 text-cyan" />

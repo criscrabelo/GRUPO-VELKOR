@@ -8,7 +8,7 @@ export const SITE_CONFIG = {
   linkedin: 'https://linkedin.com',
   cnpj: '12.345.678/0001-90',
   cnae: '82.99-7-99',
-  cidade: 'Vale do Paraíba, SP',
+  cidade: 'Taubaté, Vale do Paraíba',
   logoUrl:
     'https://api.altan.ai/platform/media/c0352277-2fce-4c12-92ab-621cae528aab?account_id=45753086-63e2-45e0-81f1-0bc4cb5499dd',
   servicesDisclaimer:
