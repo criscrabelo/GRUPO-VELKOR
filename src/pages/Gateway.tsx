@@ -28,9 +28,9 @@ export default function Gateway() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 w-full max-w-4xl animate-fade-in-up">
-          {/* Real Estate Card */}
+          {/* Solutions Card */}
           <Link
-            to="/imobiliaria"
+            to="/solucoes"
             className="group relative bg-white rounded-2xl p-6 sm:p-8 md:p-10 shadow-2xl transition-all duration-300 hover:-translate-y-2 hover:shadow-cyan/20 border-2 border-transparent hover:border-cyan flex flex-col items-center text-center overflow-hidden w-full"
           >
             <div className="absolute top-0 right-0 w-32 h-32 bg-cyan/10 rounded-bl-full -mr-16 -mt-16 transition-transform group-hover:scale-110 duration-500" />

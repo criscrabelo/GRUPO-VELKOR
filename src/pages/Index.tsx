@@ -19,16 +19,16 @@ export default function Index() {
             Quem Somos
           </span>
           <h2 className="text-2xl md:text-4xl font-display font-bold text-petrol mb-6 leading-tight">
-            Seu Hub Orquestrador de Soluções Imobiliárias
+            Consultoria e Soluções Especializadas
           </h2>
           <p className="text-base md:text-lg text-slate-600 leading-relaxed mb-6">
-            A VELKOR não é uma imobiliária, nem um escritório de advocacia. Nós atuamos como um
-            verdadeiro <strong>Hub de Soluções</strong> que coordena toda a jornada de regularização
-            e transações imobiliárias. Sediados em <strong>Taubaté, Vale do Paraíba</strong>, nossa
-            estrutura nos permite oferecer{' '}
-            <strong>atendimento em todo o território nacional</strong>, garantindo excelência onde
-            quer que o seu patrimônio esteja. Não prestamos serviços de corretagem direta, nem
-            realizamos atos jurídicos internamente.
+            A VELKOR não é uma imobiliária, nem um escritório de advocacia. Nós atuamos como uma
+            verdadeira <strong>Consultoria de Soluções</strong> que coordena toda a jornada de
+            regularização e segurança documental. Sediados em{' '}
+            <strong>Taubaté, Vale do Paraíba</strong>, nossa estrutura nos permite oferecer{' '}
+            <strong>atendimento estratégico em todo o território nacional</strong>, garantindo
+            excelência onde quer que o seu patrimônio esteja. Não trabalhamos com venda, locação ou
+            corretagem direta de imóveis.
           </p>
           <p className="text-base md:text-lg text-slate-600 leading-relaxed">
             Nosso papel é gerenciar e orquestrar o processo do início ao fim, acionando nossa

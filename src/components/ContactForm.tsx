@@ -142,13 +142,13 @@ export function ContactForm({ preselectedServiceId }: { preselectedServiceId?: s
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="service">Serviço de Interesse</Label>
+          <Label htmlFor="service">Solução de Interesse</Label>
           <Select
             value={formData.serviceId}
             onValueChange={(value) => setFormData({ ...formData, serviceId: value })}
           >
             <SelectTrigger id="service" className="h-12">
-              <SelectValue placeholder="Selecione um serviço (opcional)" />
+              <SelectValue placeholder="Selecione uma solução (opcional)" />
             </SelectTrigger>
             <SelectContent>
               {services.map((service) => (

@@ -31,11 +31,11 @@ export function ServicesSection() {
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-display font-bold text-petrol mb-4">
-            Produtos Estratégicos
+            Portfólio de Soluções
           </h2>
           <p className="text-slate-600 text-lg max-w-2xl mx-auto">
-            Soluções completas e transparentes para assegurar a conformidade patrimonial das suas
-            transações.
+            Consultoria especializada e gestão ponta a ponta para assegurar a conformidade
+            patrimonial das suas operações e investimentos.
           </p>
         </div>
         <div className="grid md:grid-cols-2 gap-8 items-stretch max-w-5xl mx-auto min-h-[400px]">
@@ -81,11 +81,11 @@ export function ServicesSection() {
                       </li>
                     ))}
                   </ul>
-                  <Link to={`/servicos/${s.id}`} className="block w-full mt-auto">
+                  <Link to={`/servicos/${s.id}`} className="block w-full mt-auto pt-4">
                     <Button
-                      className={`w-full font-bold h-14 rounded-xl ${s.featured ? 'bg-petrol text-white hover:bg-petrol/90' : 'bg-slate-50 text-petrol hover:bg-cyan/10 border border-slate-200'}`}
+                      className={`w-full font-bold h-14 rounded-xl transition-all duration-300 ${s.featured ? 'bg-petrol text-white hover:bg-petrol/90 hover:shadow-lg' : 'bg-slate-50 text-petrol hover:bg-cyan/10 border border-slate-200 hover:border-cyan/30'}`}
                     >
-                      Ver Detalhes <ArrowRight className="w-4 h-4 ml-2" />
+                      Consultar Solução <ArrowRight className="w-4 h-4 ml-2" />
                     </Button>
                   </Link>
                 </div>

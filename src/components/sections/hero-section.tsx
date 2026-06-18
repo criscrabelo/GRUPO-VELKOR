@@ -17,14 +17,14 @@ export function HeroSection() {
           </div>
 
           <h1
-            className="text-5xl lg:text-7xl font-display font-bold text-petrol leading-[1.1] mb-8 animate-fade-in-up"
+            className="text-4xl md:text-5xl lg:text-7xl font-display font-bold text-petrol leading-[1.1] mb-6 md:mb-8 animate-fade-in-up"
             style={{ animationDelay: '100ms' }}
           >
             Governança e segurança para o seu patrimônio.
           </h1>
 
           <p
-            className="text-xl text-slate-600 mb-10 leading-relaxed max-w-2xl animate-fade-in-up"
+            className="text-lg md:text-xl text-slate-600 mb-8 md:mb-10 leading-relaxed max-w-2xl animate-fade-in-up"
             style={{ animationDelay: '200ms' }}
           >
             {SITE_CONFIG.slogan}. Estruturamos e coordenamos toda a esteira documental imobiliária.
@@ -32,10 +32,10 @@ export function HeroSection() {
           </p>
 
           <div
-            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-50 text-slate-700 text-sm font-medium border border-slate-200 shadow-sm mb-10 animate-fade-in-up"
+            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-50 text-slate-700 text-sm font-medium border border-slate-200 shadow-sm mb-8 md:mb-10 animate-fade-in-up"
             style={{ animationDelay: '250ms' }}
           >
-            <MapPin className="w-5 h-5 text-cyan" />
+            <MapPin className="w-5 h-5 text-cyan shrink-0" />
             <span>
               Sediados em <strong>Taubaté - Vale do Paraíba</strong> | Atendimento em{' '}
               <strong>todo o Brasil</strong>
@@ -43,13 +43,13 @@ export function HeroSection() {
           </div>
 
           <div
-            className="flex flex-col sm:flex-row gap-4 animate-fade-in-up"
+            className="flex flex-col sm:flex-row gap-4 animate-fade-in-up w-full sm:w-auto"
             style={{ animationDelay: '300ms' }}
           >
             <Button
               asChild
               size="lg"
-              className="bg-cyan text-petrol hover:bg-cyan/90 font-bold h-14 px-8 text-lg rounded-xl shadow-lg shadow-cyan/20"
+              className="bg-cyan text-petrol hover:bg-cyan/90 font-bold h-14 px-8 text-base md:text-lg rounded-xl shadow-lg shadow-cyan/20 w-full sm:w-auto"
             >
               <Link to="/contratar">
                 Consultar Soluções
@@ -60,7 +60,7 @@ export function HeroSection() {
               asChild
               size="lg"
               variant="outline"
-              className="h-14 px-8 text-lg rounded-xl border-slate-200 hover:bg-slate-50 text-slate-700 font-bold"
+              className="h-14 px-8 text-base md:text-lg rounded-xl border-slate-200 hover:bg-slate-50 text-slate-700 font-bold w-full sm:w-auto"
             >
               <a href={`https://wa.me/${SITE_CONFIG.whatsapp}`} target="_blank" rel="noreferrer">
                 Falar com Especialista

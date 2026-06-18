@@ -64,25 +64,25 @@ export function Header() {
         )}
       >
         <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
-          <Link to="/imobiliaria" className="flex items-center group">
+          <Link to="/solucoes" className="flex items-center group">
             <VelkorLogo
               variant="dark"
               className={cn(
                 'transition-all duration-300 group-hover:scale-105',
-                isScrolled ? 'h-10' : 'h-12',
+                isScrolled ? 'h-8 md:h-10' : 'h-10 md:h-12',
               )}
             />
           </Link>
 
           <nav className="hidden md:flex items-center gap-8">
             <a
-              href="/imobiliaria#ecossistema"
+              href="/solucoes#ecossistema"
               className="text-sm font-semibold text-petrol hover:text-cyan transition-colors"
             >
               Ecossistema
             </a>
             <a
-              href="/imobiliaria#faq"
+              href="/solucoes#faq"
               className="text-sm font-semibold text-petrol hover:text-cyan transition-colors"
             >
               FAQ
@@ -106,7 +106,7 @@ export function Header() {
             </Link>
             <Link to="/contratar">
               <Button className="bg-petrol text-white hover:bg-petrol/90 shadow-lg shadow-petrol/20 font-bold">
-                Contratar Serviços
+                Solicitar Solução
               </Button>
             </Link>
           </div>
@@ -161,14 +161,14 @@ export function Header() {
             </AccordionItem>
           </Accordion>
           <a
-            href="/imobiliaria#ecossistema"
+            href="/solucoes#ecossistema"
             onClick={() => setIsMobileMenuOpen(false)}
             className="text-base font-bold text-petrol p-3 hover:bg-cyan/5 rounded-lg block min-h-[44px]"
           >
             Ecossistema
           </a>
           <a
-            href="/imobiliaria#faq"
+            href="/solucoes#faq"
             onClick={() => setIsMobileMenuOpen(false)}
             className="text-base font-bold text-petrol p-3 hover:bg-cyan/5 rounded-lg block min-h-[44px]"
           >
@@ -190,7 +190,7 @@ export function Header() {
             </Link>
             <Link to="/contratar" className="w-full" onClick={() => setIsMobileMenuOpen(false)}>
               <Button className="w-full bg-cyan text-petrol hover:bg-cyan/90 font-bold h-12">
-                Contratar Serviços
+                Solicitar Solução
               </Button>
             </Link>
           </div>
