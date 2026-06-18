@@ -23,8 +23,11 @@ export default function Index() {
           <p className="text-lg text-slate-600 leading-relaxed mb-6">
             A VELKOR não é uma imobiliária, nem um escritório de advocacia. Nós atuamos como um
             verdadeiro <strong>Hub de Soluções</strong> que coordena toda a jornada de regularização
-            e transações imobiliárias. Não prestamos serviços de corretagem direta, nem realizamos
-            atos jurídicos internamente.
+            e transações imobiliárias. Sediados em <strong>Taubaté, Vale do Paraíba</strong>, nossa
+            estrutura nos permite oferecer{' '}
+            <strong>atendimento em todo o território nacional</strong>, garantindo excelência onde
+            quer que o seu patrimônio esteja. Não prestamos serviços de corretagem direta, nem
+            realizamos atos jurídicos internamente.
           </p>
           <p className="text-lg text-slate-600 leading-relaxed">
             Nosso papel é gerenciar e orquestrar o processo do início ao fim, acionando nossa

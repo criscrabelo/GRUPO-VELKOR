@@ -10,7 +10,7 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
           <div className="md:col-span-1">
             <Link to="/" className="inline-block mb-6 hover:opacity-90 transition-opacity">
-              <VelkorLogo variant="light" className="h-9" />
+              <VelkorLogo variant="light" className="h-12" />
             </Link>
             <p className="text-white/60 text-sm leading-relaxed mb-6">{SITE_CONFIG.slogan}</p>
             <div className="flex gap-4">
@@ -90,7 +90,7 @@ export function Footer() {
               <li className="flex items-start gap-3 text-sm text-white/60">
                 <MapPin className="w-5 h-5 shrink-0 text-cyan" />
                 <div className="flex flex-col">
-                  <span>Sediados em {SITE_CONFIG.cidade}</span>
+                  <span>Sediados em Taubaté, Vale do Paraíba</span>
                   <span className="font-bold text-cyan text-xs mt-0.5">
                     Atendimento em todo o Brasil
                   </span>

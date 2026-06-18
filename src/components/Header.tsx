@@ -37,7 +37,7 @@ export function Header() {
             <span className="flex items-center gap-1">
               <MapPin className="w-3 h-3 shrink-0" />
               <span className="hidden lg:inline">
-                Sediados em {SITE_CONFIG.cidade} | Atendimento em todo o Brasil
+                Sediados em Taubaté - Vale do Paraíba | Atendimento em todo o Brasil
               </span>
               <span className="lg:hidden">Taubaté, SP | Atendimento Nacional</span>
             </span>
@@ -65,7 +65,7 @@ export function Header() {
               variant="dark"
               className={cn(
                 'transition-all duration-300 group-hover:scale-105',
-                isScrolled ? 'h-8' : 'h-10',
+                isScrolled ? 'h-10' : 'h-12',
               )}
             />
           </Link>

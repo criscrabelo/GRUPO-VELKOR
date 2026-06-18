@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/button'
-import { ArrowRight, ShieldCheck } from 'lucide-react'
+import { ArrowRight, ShieldCheck, MapPin } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { SITE_CONFIG } from '@/lib/config'
 
@@ -30,6 +30,17 @@ export function HeroSection() {
             {SITE_CONFIG.slogan}. Estruturamos e coordenamos toda a esteira documental imobiliária.
             Tudo com inteligência, compliance e previsibilidade.
           </p>
+
+          <div
+            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-50 text-slate-700 text-sm font-medium border border-slate-200 shadow-sm mb-10 animate-fade-in-up"
+            style={{ animationDelay: '250ms' }}
+          >
+            <MapPin className="w-5 h-5 text-cyan" />
+            <span>
+              Sediados em <strong>Taubaté - Vale do Paraíba</strong> | Atendimento em{' '}
+              <strong>todo o Brasil</strong>
+            </span>
+          </div>
 
           <div
             className="flex flex-col sm:flex-row gap-4 animate-fade-in-up"

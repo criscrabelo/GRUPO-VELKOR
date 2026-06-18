@@ -44,7 +44,7 @@ export function ServicesSection() {
     {
       title: 'Participação em Leilões de Órgãos Públicos',
       icon: Landmark,
-      desc: 'Gestão e representação estratégica em leilões promovidos por órgãos governamentais (municipais, estaduais e federais).',
+      desc: 'Gestão e representação estratégica em leilões de órgãos governamentais. Nossa expertise técnica assegura conformidade em todas as etapas de editais públicos.',
       features: [
         'Análise técnica de editais públicos',
         'Habilitação e representação',
