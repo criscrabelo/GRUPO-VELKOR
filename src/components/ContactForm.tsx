@@ -109,7 +109,7 @@ export function ContactForm({ preselectedServiceId }: { preselectedServiceId?: s
             placeholder="Seu nome"
             value={formData.name}
             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-            className={cn(errors.name && 'border-red-500')}
+            className={cn('h-12', errors.name && 'border-red-500')}
           />
           {errors.name && <p className="text-xs text-red-500 mt-1">{errors.name}</p>}
         </div>
@@ -122,7 +122,7 @@ export function ContactForm({ preselectedServiceId }: { preselectedServiceId?: s
             placeholder="seu@email.com"
             value={formData.email}
             onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-            className={cn(errors.email && 'border-red-500')}
+            className={cn('h-12', errors.email && 'border-red-500')}
           />
           {errors.email && <p className="text-xs text-red-500 mt-1">{errors.email}</p>}
         </div>
@@ -136,7 +136,7 @@ export function ContactForm({ preselectedServiceId }: { preselectedServiceId?: s
             placeholder="(00) 00000-0000"
             value={formData.phone}
             onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-            className={cn(errors.phone && 'border-red-500')}
+            className={cn('h-12', errors.phone && 'border-red-500')}
           />
           {errors.phone && <p className="text-xs text-red-500 mt-1">{errors.phone}</p>}
         </div>
@@ -147,7 +147,7 @@ export function ContactForm({ preselectedServiceId }: { preselectedServiceId?: s
             value={formData.serviceId}
             onValueChange={(value) => setFormData({ ...formData, serviceId: value })}
           >
-            <SelectTrigger id="service">
+            <SelectTrigger id="service" className="h-12">
               <SelectValue placeholder="Selecione um serviço (opcional)" />
             </SelectTrigger>
             <SelectContent>
@@ -169,7 +169,7 @@ export function ContactForm({ preselectedServiceId }: { preselectedServiceId?: s
           rows={5}
           value={formData.message}
           onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-          className="resize-none"
+          className="resize-none min-h-[120px] p-3"
         />
       </div>
 

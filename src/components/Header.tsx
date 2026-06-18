@@ -112,8 +112,9 @@ export function Header() {
           </div>
 
           <button
-            className="md:hidden text-petrol p-1"
+            className="md:hidden text-petrol p-2 -mr-2 rounded-lg hover:bg-slate-100 transition-colors"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label="Menu Principal"
           >
             {isMobileMenuOpen ? <X className="w-7 h-7" /> : <Menu className="w-7 h-7" />}
           </button>
@@ -121,38 +122,38 @@ export function Header() {
       </div>
 
       {isMobileMenuOpen && (
-        <div className="absolute top-full left-0 right-0 bg-white border-b border-gray-100 shadow-xl p-4 flex flex-col md:hidden animate-fade-in-down max-h-[80vh] overflow-y-auto">
+        <div className="absolute top-full left-0 right-0 bg-white border-b border-gray-100 shadow-xl p-4 flex flex-col md:hidden animate-fade-in-down max-h-[calc(100vh-80px)] overflow-y-auto pb-8">
           <Link
             to="/"
             onClick={() => setIsMobileMenuOpen(false)}
-            className="text-base font-bold text-cyan p-3 hover:bg-cyan/5 rounded-lg mb-2 flex items-center"
+            className="text-base font-bold text-cyan p-3 hover:bg-cyan/5 rounded-lg mb-2 flex items-center min-h-[44px]"
           >
             &larr; Voltar para Grupo VELKOR
           </Link>
           <Accordion type="single" collapsible className="w-full mb-2">
             <AccordionItem value="solucoes" className="border-none">
-              <AccordionTrigger className="text-base font-bold text-petrol py-3 px-2 hover:bg-cyan/5 rounded-lg no-underline hover:no-underline">
+              <AccordionTrigger className="text-base font-bold text-petrol py-3 px-3 hover:bg-cyan/5 rounded-lg no-underline hover:no-underline min-h-[44px]">
                 Soluções
               </AccordionTrigger>
-              <AccordionContent className="px-4 pb-2 space-y-2">
+              <AccordionContent className="px-4 pb-2 space-y-1">
                 <Link
                   to="/contratar"
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="block py-2 text-slate-600 font-medium"
+                  className="block py-3 text-slate-600 font-medium min-h-[44px] hover:text-cyan transition-colors"
                 >
                   Check-up Imobiliário
                 </Link>
                 <Link
                   to="/contratar"
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="block py-2 text-slate-600 font-medium"
+                  className="block py-3 text-slate-600 font-medium min-h-[44px] hover:text-cyan transition-colors"
                 >
                   Compra Segura
                 </Link>
                 <Link
                   to="/contratar"
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="block py-2 text-slate-600 font-medium"
+                  className="block py-3 text-slate-600 font-medium min-h-[44px] hover:text-cyan transition-colors"
                 >
                   Assessoria em Leilões
                 </Link>
@@ -162,21 +163,21 @@ export function Header() {
           <a
             href="/imobiliaria#ecossistema"
             onClick={() => setIsMobileMenuOpen(false)}
-            className="text-base font-bold text-petrol p-3 hover:bg-cyan/5 rounded-lg"
+            className="text-base font-bold text-petrol p-3 hover:bg-cyan/5 rounded-lg block min-h-[44px]"
           >
             Ecossistema
           </a>
           <a
             href="/imobiliaria#faq"
             onClick={() => setIsMobileMenuOpen(false)}
-            className="text-base font-bold text-petrol p-3 hover:bg-cyan/5 rounded-lg"
+            className="text-base font-bold text-petrol p-3 hover:bg-cyan/5 rounded-lg block min-h-[44px]"
           >
             FAQ
           </a>
           <Link
             to="/contato"
             onClick={() => setIsMobileMenuOpen(false)}
-            className="text-base font-bold text-petrol p-3 hover:bg-cyan/5 rounded-lg"
+            className="text-base font-bold text-petrol p-3 hover:bg-cyan/5 rounded-lg block min-h-[44px]"
           >
             Contato
           </Link>

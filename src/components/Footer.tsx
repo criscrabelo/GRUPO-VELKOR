@@ -5,7 +5,7 @@ import { VelkorLogo } from '@/components/VelkorLogo'
 
 export function Footer() {
   return (
-    <footer className="bg-petrol text-white pt-20 pb-10 border-t border-white/10">
+    <footer className="bg-petrol text-white pt-20 pb-24 lg:pb-10 border-t border-white/10">
       <div className="container mx-auto px-4 max-w-7xl">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
           <div className="md:col-span-1">
@@ -22,7 +22,8 @@ export function Footer() {
                   href={SITE_CONFIG.instagram}
                   target="_blank"
                   rel="noreferrer"
-                  className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-cyan hover:text-petrol transition-colors"
+                  className="w-11 h-11 rounded-full bg-white/5 flex items-center justify-center hover:bg-cyan hover:text-petrol transition-colors focus:ring-2 focus:ring-cyan focus:outline-none"
+                  aria-label="Instagram"
                 >
                   <Instagram className="w-5 h-5" />
                 </a>
@@ -32,7 +33,8 @@ export function Footer() {
                   href={SITE_CONFIG.linkedin}
                   target="_blank"
                   rel="noreferrer"
-                  className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-cyan hover:text-petrol transition-colors"
+                  className="w-11 h-11 rounded-full bg-white/5 flex items-center justify-center hover:bg-cyan hover:text-petrol transition-colors focus:ring-2 focus:ring-cyan focus:outline-none"
+                  aria-label="LinkedIn"
                 >
                   <Linkedin className="w-5 h-5" />
                 </a>
@@ -41,7 +43,8 @@ export function Footer() {
                 href="#"
                 target="_blank"
                 rel="noreferrer"
-                className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-cyan hover:text-petrol transition-colors"
+                className="w-11 h-11 rounded-full bg-white/5 flex items-center justify-center hover:bg-cyan hover:text-petrol transition-colors focus:ring-2 focus:ring-cyan focus:outline-none"
+                aria-label="Facebook"
               >
                 <Facebook className="w-5 h-5" />
               </a>
@@ -52,22 +55,34 @@ export function Footer() {
             <h4 className="font-bold text-lg mb-6">Serviços</h4>
             <ul className="space-y-3">
               <li>
-                <Link to="/imobiliaria" className="text-white/60 hover:text-cyan text-sm">
+                <Link
+                  to="/imobiliaria"
+                  className="text-white/60 hover:text-cyan text-sm block py-1.5 transition-colors"
+                >
                   Check-up Imobiliário
                 </Link>
               </li>
               <li>
-                <Link to="/imobiliaria" className="text-white/60 hover:text-cyan text-sm">
+                <Link
+                  to="/imobiliaria"
+                  className="text-white/60 hover:text-cyan text-sm block py-1.5 transition-colors"
+                >
                   Compra Segura
                 </Link>
               </li>
               <li>
-                <Link to="/imobiliaria" className="text-white/60 hover:text-cyan text-sm">
+                <Link
+                  to="/imobiliaria"
+                  className="text-white/60 hover:text-cyan text-sm block py-1.5 transition-colors"
+                >
                   Assessoria em Leilões
                 </Link>
               </li>
               <li>
-                <Link to="/imobiliaria" className="text-white/60 hover:text-cyan text-sm">
+                <Link
+                  to="/imobiliaria"
+                  className="text-white/60 hover:text-cyan text-sm block py-1.5 transition-colors"
+                >
                   Due Diligence
                 </Link>
               </li>
@@ -78,27 +93,42 @@ export function Footer() {
             <h4 className="font-bold text-lg mb-6">Links Rápidos</h4>
             <ul className="space-y-3">
               <li>
-                <Link to="/" className="text-white/60 hover:text-cyan text-sm">
+                <Link
+                  to="/"
+                  className="text-white/60 hover:text-cyan text-sm block py-1.5 transition-colors"
+                >
                   Portal Grupo VELKOR
                 </Link>
               </li>
               <li>
-                <Link to="/cliente" className="text-white/60 hover:text-cyan text-sm">
+                <Link
+                  to="/cliente"
+                  className="text-white/60 hover:text-cyan text-sm block py-1.5 transition-colors"
+                >
                   Área do Cliente
                 </Link>
               </li>
               <li>
-                <Link to="/admin/login" className="text-white/60 hover:text-cyan text-sm">
+                <Link
+                  to="/admin/login"
+                  className="text-white/60 hover:text-cyan text-sm block py-1.5 transition-colors"
+                >
                   Painel Operacional
                 </Link>
               </li>
               <li>
-                <Link to="/contratar" className="text-white/60 hover:text-cyan text-sm">
+                <Link
+                  to="/contratar"
+                  className="text-white/60 hover:text-cyan text-sm block py-1.5 transition-colors"
+                >
                   Contratar Serviço
                 </Link>
               </li>
               <li>
-                <Link to="/contato" className="text-white/60 hover:text-cyan text-sm">
+                <Link
+                  to="/contato"
+                  className="text-white/60 hover:text-cyan text-sm block py-1.5 transition-colors"
+                >
                   Contato
                 </Link>
               </li>
@@ -109,48 +139,51 @@ export function Footer() {
             <h4 className="font-bold text-lg mb-6">Contato Central</h4>
             <ul className="space-y-4">
               <li className="flex items-start gap-3 text-sm text-white/60">
-                <MapPin className="w-5 h-5 shrink-0 text-cyan" />
-                <div className="flex flex-col">
+                <MapPin className="w-5 h-5 shrink-0 text-cyan mt-0.5" />
+                <div className="flex flex-col py-1">
                   <span>Sediados em Taubaté, Vale do Paraíba</span>
                   <span className="font-bold text-cyan text-xs mt-0.5">
                     Atendimento em todo o Brasil
                   </span>
                 </div>
               </li>
-              <li className="flex items-center gap-3 text-sm text-white/60">
-                <Mail className="w-5 h-5 shrink-0 text-cyan" />
-                <a href={`mailto:${SITE_CONFIG.email}`} className="hover:text-cyan">
+              <li className="flex items-start gap-3 text-sm text-white/60">
+                <Mail className="w-5 h-5 shrink-0 text-cyan mt-0.5" />
+                <a
+                  href={`mailto:${SITE_CONFIG.email}`}
+                  className="hover:text-cyan block py-1 break-all"
+                >
                   {SITE_CONFIG.email}
                 </a>
               </li>
-              <li className="flex items-center gap-3 text-sm text-white/60">
-                <Phone className="w-5 h-5 shrink-0 text-cyan" />
-                <div className="flex flex-col">
+              <li className="flex items-start gap-3 text-sm text-white/60">
+                <Phone className="w-5 h-5 shrink-0 text-cyan mt-0.5" />
+                <div className="flex flex-col py-1">
                   <a
                     href={`https://wa.me/${SITE_CONFIG.whatsapp}`}
                     target="_blank"
                     rel="noreferrer"
-                    className="hover:text-cyan font-bold"
+                    className="hover:text-cyan font-bold block"
                   >
                     WhatsApp Oficial
                   </a>
-                  <span className="text-xs opacity-75">+{SITE_CONFIG.whatsapp}</span>
+                  <span className="text-xs opacity-75 mt-0.5">+{SITE_CONFIG.whatsapp}</span>
                 </div>
               </li>
             </ul>
           </div>
         </div>
 
-        <div className="pt-8 border-t border-white/10 text-center md:text-left flex flex-col md:flex-row justify-between items-center gap-6">
-          <div>
+        <div className="pt-8 border-t border-white/10 flex flex-col lg:flex-row justify-between items-center lg:items-start gap-6 text-center lg:text-left">
+          <div className="w-full lg:w-auto">
             <p className="text-white/40 text-xs">
               © {new Date().getFullYear()} {SITE_CONFIG.name}. Todos os direitos reservados.
             </p>
             {SITE_CONFIG.cnpj && (
-              <p className="text-white/40 text-xs mt-1 font-bold">CNPJ: {SITE_CONFIG.cnpj}</p>
+              <p className="text-white/40 text-xs mt-2 font-bold">CNPJ: {SITE_CONFIG.cnpj}</p>
             )}
           </div>
-          <p className="text-white/30 text-[10px] max-w-xl text-right leading-relaxed border-l border-white/10 pl-6">
+          <p className="text-white/30 text-[10px] max-w-xl lg:text-right leading-relaxed lg:border-l border-white/10 lg:pl-6 w-full lg:w-auto">
             {SITE_CONFIG.servicesDisclaimer}
           </p>
         </div>

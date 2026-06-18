@@ -18,7 +18,7 @@ export function Layout() {
   }, [])
 
   return (
-    <div className="flex flex-col min-h-screen relative">
+    <div className="flex flex-col min-h-screen relative overflow-x-hidden">
       <div
         className="fixed top-0 left-0 h-1 bg-gradient-to-r from-petrol to-cyan z-50 transition-all duration-100 ease-out"
         style={{ width: `${progress}%` }}

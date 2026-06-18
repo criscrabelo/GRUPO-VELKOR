@@ -15,10 +15,10 @@ export default function Gateway() {
         <div className="absolute inset-0 bg-gradient-to-br from-petrol/95 via-slate-900/95 to-slate-900/90" />
       </div>
 
-      <div className="z-10 container mx-auto px-4 max-w-5xl flex flex-col items-center text-center py-12">
-        <div className="mb-16 animate-fade-in-down">
-          <VelkorLogo variant="light" className="h-16 md:h-20 mx-auto mb-8" />
-          <h1 className="text-white text-3xl md:text-5xl lg:text-6xl font-display font-bold tracking-tight mb-6">
+      <div className="z-10 container mx-auto px-4 max-w-5xl flex flex-col items-center text-center py-12 md:py-20 mb-12">
+        <div className="mb-12 md:mb-16 animate-fade-in-down">
+          <VelkorLogo variant="light" className="h-14 md:h-20 mx-auto mb-6 md:mb-8" />
+          <h1 className="text-white text-3xl md:text-5xl lg:text-6xl font-display font-bold tracking-tight mb-4 md:mb-6 leading-tight">
             Bem-vindo ao Grupo VELKOR
           </h1>
           <p className="text-cyan text-lg md:text-xl font-medium max-w-2xl mx-auto leading-relaxed">
@@ -31,7 +31,7 @@ export default function Gateway() {
           {/* Real Estate Card */}
           <Link
             to="/imobiliaria"
-            className="group relative bg-white rounded-2xl p-8 md:p-10 shadow-2xl transition-all duration-300 hover:-translate-y-2 hover:shadow-cyan/20 border-2 border-transparent hover:border-cyan flex flex-col items-center text-center overflow-hidden"
+            className="group relative bg-white rounded-2xl p-6 sm:p-8 md:p-10 shadow-2xl transition-all duration-300 hover:-translate-y-2 hover:shadow-cyan/20 border-2 border-transparent hover:border-cyan flex flex-col items-center text-center overflow-hidden w-full"
           >
             <div className="absolute top-0 right-0 w-32 h-32 bg-cyan/10 rounded-bl-full -mr-16 -mt-16 transition-transform group-hover:scale-110 duration-500" />
             <div className="w-20 h-20 bg-petrol/5 rounded-2xl rotate-3 group-hover:rotate-6 transition-transform duration-300 flex items-center justify-center mb-6 relative z-10">
@@ -50,7 +50,7 @@ export default function Gateway() {
           </Link>
 
           {/* Insurance Card (Coming Soon) */}
-          <div className="group relative bg-slate-800/60 backdrop-blur-md rounded-2xl p-8 md:p-10 shadow-xl border-2 border-slate-700 flex flex-col items-center text-center overflow-hidden">
+          <div className="group relative bg-slate-800/60 backdrop-blur-md rounded-2xl p-6 sm:p-8 md:p-10 shadow-xl border-2 border-slate-700 flex flex-col items-center text-center overflow-hidden w-full">
             <div className="absolute top-6 right-6 bg-cyan/20 text-cyan text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider flex items-center gap-1.5 z-10">
               <span className="w-1.5 h-1.5 rounded-full bg-cyan animate-pulse"></span>
               Em Breve
@@ -70,7 +70,7 @@ export default function Gateway() {
         </div>
       </div>
 
-      <div className="absolute bottom-8 text-white/40 text-sm text-center z-10 w-full animate-fade-in font-medium">
+      <div className="absolute bottom-4 md:bottom-8 text-white/40 text-xs md:text-sm text-center z-10 w-full animate-fade-in font-medium px-4">
         &copy; {new Date().getFullYear()} Grupo VELKOR. Todos os direitos reservados.
       </div>
     </div>
