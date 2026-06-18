@@ -23,6 +23,10 @@ export function FaqSection() {
       q: 'Como acompanho o status da minha solicitação?',
       a: 'Ao contratar, você recebe acesso ao Portal do Cliente utilizando apenas o seu e-mail cadastrado, onde pode visualizar o status em tempo real e fazer download de documentos.',
     },
+    {
+      q: 'A VELKOR realiza a gestão de aluguéis?',
+      a: 'Não, a VELKOR é especializada em soluções imobiliárias estratégicas, estruturação e consultoria. Não operamos com gestão de locação ou administração de aluguéis.',
+    },
   ]
 
   return (

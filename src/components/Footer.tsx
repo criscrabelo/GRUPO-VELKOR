@@ -98,6 +98,9 @@ export function Footer() {
             <div className="space-y-1 text-xs text-white/70">
               <p>CNPJ: {SITE_CONFIG.cnpj}</p>
               <p>CNAE: {SITE_CONFIG.cnae}</p>
+              <p className="pt-3 pb-1 font-medium text-cyan leading-relaxed">
+                Nota: {SITE_CONFIG.servicesDisclaimer}
+              </p>
             </div>
           </div>
         </div>

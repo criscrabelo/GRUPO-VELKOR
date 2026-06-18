@@ -1,6 +1,7 @@
 import { Check, ArrowRight } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Link } from 'react-router-dom'
+import { SITE_CONFIG } from '@/lib/config'
 
 export function ServicesSection() {
   const services = [
@@ -15,15 +16,11 @@ export function ServicesSection() {
       ],
     },
     {
-      title: 'Gestão de Aluguel',
-      price: '150',
-      isMonthly: true,
+      title: 'Estruturação Imobiliária',
+      price: '2.500',
+      isMonthly: false,
       featured: true,
-      features: [
-        'Repasse Financeiro Garantido',
-        'Vistoria de Entrada e Saída',
-        'Assessoria Jurídica Inclusa',
-      ],
+      features: ['Planejamento Estratégico', 'Análise de Viabilidade', 'Modelagem de Negócios'],
     },
     {
       title: 'Assessoria Jurídica',
@@ -80,6 +77,11 @@ export function ServicesSection() {
               </Link>
             </div>
           ))}
+        </div>
+        <div className="mt-12 text-center max-w-2xl mx-auto">
+          <p className="inline-block bg-slate-50 border border-slate-200 text-slate-500 px-6 py-3 rounded-full text-sm font-medium">
+            <span className="font-bold text-petrol">Atenção:</span> {SITE_CONFIG.servicesDisclaimer}
+          </p>
         </div>
       </div>
     </section>

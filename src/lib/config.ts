@@ -11,4 +11,6 @@ export const SITE_CONFIG = {
   cidade: 'São Paulo, SP',
   logoUrl:
     'https://api.altan.ai/platform/media/c0352277-2fce-4c12-92ab-621cae528aab?account_id=45753086-63e2-45e0-81f1-0bc4cb5499dd',
+  servicesDisclaimer:
+    'Foco exclusivo em soluções estratégicas e estruturação; não realizamos gestão de locação ou administração de aluguéis.',
 }

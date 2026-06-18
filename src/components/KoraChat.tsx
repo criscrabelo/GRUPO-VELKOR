@@ -24,8 +24,28 @@ export function KoraChat({
     e.preventDefault()
     if (!input.trim()) return
 
-    setMessages([...messages, { role: 'user', text: input }])
+    const userMsg = input
+    setMessages([...messages, { role: 'user', text: userMsg }])
     setInput('')
+
+    const lowerInput = userMsg.toLowerCase()
+    if (
+      lowerInput.includes('aluguel') ||
+      lowerInput.includes('alugueis') ||
+      lowerInput.includes('locação') ||
+      lowerInput.includes('locacao')
+    ) {
+      setTimeout(() => {
+        setMessages((prev) => [
+          ...prev,
+          {
+            role: 'kora',
+            text: 'Não, a VELKOR é especializada em soluções imobiliárias estratégicas, estruturação e consultoria. Não operamos com gestão de locação ou administração de aluguéis. Posso te ajudar com nossos serviços estratégicos?',
+          },
+        ])
+      }, 600)
+      return
+    }
 
     // Fallback logic representing missing AI endpoint
     setTimeout(() => {
