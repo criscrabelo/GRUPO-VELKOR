@@ -8,11 +8,11 @@ import {
   SidebarMenuItem,
   SidebarMenuButton,
 } from '@/components/ui/sidebar'
-import { LayoutDashboard, Users, FileText, BookOpen, Settings } from 'lucide-react'
+import { LayoutDashboard, Users, FileText, BookOpen, Settings, Handshake } from 'lucide-react'
 import { SITE_CONFIG } from '@/lib/config'
 import { cn } from '@/lib/utils'
 
-export type AdminView = 'overview' | 'leads' | 'processes' | 'catalog' | 'settings'
+export type AdminView = 'overview' | 'leads' | 'processes' | 'catalog' | 'partners' | 'settings'
 
 interface AdminSidebarProps {
   activeView: AdminView
@@ -25,6 +25,7 @@ export function AdminSidebar({ activeView, onViewChange }: AdminSidebarProps) {
     { id: 'leads', label: 'Leads & Inquiries', icon: Users },
     { id: 'processes', label: 'Process Tracking', icon: FileText },
     { id: 'catalog', label: 'Service Catalog', icon: BookOpen },
+    { id: 'partners', label: 'Gestão de Parceiros', icon: Handshake },
     { id: 'settings', label: 'Institutional Settings', icon: Settings },
   ] as const
 

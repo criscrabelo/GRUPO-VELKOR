@@ -99,7 +99,9 @@ export function Footer() {
               <p>CNPJ: {SITE_CONFIG.cnpj}</p>
               <p>CNAE: {SITE_CONFIG.cnae}</p>
               <p className="pt-3 pb-1 font-medium text-cyan leading-relaxed">
-                Nota: {SITE_CONFIG.servicesDisclaimer}
+                Nota: {SITE_CONFIG.servicesDisclaimer} Os serviços privativos de advogados,
+                engenheiros e arquitetos são realizados por profissionais e empresas parceiras
+                devidamente habilitados.
               </p>
             </div>
           </div>

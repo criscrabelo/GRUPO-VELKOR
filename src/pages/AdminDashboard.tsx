@@ -6,6 +6,7 @@ import { LeadsView } from '@/components/admin/LeadsView'
 import { ProcessesView } from '@/components/admin/ProcessesView'
 import { CatalogView } from '@/components/admin/CatalogView'
 import { SettingsView } from '@/components/admin/SettingsView'
+import { PartnersView } from '@/components/admin/PartnersView'
 import { useNavigate } from 'react-router-dom'
 import { LogOut } from 'lucide-react'
 import { Button } from '@/components/ui/button'
@@ -19,6 +20,7 @@ export default function AdminDashboard() {
     leads: 'Gestão de Leads',
     processes: 'Acompanhamento de Dossiês',
     catalog: 'Catálogo de Serviços',
+    partners: 'Gestão de Parceiros',
     settings: 'Configurações',
   }
 
@@ -57,6 +59,7 @@ export default function AdminDashboard() {
             {activeView === 'leads' && <LeadsView />}
             {activeView === 'processes' && <ProcessesView />}
             {activeView === 'catalog' && <CatalogView />}
+            {activeView === 'partners' && <PartnersView />}
             {activeView === 'settings' && <SettingsView />}
           </main>
         </SidebarInset>

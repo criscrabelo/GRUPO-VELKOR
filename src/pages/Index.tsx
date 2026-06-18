@@ -5,6 +5,7 @@ import { PricingSection } from '@/components/sections/pricing-section'
 import { CoverageSection } from '@/components/sections/coverage-section'
 import { SocialProofSection } from '@/components/sections/social-proof-section'
 import { FaqSection } from '@/components/sections/faq-section'
+import { PartnersSection } from '@/components/sections/partners-section'
 
 export default function Index() {
   return (
@@ -12,6 +13,7 @@ export default function Index() {
       <HeroSection />
       <SocialProofSection />
       <EcosystemSection />
+      <PartnersSection />
       <ServicesSection />
       <PricingSection />
       <CoverageSection />

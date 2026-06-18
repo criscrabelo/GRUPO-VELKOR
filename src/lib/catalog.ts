@@ -24,14 +24,16 @@ export const SERVICE_CATALOG = [
     id: 'leilao-assistido',
     name: 'Leilão Imobiliário Assistido',
     type: 'Investidores',
-    description: 'Da análise administrativa do edital ao registro da arrematação.',
+    description:
+      'Da análise administrativa do edital ao registro da arrematação. Atos privativos executados por advogados parceiros.',
     price: 'Sob Consulta',
   },
   {
     id: 'escritura-registro',
     name: 'Escritura e Registro',
     type: 'Geral',
-    description: 'Organização documental e apoio no tabelionato e Registro de Imóveis.',
+    description:
+      'Organização documental e apoio no tabelionato e Registro de Imóveis, incluindo regularizações por parceiros técnicos.',
     price: 'R$ 1.500 - R$ 3.500',
   },
   {

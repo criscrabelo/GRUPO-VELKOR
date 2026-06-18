@@ -1,4 +1,4 @@
-import { Check, ArrowRight, ShieldCheck, Search, Gavel } from 'lucide-react'
+import { Check, ArrowRight, ShieldCheck, Search, Gavel, Info } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Link } from 'react-router-dom'
 import { SITE_CONFIG } from '@/lib/config'
@@ -15,6 +15,7 @@ export function ServicesSection() {
         'Relatório de pendências identificadas',
       ],
       featured: false,
+      partnerNote: false,
     },
     {
       title: 'Compra Segura',
@@ -26,6 +27,7 @@ export function ServicesSection() {
         'Análise de riscos documentais',
         'Checklist detalhado para a compra',
       ],
+      partnerNote: true,
     },
     {
       title: 'Leilão Assistido',
@@ -37,6 +39,7 @@ export function ServicesSection() {
         'Apoio no registro da arrematação e ITBI',
       ],
       featured: false,
+      partnerNote: true,
     },
   ]
 
@@ -67,7 +70,17 @@ export function ServicesSection() {
                 <s.icon className="w-6 h-6" />
               </div>
               <h3 className="text-xl font-display font-bold text-petrol mb-3">{s.title}</h3>
-              <p className="text-slate-600 text-sm mb-6 flex-1">{s.desc}</p>
+              <p className="text-slate-600 text-sm mb-4 flex-1">{s.desc}</p>
+
+              {s.partnerNote && (
+                <div className="mb-6 bg-slate-50 border border-slate-100 p-3 rounded-lg flex items-start gap-2">
+                  <Info className="w-4 h-4 text-cyan shrink-0 mt-0.5" />
+                  <span className="text-xs text-slate-500 font-medium">
+                    Atos técnicos e jurídicos deste serviço são realizados por profissionais
+                    parceiros especializados.
+                  </span>
+                </div>
+              )}
 
               <ul className="space-y-3 mb-8">
                 {s.features.map((f) => (
