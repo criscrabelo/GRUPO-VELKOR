@@ -13,8 +13,10 @@ import {
 import { SERVICE_CATALOG } from '@/lib/catalog'
 import { Send, CheckCircle2 } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import { useToast } from '@/hooks/use-toast'
 
 export function ContactForm({ preselectedServiceId }: { preselectedServiceId?: string }) {
+  const { toast } = useToast()
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSuccess, setIsSuccess] = useState(false)
 
@@ -52,6 +54,12 @@ export function ContactForm({ preselectedServiceId }: { preselectedServiceId?: s
     setTimeout(() => {
       setIsSubmitting(false)
       setIsSuccess(true)
+
+      toast({
+        title: 'Mensagem Enviada!',
+        description: 'Agradecemos o seu contato. Nossa equipe retornará em breve.',
+      })
+
       setFormData({ name: '', email: '', phone: '', serviceId: '', message: '' })
 
       // Reset success message after 5 seconds

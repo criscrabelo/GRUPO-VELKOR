@@ -6,6 +6,7 @@ import { SITE_CONFIG } from '@/lib/config'
 export function ServicesSection() {
   const services = [
     {
+      id: 'checkup-imobiliario',
       title: 'Check-up Imobiliário',
       icon: Search,
       desc: 'Diagnóstico completo da situação documental do imóvel, ideal como primeiro passo para qualquer negociação.',
@@ -18,6 +19,7 @@ export function ServicesSection() {
       partnerNote: false,
     },
     {
+      id: 'compra-segura',
       title: 'Compra Segura',
       icon: ShieldCheck,
       desc: 'Destinado a compradores que buscam reduzir riscos antes de concretizar a aquisição.',
@@ -30,6 +32,7 @@ export function ServicesSection() {
       partnerNote: true,
     },
     {
+      id: 'assessoria-leiloes',
       title: 'Assessoria em Leilões',
       icon: Gavel,
       desc: 'Assessoria especializada para investidores interessados em arrematar imóveis em leilões judiciais e extrajudiciais.',
@@ -42,6 +45,7 @@ export function ServicesSection() {
       partnerNote: true,
     },
     {
+      id: 'leiloes-orgaos-publicos',
       title: 'Participação em Leilões de Órgãos Públicos',
       icon: Landmark,
       desc: 'Gestão e representação estratégica em leilões de órgãos governamentais. Nossa expertise técnica assegura conformidade em todas as etapas de editais públicos.',
@@ -94,18 +98,18 @@ export function ServicesSection() {
                 </div>
               )}
 
-              <ul className="space-y-3 mb-8">
+              <ul className="space-y-3 mb-8 flex-1">
                 {s.features.map((f) => (
                   <li key={f} className="flex items-start text-slate-600 text-sm font-medium">
                     <Check className="w-5 h-5 text-cyan mr-3 shrink-0" /> {f}
                   </li>
                 ))}
               </ul>
-              <Link to="/contratar" className="block w-full mt-auto">
+              <Link to={`/servicos/${s.id}`} className="block w-full mt-auto">
                 <Button
                   className={`w-full font-bold h-14 rounded-xl ${s.featured ? 'bg-petrol text-white hover:bg-petrol/90' : 'bg-slate-50 text-petrol hover:bg-cyan/10 border border-slate-200'}`}
                 >
-                  Solicitar <ArrowRight className="w-4 h-4 ml-2" />
+                  Ver Detalhes <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>
               </Link>
             </div>

@@ -1,6 +1,7 @@
 import { useScrollReveal } from '@/hooks/use-scroll-reveal'
 import { cn } from '@/lib/utils'
 import { Star } from 'lucide-react'
+import Autoplay from 'embla-carousel-autoplay'
 import {
   Carousel,
   CarouselContent,
@@ -83,6 +84,11 @@ export function TestimonialsSection() {
               align: 'start',
               loop: true,
             }}
+            plugins={[
+              Autoplay({
+                delay: 4000,
+              }),
+            ]}
             className="w-full"
           >
             <CarouselContent className="-ml-4 md:-ml-6">

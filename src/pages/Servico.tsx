@@ -1,7 +1,7 @@
-import { useParams, Navigate } from 'react-router-dom'
+import { useParams, Navigate, Link } from 'react-router-dom'
 import { SERVICE_CATALOG } from '@/lib/catalog'
 import { ContactForm } from '@/components/ContactForm'
-import { CheckCircle, Shield, Briefcase, ChevronRight } from 'lucide-react'
+import { CheckCircle, Shield, Briefcase, ChevronRight, ArrowLeft, Zap, Layers } from 'lucide-react'
 
 export default function Servico() {
   const { id } = useParams<{ id: string }>()
@@ -22,7 +22,14 @@ export default function Servico() {
         <div className="absolute inset-0 bg-[url('https://img.usecurling.com/p/1200/800?q=modern%20architecture')] opacity-10 bg-cover bg-center mix-blend-luminosity" />
         <div className="absolute inset-0 bg-gradient-to-t from-petrol via-petrol/90 to-transparent" />
 
-        <div className="container mx-auto px-4 max-w-5xl relative z-10">
+        <div className="container mx-auto px-4 max-w-5xl relative z-10 pt-4">
+          <Link
+            to="/"
+            className="inline-flex items-center text-white/70 hover:text-white mb-8 transition-colors font-medium"
+          >
+            <ArrowLeft className="w-4 h-4 mr-2" /> Voltar para o Início
+          </Link>
+          <br />
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan/20 text-cyan text-sm font-bold mb-6">
             <Briefcase className="w-4 h-4" /> {service.type}
           </div>
@@ -54,28 +61,60 @@ export default function Servico() {
       <section className="py-20 bg-slate-50">
         <div className="container mx-auto px-4 max-w-5xl">
           <div className="grid md:grid-cols-3 gap-10">
-            <div className="md:col-span-2 space-y-8">
+            <div className="md:col-span-2 space-y-12">
               <div>
-                <h2 className="text-3xl font-display font-bold text-petrol mb-6">Como funciona</h2>
+                <h2 className="text-3xl font-display font-bold text-petrol mb-4 flex items-center gap-3">
+                  <Layers className="w-8 h-8 text-cyan" />
+                  Metodologia (Como fazemos)
+                </h2>
                 <p className="text-slate-600 text-lg leading-relaxed mb-6">
-                  Nossa atuação como Hub Orquestrador garante que cada etapa do serviço seja
-                  conduzida com excelência, acionando parceiros técnicos e jurídicos especializados
-                  apenas quando necessário. O processo é transparente, seguro e focado em resultados
-                  rápidos.
+                  Nossa atuação como Hub Orquestrador garante que cada etapa seja conduzida com
+                  excelência. O processo de <strong>{service.name}</strong> é transparente, seguro e
+                  focado em resultados rápidos, com acompanhamento ponta a ponta.
                 </p>
                 <ul className="space-y-4">
-                  {[
-                    'Análise inicial detalhada da sua demanda',
-                    'Alocação dos parceiros técnicos mais qualificados',
-                    'Gestão centralizada de todo o fluxo de trabalho',
-                    'Acompanhamento em tempo real pela Área do Cliente',
-                  ].map((item, i) => (
+                  {(
+                    service.methodology || [
+                      'Análise inicial detalhada da sua demanda',
+                      'Alocação dos parceiros técnicos mais qualificados',
+                      'Gestão centralizada de todo o fluxo de trabalho',
+                      'Acompanhamento em tempo real pela Área do Cliente',
+                    ]
+                  ).map((item, i) => (
                     <li key={i} className="flex items-start gap-3 text-slate-700">
-                      <CheckCircle className="w-6 h-6 text-cyan shrink-0" />
+                      <CheckCircle className="w-6 h-6 text-cyan shrink-0 mt-0.5" />
                       <span className="text-lg">{item}</span>
                     </li>
                   ))}
                 </ul>
+              </div>
+
+              <div>
+                <h2 className="text-3xl font-display font-bold text-petrol mb-4 flex items-center gap-3">
+                  <Zap className="w-8 h-8 text-cyan" />
+                  Principais Benefícios
+                </h2>
+                <p className="text-slate-600 text-lg leading-relaxed mb-6">
+                  Ao contratar a VELKOR para este serviço, você conta com as seguintes vantagens
+                  estratégicas:
+                </p>
+                <div className="grid sm:grid-cols-2 gap-4">
+                  {(
+                    service.benefits || [
+                      'Segurança total na transação',
+                      'Agilidade na resolução',
+                      'Conformidade com a legislação',
+                    ]
+                  ).map((benefit, i) => (
+                    <div
+                      key={i}
+                      className="bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex items-start gap-3"
+                    >
+                      <Shield className="w-5 h-5 text-cyan shrink-0 mt-0.5" />
+                      <span className="text-slate-700 font-medium">{benefit}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
 
