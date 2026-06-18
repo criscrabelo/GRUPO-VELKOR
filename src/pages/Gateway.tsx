@@ -33,7 +33,9 @@ export default function Gateway() {
             <div className="w-20 h-20 bg-petrol/5 rounded-2xl rotate-3 group-hover:rotate-6 flex items-center justify-center mb-6 z-10 transition-transform">
               <Building2 className="w-10 h-10 text-petrol group-hover:text-cyan transition-colors" />
             </div>
-            <h2 className="text-2xl font-bold text-petrol mb-4 z-10">VELKOR Soluções</h2>
+            <h2 className="text-2xl font-bold text-petrol mb-4 z-10">
+              VELKOR SOLUÇÕES IMOBILIÁRIAS
+            </h2>
             <p className="text-slate-600 mb-8 z-10">
               Regularização patrimonial, due diligence, leilões e compra segura.
             </p>
