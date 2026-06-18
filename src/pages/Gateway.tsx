@@ -51,9 +51,9 @@ export default function Gateway() {
 
           {/* Insurance Card (Coming Soon) */}
           <div className="group relative bg-slate-800/60 backdrop-blur-md rounded-2xl p-6 sm:p-8 md:p-10 shadow-xl border-2 border-slate-700 flex flex-col items-center text-center overflow-hidden w-full">
-            <div className="absolute top-6 left-6 bg-cyan/20 text-cyan text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider flex items-center gap-1.5 z-10 animate-pulse">
+            <div className="absolute top-6 right-6 bg-cyan/20 text-cyan text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider flex items-center gap-1.5 z-10 animate-pulse">
               <span className="w-1.5 h-1.5 rounded-full bg-cyan"></span>
-              Em Breve
+              EM BREVE
             </div>
             <div className="w-20 h-20 bg-slate-700/50 rounded-2xl -rotate-3 flex items-center justify-center mb-6 relative z-10 mt-8 sm:mt-0">
               <ShieldCheck className="w-10 h-10 text-slate-400" />
