@@ -49,7 +49,9 @@ export function KoraChat({
           <div className="flex items-center gap-3">
             <div className="w-12 h-12 rounded-full bg-cyan/10 flex items-center justify-center relative border border-cyan/30">
               <Bot className="w-6 h-6 text-cyan" />
-              <span className="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-petrol rounded-full"></span>
+              <span className="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-petrol rounded-full">
+                <span className="absolute inset-0 rounded-full bg-green-500 animate-ping opacity-75"></span>
+              </span>
             </div>
             <div>
               <h3 className="font-display font-bold text-lg leading-tight">Kora AI</h3>

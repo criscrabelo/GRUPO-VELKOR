@@ -165,6 +165,12 @@ export default function AdminDashboard() {
             >
               Document Vault
             </TabsTrigger>
+            <TabsTrigger
+              value="risk"
+              className="py-2.5 px-6 rounded-lg data-[state=active]:bg-petrol data-[state=active]:text-white font-semibold"
+            >
+              Matriz de Risco
+            </TabsTrigger>
           </TabsList>
 
           <TabsContent value="pedidos" className="space-y-8 animate-fade-in">
@@ -446,6 +452,28 @@ export default function AdminDashboard() {
                     </Button>
                   </div>
                 ))}
+              </div>
+            </div>
+          </TabsContent>
+
+          <TabsContent value="risk" className="animate-fade-in">
+            <div className="bg-white p-8 rounded-2xl shadow-sm border border-slate-200">
+              <h2 className="text-2xl font-display font-bold text-petrol mb-6 flex items-center gap-2">
+                <Shield className="w-6 h-6 text-cyan" /> Matriz de Risco Operacional
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div className="p-5 rounded-xl border border-red-200 bg-red-50 text-red-800">
+                  <h3 className="font-bold mb-2 flex items-center gap-2">Risco Alto</h3>
+                  <p className="text-sm opacity-80">Inadimplência sem garantias reais.</p>
+                </div>
+                <div className="p-5 rounded-xl border border-orange-200 bg-orange-50 text-orange-800">
+                  <h3 className="font-bold mb-2 flex items-center gap-2">Risco Médio</h3>
+                  <p className="text-sm opacity-80">Atraso superior a 15 dias na vistoria.</p>
+                </div>
+                <div className="p-5 rounded-xl border border-green-200 bg-green-50 text-green-800">
+                  <h3 className="font-bold mb-2 flex items-center gap-2">Risco Baixo</h3>
+                  <p className="text-sm opacity-80">Contratos com assinatura digital (Vault).</p>
+                </div>
               </div>
             </div>
           </TabsContent>

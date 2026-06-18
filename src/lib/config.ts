@@ -1,5 +1,6 @@
 export const SITE_CONFIG = {
   name: 'VELKOR',
+  grupo: 'Parte do GRUPO VELKOR',
   slogan: 'Soluções Imobiliárias',
   whatsapp: '5511999999999', // digits only
   email: 'contato@velkor.com.br',

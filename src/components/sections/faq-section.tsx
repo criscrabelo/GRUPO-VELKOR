@@ -1,5 +1,3 @@
-import { useScrollReveal } from '@/hooks/use-scroll-reveal'
-import { cn } from '@/lib/utils'
 import {
   Accordion,
   AccordionContent,
@@ -7,73 +5,51 @@ import {
   AccordionTrigger,
 } from '@/components/ui/accordion'
 
-const faqs = [
-  {
-    question: 'Como funciona a avaliação imobiliária da Velkor?',
-    answer:
-      'Nossos especialistas realizam uma análise técnica detalhada utilizando dados de mercado atualizados, vistorias in loco e métodos comparativos rigorosos para determinar o valor real e estratégico do seu imóvel.',
-  },
-  {
-    question: 'O que está incluído na Gestão de Ativos?',
-    answer:
-      'A Gestão de Ativos inclui desde a cobrança de aluguéis, repasses financeiros, atendimento ao inquilino, gestão de manutenções até a renovação e reajuste de contratos, garantindo tranquilidade total ao proprietário.',
-  },
-  {
-    question: 'A assessoria jurídica atende quais demandas?',
-    answer:
-      'Nossa equipe jurídica cuida da elaboração e revisão de contratos, due diligence imobiliária (análise de certidões e riscos), ações de despejo, cobranças judiciais e regularização de imóveis.',
-  },
-  {
-    question: 'Como funciona a contratação online?',
-    answer:
-      'Pelo nosso portal, você escolhe o serviço desejado, preenche seus dados, aceita os termos e um de nossos especialistas entrará em contato rapidamente. Todo o andamento pode ser acompanhado pelo Portal do Cliente.',
-  },
-]
-
 export function FaqSection() {
-  const { ref, isVisible } = useScrollReveal()
+  const faqs = [
+    {
+      q: 'Como funciona a contratação digital?',
+      a: 'Todo o processo é realizado de forma 100% online. Você seleciona o serviço desejado, preenche seus dados (PF ou PJ), revisa o resumo do pedido e pronto. O acesso ao seu painel de acompanhamento é ativado imediatamente.',
+    },
+    {
+      q: 'Qual é a área de cobertura dos serviços?',
+      a: 'Temos cobertura nacional garantida, contando com bases operacionais estratégicas localizadas em todas as capitais do Brasil.',
+    },
+    {
+      q: 'As minhas informações e documentos estão seguros?',
+      a: 'Absolutamente. Atuamos em estrita conformidade com a LGPD e regulamentações do setor. Todos os dados e arquivos são armazenados de forma criptografada em nosso Secure Document Vault.',
+    },
+    {
+      q: 'Como acompanho o status da minha solicitação?',
+      a: 'Ao contratar, você recebe acesso ao Portal do Cliente utilizando apenas o seu e-mail cadastrado, onde pode visualizar o status em tempo real e fazer download de documentos.',
+    },
+  ]
 
   return (
-    <section id="faq" ref={ref} className="py-24 bg-white">
-      <div className="container mx-auto px-4 md:px-6">
-        <div className="text-center max-w-2xl mx-auto mb-16">
-          <h2
-            className={cn(
-              'text-3xl md:text-4xl font-display font-bold text-petrol mb-4 opacity-0',
-              isVisible && 'animate-fade-in-up',
-            )}
-          >
-            Perguntas Frequentes
+    <section id="faq" className="py-24 bg-slate-50">
+      <div className="container mx-auto px-4 max-w-3xl">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-display font-bold text-petrol mb-4">
+            Dúvidas Frequentes
           </h2>
-          <p
-            className={cn('text-lg text-slate-500 opacity-0', isVisible && 'animate-fade-in-up')}
-            style={{ animationDelay: '100ms' }}
-          >
-            Tire suas dúvidas sobre nossos serviços e processos operacionais.
-          </p>
+          <p className="text-slate-600">Encontre respostas rápidas sobre nossa operação.</p>
         </div>
-
-        <div
-          className={cn('max-w-3xl mx-auto opacity-0', isVisible && 'animate-fade-in-up')}
-          style={{ animationDelay: '200ms' }}
-        >
-          <Accordion type="single" collapsible className="w-full">
-            {faqs.map((faq, index) => (
-              <AccordionItem
-                key={index}
-                value={`item-${index}`}
-                className="border-b border-slate-100 px-4 mb-2 bg-slate-50 rounded-xl overflow-hidden data-[state=open]:bg-white data-[state=open]:shadow-md data-[state=open]:border-cyan/30 transition-all duration-300"
-              >
-                <AccordionTrigger className="text-left text-lg font-bold text-petrol hover:text-cyan py-6 hover:no-underline">
-                  {faq.question}
-                </AccordionTrigger>
-                <AccordionContent className="text-slate-600 text-base leading-relaxed pb-6 pt-2">
-                  {faq.answer}
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
-        </div>
+        <Accordion type="single" collapsible className="w-full">
+          {faqs.map((f, i) => (
+            <AccordionItem
+              key={i}
+              value={`item-${i}`}
+              className="bg-white mb-4 border border-slate-200 rounded-xl px-6 shadow-sm"
+            >
+              <AccordionTrigger className="text-petrol font-bold text-left hover:no-underline hover:text-cyan transition-colors py-5">
+                {f.q}
+              </AccordionTrigger>
+              <AccordionContent className="text-slate-600 leading-relaxed pb-5 text-base">
+                {f.a}
+              </AccordionContent>
+            </AccordionItem>
+          ))}
+        </Accordion>
       </div>
     </section>
   )

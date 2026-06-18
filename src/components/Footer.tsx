@@ -10,11 +10,16 @@ export function Footer() {
       <div className="container mx-auto px-4 md:px-6">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
           <div className="space-y-4">
-            <img
-              src={SITE_CONFIG.logoUrl}
-              alt={SITE_CONFIG.name}
-              className="h-10 object-contain brightness-0 invert"
-            />
+            <div>
+              <img
+                src={SITE_CONFIG.logoUrl}
+                alt={SITE_CONFIG.name}
+                className="h-10 object-contain brightness-0 invert"
+              />
+              <p className="text-xs font-bold text-cyan mt-2 tracking-widest uppercase">
+                {SITE_CONFIG.grupo}
+              </p>
+            </div>
             <p className="text-white/70 text-sm leading-relaxed max-w-xs">
               {SITE_CONFIG.slogan}. Transformando a maneira como você gerencia e protege seu
               patrimônio.
