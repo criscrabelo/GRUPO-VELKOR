@@ -3,8 +3,9 @@ import { Toaster } from '@/components/ui/toaster'
 import { Toaster as Sonner } from '@/components/ui/sonner'
 import { TooltipProvider } from '@/components/ui/tooltip'
 import Index from './pages/Index'
-import Checkout from './pages/Checkout'
 import Success from './pages/Success'
+import AdminLogin from './pages/AdminLogin'
+import AdminDashboard from './pages/AdminDashboard'
 import NotFound from './pages/NotFound'
 import { Layout } from './components/Layout'
 
@@ -12,13 +13,14 @@ const App = () => (
   <BrowserRouter>
     <TooltipProvider>
       <Toaster />
-      <Sonner />
+      <Sonner position="bottom-center" />
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<Index />} />
-          <Route path="/checkout" element={<Checkout />} />
           <Route path="/success" element={<Success />} />
         </Route>
+        <Route path="/admin/login" element={<AdminLogin />} />
+        <Route path="/admin/dashboard" element={<AdminDashboard />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </TooltipProvider>

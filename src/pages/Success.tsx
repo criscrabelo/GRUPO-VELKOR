@@ -1,54 +1,52 @@
-import { Link } from 'react-router-dom'
-import { CheckCircle, ArrowRight } from 'lucide-react'
+import { Link, useLocation } from 'react-router-dom'
+import { CheckCircle, LayoutDashboard } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 
 export default function Success() {
-  return (
-    <div className="min-h-[80vh] flex flex-col items-center justify-center bg-white px-4">
-      <div className="text-center max-w-md mx-auto relative">
-        <div className="absolute inset-0 bg-green-100 blur-3xl opacity-50 rounded-full w-full h-full -z-10" />
+  const location = useLocation()
+  const protocol = location.state?.protocol || 'PV-9999'
 
+  return (
+    <div className="min-h-[80vh] flex flex-col items-center justify-center bg-slate-50 px-4">
+      <div className="text-center max-w-md mx-auto relative bg-white p-10 rounded-2xl shadow-sm border border-slate-100">
         <div
-          className="flex justify-center mb-8 animate-fade-in-up"
+          className="flex justify-center mb-6 animate-fade-in-up"
           style={{ animationDelay: '0ms' }}
         >
-          <div className="bg-green-100 text-green-600 p-4 rounded-full">
-            <CheckCircle className="w-20 h-20" />
+          <div className="bg-cyan/10 text-cyan-600 p-4 rounded-full">
+            <CheckCircle className="w-16 h-16" />
           </div>
         </div>
 
         <h1
-          className="text-4xl font-bold text-slate-900 mb-4 animate-fade-in-up"
+          className="text-3xl font-display font-bold text-petrol mb-2 animate-fade-in-up"
           style={{ animationDelay: '100ms' }}
         >
-          Pagamento Aprovado!
+          Pedido Confirmado!
         </h1>
 
-        <p
-          className="text-lg text-slate-600 mb-8 animate-fade-in-up"
-          style={{ animationDelay: '200ms' }}
-        >
-          Obrigado por escolher o NexFlow. Seu ambiente já está sendo preparado. Enviamos os
-          detalhes de acesso e recibo para o seu email.
+        <p className="text-slate-600 mb-6 animate-fade-in-up" style={{ animationDelay: '200ms' }}>
+          Recebemos sua solicitação. Acompanhe o status do seu pedido com o número de protocolo
+          abaixo.
         </p>
 
         <div
-          className="animate-fade-in-up bg-slate-50 border border-slate-100 rounded-xl p-6 mb-8 text-left"
+          className="bg-slate-50 border border-slate-200 rounded-xl py-4 px-6 mb-8 animate-fade-in-up flex flex-col items-center"
           style={{ animationDelay: '300ms' }}
         >
-          <h3 className="font-semibold text-slate-900 mb-2">Próximos passos:</h3>
-          <ul className="text-slate-600 space-y-2 text-sm list-decimal list-inside">
-            <li>Verifique sua caixa de entrada</li>
-            <li>Crie sua senha de acesso</li>
-            <li>Configure seu primeiro projeto</li>
-          </ul>
+          <span className="text-sm text-slate-500 uppercase font-semibold mb-1">Seu Protocolo</span>
+          <span className="text-3xl font-bold font-display text-petrol tracking-wider">
+            {protocol}
+          </span>
         </div>
 
-        <div className="animate-fade-in-up" style={{ animationDelay: '400ms' }}>
-          <Button asChild size="lg" className="w-full sm:w-auto h-14 px-8 text-lg group">
-            <Link to="/">
-              Ir para o Dashboard
-              <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+        <div className="flex flex-col gap-3 animate-fade-in-up" style={{ animationDelay: '400ms' }}>
+          <Button asChild size="lg" className="w-full bg-petrol hover:bg-petrol/90 text-white">
+            <Link to="/">Voltar ao Início</Link>
+          </Button>
+          <Button asChild variant="outline" size="lg" className="w-full">
+            <Link to="/admin/login">
+              Acessar Painel <LayoutDashboard className="ml-2 w-4 h-4" />
             </Link>
           </Button>
         </div>
