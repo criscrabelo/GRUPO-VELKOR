@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { Menu, X, Hexagon } from 'lucide-react'
+import { Menu, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
+import { SITE_CONFIG } from '@/lib/config'
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -10,17 +11,17 @@ export function Header() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50)
+      setIsScrolled(window.scrollY > 24)
     }
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
   const navLinks = [
-    { name: 'Recursos', href: '/#recursos' },
-    { name: 'Preços', href: '/#precos' },
-    { name: 'Depoimentos', href: '/#depoimentos' },
+    { name: 'Soluções', href: '/#ecossistema' },
     { name: 'FAQ', href: '/#faq' },
+    { name: 'Contratar', href: '/contratar' },
+    { name: 'Portal', href: '/cliente' },
   ]
 
   return (
@@ -28,16 +29,17 @@ export function Header() {
       className={cn(
         'fixed top-0 left-0 right-0 z-40 transition-all duration-300',
         isScrolled
-          ? 'bg-white/70 backdrop-blur-md border-b border-gray-200/50 shadow-sm py-3'
+          ? 'bg-white/85 backdrop-blur-md border-b border-slate-200/50 shadow-sm py-3'
           : 'bg-transparent py-5',
       )}
     >
       <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
         <Link to="/" className="flex items-center gap-2 group">
-          <div className="bg-primary text-primary-foreground p-1.5 rounded-lg transition-transform duration-300 group-hover:scale-110 group-hover:rotate-12">
-            <Hexagon className="w-5 h-5 fill-current" />
-          </div>
-          <span className="font-bold text-xl tracking-tight">NexFlow</span>
+          <img
+            src={SITE_CONFIG.logoUrl}
+            alt={SITE_CONFIG.name}
+            className="h-8 md:h-10 object-contain transition-transform group-hover:scale-105"
+          />
         </Link>
 
         <nav className="hidden md:flex items-center gap-8">
@@ -45,7 +47,7 @@ export function Header() {
             <a
               key={link.name}
               href={link.href}
-              className="text-sm font-medium text-slate-600 hover:text-primary transition-colors"
+              className="text-sm font-semibold text-petrol hover:text-cyan transition-colors"
             >
               {link.name}
             </a>
@@ -53,19 +55,26 @@ export function Header() {
         </nav>
 
         <div className="hidden md:flex items-center gap-4">
-          <Button variant="ghost" className="text-slate-600 hover:text-primary">
-            Login
-          </Button>
-          <Button className="animate-pulse-subtle hover:animate-none shadow-lg shadow-primary/25 hover:shadow-primary/40 transition-all">
-            Começar Agora
-          </Button>
+          <Link to="/cliente">
+            <Button
+              variant="ghost"
+              className="text-petrol hover:text-cyan hover:bg-cyan/10 font-bold"
+            >
+              Área do Cliente
+            </Button>
+          </Link>
+          <Link to="/contratar">
+            <Button className="bg-petrol text-white hover:bg-petrol/90 shadow-lg shadow-petrol/20 transition-all font-bold">
+              Contratar Serviços
+            </Button>
+          </Link>
         </div>
 
         <button
-          className="md:hidden text-slate-600"
+          className="md:hidden text-petrol p-1"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
-          {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          {isMobileMenuOpen ? <X className="w-7 h-7" /> : <Menu className="w-7 h-7" />}
         </button>
       </div>
 
@@ -76,16 +85,22 @@ export function Header() {
               key={link.name}
               href={link.href}
               onClick={() => setIsMobileMenuOpen(false)}
-              className="text-base font-medium text-slate-800 p-2 hover:bg-slate-50 rounded-md"
+              className="text-base font-medium text-petrol p-3 hover:bg-cyan/5 rounded-md"
             >
               {link.name}
             </a>
           ))}
-          <div className="flex flex-col gap-2 mt-4 pt-4 border-t border-gray-100">
-            <Button variant="outline" className="w-full">
-              Login
-            </Button>
-            <Button className="w-full">Começar Agora</Button>
+          <div className="flex flex-col gap-3 mt-4 pt-4 border-t border-slate-100">
+            <Link to="/cliente" className="w-full" onClick={() => setIsMobileMenuOpen(false)}>
+              <Button variant="outline" className="w-full border-petrol text-petrol font-bold h-12">
+                Área do Cliente
+              </Button>
+            </Link>
+            <Link to="/contratar" className="w-full" onClick={() => setIsMobileMenuOpen(false)}>
+              <Button className="w-full bg-cyan text-petrol hover:bg-cyan/90 font-bold h-12">
+                Contratar Serviços
+              </Button>
+            </Link>
           </div>
         </div>
       )}

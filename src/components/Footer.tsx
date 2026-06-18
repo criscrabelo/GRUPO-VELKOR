@@ -1,134 +1,112 @@
-import { useState } from 'react'
-import { Twitter, Linkedin, Github, Hexagon } from 'lucide-react'
+import { Linkedin, Instagram, ArrowRight, ShieldCheck } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { useToast } from '@/hooks/use-toast'
+import { SITE_CONFIG } from '@/lib/config'
+import { Link } from 'react-router-dom'
 
 export function Footer() {
-  const { toast } = useToast()
-  const [email, setEmail] = useState('')
-
-  const handleSubscribe = (e: React.FormEvent) => {
-    e.preventDefault()
-    if (!email) return
-    toast({
-      title: 'Inscrição realizada!',
-      description: 'Você receberá nossas novidades em breve.',
-    })
-    setEmail('')
-  }
-
   return (
-    <footer className="bg-slate-50 border-t border-gray-200 pt-16 pb-8">
+    <footer className="bg-petrol text-white pt-16 pb-8 border-t-4 border-cyan">
       <div className="container mx-auto px-4 md:px-6">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
           <div className="space-y-4">
-            <div className="flex items-center gap-2">
-              <div className="bg-primary text-primary-foreground p-1.5 rounded-lg">
-                <Hexagon className="w-5 h-5 fill-current" />
-              </div>
-              <span className="font-bold text-xl tracking-tight">NexFlow</span>
-            </div>
-            <p className="text-slate-500 text-sm leading-relaxed max-w-xs">
-              Transformando a maneira como equipes modernas colaboram e entregam resultados com
-              eficiência e velocidade.
+            <img
+              src={SITE_CONFIG.logoUrl}
+              alt={SITE_CONFIG.name}
+              className="h-10 object-contain brightness-0 invert"
+            />
+            <p className="text-white/70 text-sm leading-relaxed max-w-xs">
+              {SITE_CONFIG.slogan}. Transformando a maneira como você gerencia e protege seu
+              patrimônio.
             </p>
             <div className="flex gap-4 pt-2">
-              <a href="#" className="text-slate-400 hover:text-primary transition-colors">
-                <Twitter className="w-5 h-5" />
-              </a>
-              <a href="#" className="text-slate-400 hover:text-primary transition-colors">
-                <Linkedin className="w-5 h-5" />
-              </a>
-              <a href="#" className="text-slate-400 hover:text-primary transition-colors">
-                <Github className="w-5 h-5" />
-              </a>
+              {SITE_CONFIG.instagram && (
+                <a
+                  href={SITE_CONFIG.instagram}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-white/50 hover:text-cyan transition-colors"
+                >
+                  <Instagram className="w-5 h-5" />
+                </a>
+              )}
+              {SITE_CONFIG.linkedin && (
+                <a
+                  href={SITE_CONFIG.linkedin}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-white/50 hover:text-cyan transition-colors"
+                >
+                  <Linkedin className="w-5 h-5" />
+                </a>
+              )}
             </div>
           </div>
 
           <div>
-            <h3 className="font-semibold text-slate-900 mb-4">Produto</h3>
+            <h3 className="font-display font-bold text-white mb-4">Plataforma</h3>
             <ul className="space-y-3">
               <li>
-                <a href="#" className="text-sm text-slate-500 hover:text-primary transition-colors">
-                  Recursos
-                </a>
+                <Link
+                  to="/contratar"
+                  className="text-sm text-white/70 hover:text-cyan transition-colors"
+                >
+                  Contratar Serviços
+                </Link>
               </li>
               <li>
-                <a href="#" className="text-sm text-slate-500 hover:text-primary transition-colors">
-                  Integrações
-                </a>
+                <Link
+                  to="/cliente"
+                  className="text-sm text-white/70 hover:text-cyan transition-colors"
+                >
+                  Portal do Cliente
+                </Link>
               </li>
               <li>
-                <a href="#" className="text-sm text-slate-500 hover:text-primary transition-colors">
-                  Preços
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-sm text-slate-500 hover:text-primary transition-colors">
-                  Changelog
+                <a
+                  href="/#ecossistema"
+                  className="text-sm text-white/70 hover:text-cyan transition-colors"
+                >
+                  Soluções e Ecossistema
                 </a>
               </li>
             </ul>
           </div>
 
           <div>
-            <h3 className="font-semibold text-slate-900 mb-4">Recursos</h3>
+            <h3 className="font-display font-bold text-white mb-4">Contato</h3>
             <ul className="space-y-3">
-              <li>
-                <a href="#" className="text-sm text-slate-500 hover:text-primary transition-colors">
-                  Blog
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-sm text-slate-500 hover:text-primary transition-colors">
-                  Documentação
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-sm text-slate-500 hover:text-primary transition-colors">
-                  Guias
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-sm text-slate-500 hover:text-primary transition-colors">
-                  Central de Ajuda
-                </a>
-              </li>
+              <li className="text-sm text-white/70">WhatsApp: +{SITE_CONFIG.whatsapp}</li>
+              <li className="text-sm text-white/70">Email: {SITE_CONFIG.email}</li>
+              <li className="text-sm text-white/70">{SITE_CONFIG.cidade}</li>
             </ul>
           </div>
 
-          <div>
-            <h3 className="font-semibold text-slate-900 mb-4">Assine nossa Newsletter</h3>
-            <p className="text-sm text-slate-500 mb-4">
-              Receba as últimas novidades e dicas diretamente no seu email.
+          <div className="bg-white/5 p-6 rounded-xl border border-white/10">
+            <h3 className="font-display font-bold text-white mb-2 flex items-center gap-2">
+              <ShieldCheck className="w-5 h-5 text-cyan" /> Legal Box
+            </h3>
+            <p className="text-xs text-white/50 mb-4 leading-relaxed">
+              Atuamos em conformidade com as resoluções do COFECI/CRECI e LGPD. Suas informações
+              estão seguras.
             </p>
-            <form onSubmit={handleSubscribe} className="flex flex-col gap-2">
-              <Input
-                type="email"
-                placeholder="Seu melhor email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="bg-white"
-                required
-              />
-              <Button type="submit" className="w-full">
-                Inscrever-se
-              </Button>
-            </form>
+            <div className="space-y-1 text-xs text-white/70">
+              <p>CNPJ: {SITE_CONFIG.cnpj}</p>
+              <p>CNAE: {SITE_CONFIG.cnae}</p>
+            </div>
           </div>
         </div>
 
-        <div className="pt-8 border-t border-gray-200 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-sm text-slate-500">
-            © 2026 NexFlow Inc. Todos os direitos reservados.
-          </p>
+        <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
+          <div className="text-sm text-white/50">
+            © {new Date().getFullYear()} {SITE_CONFIG.name}. Todos os direitos reservados.
+          </div>
           <div className="flex gap-6">
-            <a href="#" className="text-sm text-slate-500 hover:text-slate-900 transition-colors">
-              Privacidade
-            </a>
-            <a href="#" className="text-sm text-slate-500 hover:text-slate-900 transition-colors">
+            <a href="#" className="text-sm text-white/50 hover:text-cyan transition-colors">
               Termos de Uso
+            </a>
+            <a href="#" className="text-sm text-white/50 hover:text-cyan transition-colors">
+              Privacidade
             </a>
           </div>
         </div>

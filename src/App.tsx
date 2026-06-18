@@ -3,6 +3,8 @@ import { Toaster } from '@/components/ui/toaster'
 import { Toaster as Sonner } from '@/components/ui/sonner'
 import { TooltipProvider } from '@/components/ui/tooltip'
 import Index from './pages/Index'
+import Contratar from './pages/Contratar'
+import ClientPortal from './pages/ClientPortal'
 import Success from './pages/Success'
 import AdminLogin from './pages/AdminLogin'
 import AdminDashboard from './pages/AdminDashboard'
@@ -17,6 +19,8 @@ const App = () => (
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<Index />} />
+          <Route path="/contratar" element={<Contratar />} />
+          <Route path="/cliente" element={<ClientPortal />} />
           <Route path="/success" element={<Success />} />
         </Route>
         <Route path="/admin/login" element={<AdminLogin />} />

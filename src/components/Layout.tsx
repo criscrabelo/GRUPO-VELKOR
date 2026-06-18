@@ -1,6 +1,7 @@
 import { Outlet } from 'react-router-dom'
 import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
+import { ContactDock } from '@/components/ContactDock'
 import { useEffect, useState } from 'react'
 
 export function Layout() {
@@ -17,9 +18,9 @@ export function Layout() {
   }, [])
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen relative">
       <div
-        className="fixed top-0 left-0 h-1 bg-gradient-to-r from-indigo-600 to-cyan-500 z-50 transition-all duration-100 ease-out"
+        className="fixed top-0 left-0 h-1 bg-gradient-to-r from-petrol to-cyan z-50 transition-all duration-100 ease-out"
         style={{ width: `${progress}%` }}
       />
       <Header />
@@ -27,6 +28,7 @@ export function Layout() {
         <Outlet />
       </main>
       <Footer />
+      <ContactDock />
     </div>
   )
 }
