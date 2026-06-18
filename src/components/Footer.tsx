@@ -1,6 +1,7 @@
 import { SITE_CONFIG } from '@/lib/config'
 import { MapPin, Mail, Phone, Instagram, Linkedin } from 'lucide-react'
 import { Link } from 'react-router-dom'
+import { VelkorLogo } from '@/components/VelkorLogo'
 
 export function Footer() {
   return (
@@ -8,11 +9,9 @@ export function Footer() {
       <div className="container mx-auto px-4 max-w-7xl">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
           <div className="md:col-span-1">
-            <img
-              src={SITE_CONFIG.logoUrl}
-              alt={SITE_CONFIG.name}
-              className="h-8 brightness-0 invert mb-6"
-            />
+            <Link to="/" className="inline-block mb-6 hover:opacity-90 transition-opacity">
+              <VelkorLogo variant="light" className="h-9" />
+            </Link>
             <p className="text-white/60 text-sm leading-relaxed mb-6">{SITE_CONFIG.slogan}</p>
             <div className="flex gap-4">
               {SITE_CONFIG.instagram && (

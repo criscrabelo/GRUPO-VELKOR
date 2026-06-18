@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Menu, X, MapPin, Phone, Mail } from 'lucide-react'
+import { VelkorLogo } from '@/components/VelkorLogo'
 import { Button } from '@/components/ui/button'
 import {
   Accordion,
@@ -59,20 +60,14 @@ export function Header() {
         )}
       >
         <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-3 group">
-            <img
-              src={SITE_CONFIG.logoUrl}
-              alt={SITE_CONFIG.name}
+          <Link to="/" className="flex items-center group">
+            <VelkorLogo
+              variant="dark"
               className={cn(
-                'object-contain transition-all duration-300 group-hover:scale-105',
+                'transition-all duration-300 group-hover:scale-105',
                 isScrolled ? 'h-8' : 'h-10',
               )}
             />
-            <div className="hidden sm:block border-l border-slate-300 pl-3">
-              <span className="text-[10px] font-bold tracking-widest text-slate-400 uppercase block leading-tight">
-                {SITE_CONFIG.grupo}
-              </span>
-            </div>
           </Link>
 
           <nav className="hidden md:flex items-center gap-8">
