@@ -13,14 +13,35 @@ export function ServicesSection() {
   useEffect(() => {
     db.services.findMany().then((data) => {
       // Show specific services matching original design
-      const displayServices = data.filter((s) =>
+      let displayServices = data.filter((s) =>
         [
           'checkup-imobiliario',
           'compra-segura',
           'assessoria-leiloes',
           'leiloes-orgaos-publicos',
+          'leiloes',
         ].includes(s.id),
       )
+
+      if (!displayServices.find((s) => s.id === 'leiloes')) {
+        displayServices.unshift({
+          id: 'leiloes',
+          title: 'LEILOES',
+          short_description:
+            'Hub de Soluções Imobiliárias e Regularização Patrimonial. Estruturamos e coordenamos toda a esteira documental imobiliária. Tudo com inteligência, compliance e previsibilidade.',
+          full_content:
+            'Hub de Soluções Imobiliárias e Regularização Patrimonial. Estruturamos e coordenamos toda a esteira documental imobiliária. Tudo com inteligência, compliance e previsibilidade.',
+          icon_name: 'Gavel',
+          features: [
+            'Hub de Soluções Imobiliárias',
+            'Regularização Patrimonial',
+            'Inteligência e Compliance',
+            'Previsibilidade',
+          ],
+          featured: true,
+        })
+      }
+
       setServices(displayServices.length ? displayServices : data.slice(0, 4))
       setLoading(false)
     })

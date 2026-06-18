@@ -1,35 +1,18 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Label } from '@/components/ui/label'
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select'
 import { Send, CheckCircle2 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { useToast } from '@/hooks/use-toast'
-import { db, Service } from '@/lib/db'
+import { db } from '@/lib/db'
 
 export function ContactForm({ preselectedServiceId }: { preselectedServiceId?: string }) {
   const { toast } = useToast()
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSuccess, setIsSuccess] = useState(false)
-  const [services, setServices] = useState<Service[]>([])
-
-  useEffect(() => {
-    db.services.findMany().then(setServices)
-  }, [])
 
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    serviceId: preselectedServiceId || '',
     message: '',
   })
 
@@ -37,13 +20,7 @@ export function ContactForm({ preselectedServiceId }: { preselectedServiceId?: s
 
   const validate = () => {
     const newErrors: Record<string, string> = {}
-    if (!formData.name.trim()) newErrors.name = 'Nome é obrigatório'
-    if (!formData.email.trim()) {
-      newErrors.email = 'E-mail é obrigatório'
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      newErrors.email = 'E-mail inválido'
-    }
-    if (!formData.phone.trim()) newErrors.phone = 'Telefone é obrigatório'
+    if (!formData.message.trim()) newErrors.message = 'Mensagem é obrigatória'
 
     setErrors(newErrors)
     return Object.keys(newErrors).length === 0
@@ -57,11 +34,11 @@ export function ContactForm({ preselectedServiceId }: { preselectedServiceId?: s
 
     try {
       await db.contacts.create({
-        name: formData.name,
-        email: formData.email,
-        phone: formData.phone,
+        name: 'Visitante',
+        email: 'visitante@site.com',
+        phone: 'N/A',
         message: formData.message,
-        service_id: formData.serviceId || undefined,
+        service_id: preselectedServiceId || undefined,
       })
 
       setIsSubmitting(false)
@@ -72,7 +49,7 @@ export function ContactForm({ preselectedServiceId }: { preselectedServiceId?: s
         description: 'Agradecemos o seu contato. Nossa equipe retornará em breve.',
       })
 
-      setFormData({ name: '', email: '', phone: '', serviceId: '', message: '' })
+      setFormData({ message: '' })
 
       setTimeout(() => setIsSuccess(false), 5000)
     } catch (error) {
@@ -101,76 +78,17 @@ export function ContactForm({ preselectedServiceId }: { preselectedServiceId?: s
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div className="space-y-2">
-          <Label htmlFor="name">Nome Completo *</Label>
-          <Input
-            id="name"
-            placeholder="Seu nome"
-            value={formData.name}
-            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-            className={cn('h-12', errors.name && 'border-red-500')}
-          />
-          {errors.name && <p className="text-xs text-red-500 mt-1">{errors.name}</p>}
-        </div>
-
-        <div className="space-y-2">
-          <Label htmlFor="email">E-mail *</Label>
-          <Input
-            id="email"
-            type="email"
-            placeholder="seu@email.com"
-            value={formData.email}
-            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-            className={cn('h-12', errors.email && 'border-red-500')}
-          />
-          {errors.email && <p className="text-xs text-red-500 mt-1">{errors.email}</p>}
-        </div>
-      </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div className="space-y-2">
-          <Label htmlFor="phone">Telefone / WhatsApp *</Label>
-          <Input
-            id="phone"
-            placeholder="(00) 00000-0000"
-            value={formData.phone}
-            onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-            className={cn('h-12', errors.phone && 'border-red-500')}
-          />
-          {errors.phone && <p className="text-xs text-red-500 mt-1">{errors.phone}</p>}
-        </div>
-
-        <div className="space-y-2">
-          <Label htmlFor="service">Solução de Interesse</Label>
-          <Select
-            value={formData.serviceId}
-            onValueChange={(value) => setFormData({ ...formData, serviceId: value })}
-          >
-            <SelectTrigger id="service" className="h-12">
-              <SelectValue placeholder="Selecione uma solução (opcional)" />
-            </SelectTrigger>
-            <SelectContent>
-              {services.map((service) => (
-                <SelectItem key={service.id} value={service.id}>
-                  {service.title}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-        </div>
-      </div>
-
       <div className="space-y-2">
-        <Label htmlFor="message">Mensagem</Label>
+        <Label htmlFor="message">Fale com um Especialista</Label>
         <Textarea
           id="message"
           placeholder="Como podemos ajudar?"
           rows={5}
           value={formData.message}
           onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-          className="resize-none min-h-[120px] p-3"
+          className={cn('resize-none min-h-[120px] p-3', errors.message && 'border-red-500')}
         />
+        {errors.message && <p className="text-xs text-red-500 mt-1">{errors.message}</p>}
       </div>
 
       <Button
