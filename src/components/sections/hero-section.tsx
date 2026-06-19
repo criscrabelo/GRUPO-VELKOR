@@ -1,13 +1,16 @@
 import { Button } from '@/components/ui/button'
-import { ArrowRight, ShieldCheck, MapPin } from 'lucide-react'
+import { ArrowRight, ShieldCheck, MapPin, ChevronDown } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { SITE_CONFIG } from '@/lib/config'
 
 export function HeroSection() {
   return (
-    <section className="relative pt-32 pb-24 lg:pt-48 lg:pb-32 overflow-hidden bg-white flex items-center min-h-[90vh]">
-      <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-cyan/5 rounded-full blur-3xl opacity-70 translate-x-1/3 -translate-y-1/3 pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-petrol/5 rounded-full blur-3xl opacity-50 -translate-x-1/3 translate-y-1/3 pointer-events-none" />
+    <section className="relative pt-32 pb-24 lg:pt-48 lg:pb-32 bg-white flex items-center min-h-[90vh] overflow-hidden">
+      {/* Decorativo ajustado — sem overflow cortado */}
+      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-cyan/5 rounded-full blur-3xl opacity-60 translate-x-1/4 -translate-y-1/4 pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-petrol/5 rounded-full blur-3xl opacity-40 -translate-x-1/4 translate-y-1/4 pointer-events-none" />
+      {/* Linha diagonal decorativa — bem posicionada */}
+      <div className="absolute right-0 top-0 h-full w-[2px] bg-gradient-to-b from-transparent via-cyan/20 to-transparent pointer-events-none hidden lg:block" />
 
       <div className="container mx-auto px-4 max-w-7xl relative z-10">
         <div className="max-w-3xl">
@@ -20,15 +23,15 @@ export function HeroSection() {
             className="text-4xl md:text-5xl lg:text-7xl font-display font-bold text-petrol leading-[1.1] mb-6 md:mb-8 animate-fade-in-up"
             style={{ animationDelay: '100ms' }}
           >
-            Governança e segurança para o seu patrimônio.
+            Sua única preocupação será a entrega das chaves.
           </h1>
 
+          {/* Subtítulo reduzido — direto e objetivo */}
           <p
-            className="text-lg md:text-xl text-slate-600 mb-8 md:mb-10 leading-relaxed max-w-2xl animate-fade-in-up"
+            className="text-lg md:text-xl text-slate-600 mb-8 md:mb-10 leading-relaxed max-w-xl animate-fade-in-up"
             style={{ animationDelay: '200ms' }}
           >
-            {SITE_CONFIG.slogan}. Estruturamos e coordenamos toda a esteira documental imobiliária.
-            Tudo com inteligência, compliance e previsibilidade.
+            Coordenamos certidões, ITBI, escritura e registro — do início ao fim, sem vai-e-vem.
           </p>
 
           <div
@@ -42,6 +45,7 @@ export function HeroSection() {
             </span>
           </div>
 
+          {/* 2 CTAs principais */}
           <div
             className="flex flex-col sm:flex-row gap-4 animate-fade-in-up w-full sm:w-auto"
             style={{ animationDelay: '300ms' }}
@@ -66,6 +70,17 @@ export function HeroSection() {
                 Falar com Especialista
               </a>
             </Button>
+          </div>
+
+          {/* 3º CTA secundário — âncora scroll */}
+          <div className="mt-8 animate-fade-in-up" style={{ animationDelay: '400ms' }}>
+            <a
+              href="#quem-somos"
+              className="inline-flex items-center gap-2 text-slate-400 hover:text-cyan text-sm font-medium transition-colors group"
+            >
+              <ChevronDown className="w-4 h-4 group-hover:translate-y-0.5 transition-transform" />
+              Ver como funciona
+            </a>
           </div>
         </div>
       </div>
