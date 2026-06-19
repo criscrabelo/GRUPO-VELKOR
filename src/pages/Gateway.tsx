@@ -7,21 +7,22 @@ import { supabase } from '@/lib/supabase/client'
 
 export default function Gateway() {
   const [settings, setSettings] = useState<any>(null)
+  const [units, setUnits] = useState<any[]>([])
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
-    const fetchSettings = async () => {
+    const fetchData = async () => {
       try {
-        const { data, error } = await supabase
-          .from('site_settings')
-          .select('*')
-          .limit(1)
-          .maybeSingle()
+        const [settingsRes, unitsRes] = await Promise.all([
+          supabase.from('site_settings').select('*').limit(1).maybeSingle(),
+          supabase.from('business_units').select('*').order('order_index', { ascending: true }),
+        ])
 
-        if (error) throw error
+        if (settingsRes.error) throw settingsRes.error
+        if (unitsRes.error) throw unitsRes.error
 
-        if (data) {
-          setSettings(data)
+        if (settingsRes.data) {
+          setSettings(settingsRes.data)
         } else {
           setSettings({
             site_name: 'Grupo VELKOR',
@@ -30,6 +31,10 @@ export default function Gateway() {
             background_image_url: null,
           })
         }
+
+        if (unitsRes.data) {
+          setUnits(unitsRes.data)
+        }
       } catch (err) {
         console.error(err)
       } finally {
@@ -37,7 +42,7 @@ export default function Gateway() {
       }
     }
 
-    fetchSettings()
+    fetchData()
   }, [])
 
   return (
@@ -83,39 +88,66 @@ export default function Gateway() {
           )}
         </div>
 
-        <div className="grid md:grid-cols-2 gap-6 w-full max-w-[880px] animate-fade-in-up">
-          {/* Card 1 - Active */}
-          <Link
-            to="/solucoes"
-            className="group relative bg-white rounded-2xl p-10 shadow-2xl transition-all duration-300 hover:-translate-y-1 hover:shadow-[#0fa5b4]/10 flex flex-col items-center text-center overflow-hidden border border-transparent hover:border-[#0fa5b4]/20"
-          >
-            <div className="w-[4.5rem] h-[4.5rem] rounded-[1.25rem] bg-[#f0f7f9] text-[#1e3a5f] flex items-center justify-center mb-6 transition-transform duration-300 group-hover:scale-110">
-              <Building2 className="w-8 h-8 stroke-[1.5]" />
-            </div>
-            <h2 className="text-[1.35rem] font-bold text-[#0a1118] mb-3">VELKOR Soluções</h2>
-            <p className="text-slate-500 mb-10 leading-relaxed text-[15px] max-w-[280px]">
-              Regularização patrimonial, due diligence, leilões e compra segura.
-            </p>
-            <div className="mt-auto flex items-center text-[#0fa5b4] font-semibold text-[15px] group-hover:translate-x-1 transition-transform duration-300">
-              Acessar Portal <ArrowRight className="ml-2 w-4 h-4" />
-            </div>
-          </Link>
-
-          {/* Card 2 - Disabled */}
-          <div className="relative bg-[#121c25] rounded-2xl p-10 border border-slate-800/80 flex flex-col items-center text-center overflow-hidden opacity-90 cursor-not-allowed">
-            <div className="absolute top-5 right-5 bg-[#0fa5b4]/10 text-[#0fa5b4] text-[10px] uppercase font-bold px-3 py-1.5 rounded-full flex items-center gap-1.5 border border-[#0fa5b4]/20 shadow-sm">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#0fa5b4] animate-pulse" />
-              EM BREVE
-            </div>
-            <div className="w-[4.5rem] h-[4.5rem] rounded-[1.25rem] bg-[#1a2632] text-slate-400 flex items-center justify-center mb-6">
-              <Shield className="w-8 h-8 stroke-[1.5]" />
-            </div>
-            <h2 className="text-[1.35rem] font-bold text-white mb-3">VELKOR Seguros</h2>
-            <p className="text-slate-400 leading-relaxed text-[15px] max-w-[280px]">
-              Proteção completa para patrimônio, vida e negócios. Soluções personalizadas.
-            </p>
+        {!isLoading && units.length > 0 && (
+          <div className="grid md:grid-cols-2 gap-6 w-full max-w-[880px] animate-fade-in-up">
+            {units.map((unit) =>
+              unit.is_coming_soon ? (
+                <div
+                  key={unit.id}
+                  className="relative bg-[#121c25] rounded-2xl p-10 border border-slate-800/80 flex flex-col items-center text-center overflow-hidden opacity-90 cursor-not-allowed group"
+                >
+                  <div className="absolute top-5 right-5 bg-[#0fa5b4]/10 text-[#0fa5b4] text-[10px] uppercase font-bold px-3 py-1.5 rounded-full flex items-center gap-1.5 border border-[#0fa5b4]/20 shadow-sm z-10">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#0fa5b4] animate-pulse" />
+                    EM BREVE
+                  </div>
+                  <div className="w-[4.5rem] h-[4.5rem] rounded-[1.25rem] overflow-hidden bg-[#1a2632] flex items-center justify-center mb-6 relative z-10 shadow-lg border border-white/5">
+                    <img
+                      src={unit.image_url}
+                      alt={unit.name}
+                      className="w-full h-full object-cover opacity-60 grayscale transition-all duration-500 group-hover:scale-110 group-hover:opacity-80"
+                    />
+                  </div>
+                  <h2 className="text-[1.35rem] font-bold text-white mb-3 relative z-10">
+                    {unit.name}
+                  </h2>
+                  <p className="text-slate-400 leading-relaxed text-[15px] max-w-[280px] relative z-10">
+                    {unit.description}
+                  </p>
+                </div>
+              ) : (
+                <Link
+                  key={unit.id}
+                  to={unit.link_url || '#'}
+                  className="group relative bg-white rounded-2xl p-10 shadow-2xl transition-all duration-300 hover:-translate-y-1 hover:shadow-[#0fa5b4]/10 flex flex-col items-center text-center overflow-hidden border border-transparent hover:border-[#0fa5b4]/20"
+                >
+                  <div className="w-[4.5rem] h-[4.5rem] rounded-[1.25rem] overflow-hidden bg-[#f0f7f9] flex items-center justify-center mb-6 relative z-10 shadow-md">
+                    <img
+                      src={unit.image_url}
+                      alt={unit.name}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    />
+                  </div>
+                  <h2 className="text-[1.35rem] font-bold text-[#0a1118] mb-3 relative z-10">
+                    {unit.name}
+                  </h2>
+                  <p className="text-slate-500 mb-10 leading-relaxed text-[15px] max-w-[280px] relative z-10">
+                    {unit.description}
+                  </p>
+                  <div className="mt-auto flex items-center text-[#0fa5b4] font-semibold text-[15px] group-hover:translate-x-1 transition-transform duration-300 relative z-10">
+                    Acessar Portal <ArrowRight className="ml-2 w-4 h-4" />
+                  </div>
+                </Link>
+              ),
+            )}
           </div>
-        </div>
+        )}
+
+        {isLoading && (
+          <div className="grid md:grid-cols-2 gap-6 w-full max-w-[880px] animate-fade-in-up">
+            <Skeleton className="h-[360px] w-full rounded-2xl bg-white/5" />
+            <Skeleton className="h-[360px] w-full rounded-2xl bg-[#121c25]/50" />
+          </div>
+        )}
       </main>
 
       {/* Footer */}
