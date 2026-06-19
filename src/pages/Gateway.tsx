@@ -56,8 +56,7 @@ export default function Gateway() {
             Bem-vindo ao ecossistema VELKOR
           </h1>
           <p className="text-[#18c7d8] text-base md:text-[1.125rem] max-w-3xl mx-auto font-medium leading-relaxed">
-            Escolha a unidade de negócio e acesse soluções para proteger, organizar e expandir seu
-            patrimônio.
+            Escolha a unidade de negócio e acesse soluções para proteger, organizar e resolver.
           </p>
         </div>
 
