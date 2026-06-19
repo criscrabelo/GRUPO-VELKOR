@@ -24,7 +24,7 @@ export function HeroSection() {
             className="text-4xl md:text-5xl lg:text-7xl font-display font-bold text-petrol leading-[1.1] mb-6 md:mb-8 animate-fade-in-up"
             style={{ animationDelay: '100ms' }}
           >
-            Regularização imobiliária, compra segura e gestão documental para proteger seu imóvel.
+            Da documentação ao registro, sua única preocupação será receber as chaves.
           </h1>
 
           <p
