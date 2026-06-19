@@ -94,12 +94,21 @@ export default function Gateway() {
               unit.is_coming_soon ? (
                 <div
                   key={unit.id}
-                  className="relative bg-[#121c25] rounded-2xl p-10 border border-slate-800/80 flex flex-col items-center text-center overflow-hidden opacity-90 cursor-not-allowed group"
+                  className="relative bg-[#121c25] rounded-2xl p-10 border border-slate-800/80 flex flex-col items-center text-center overflow-hidden cursor-not-allowed group"
                 >
-                  <div className="absolute top-5 right-5 bg-[#0fa5b4]/10 text-[#0fa5b4] text-[10px] uppercase font-bold px-3 py-1.5 rounded-full flex items-center gap-1.5 border border-[#0fa5b4]/20 shadow-sm z-10">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#0fa5b4] animate-pulse" />
-                    EM BREVE
+                  {/* Overlay to differentiate from active units */}
+                  <div className="absolute inset-0 bg-slate-900/60 z-0 pointer-events-none" />
+
+                  <div className="absolute top-5 right-5 z-20">
+                    <div className="relative bg-gradient-to-r from-amber-500 to-orange-500 text-white text-[11px] uppercase font-black tracking-wider px-3.5 py-1.5 rounded-full flex items-center gap-2 shadow-[0_0_20px_rgba(245,158,11,0.4)] border border-white/20">
+                      <span className="relative flex h-2 w-2">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
+                      </span>
+                      EM BREVE
+                    </div>
                   </div>
+
                   <div className="w-full h-20 overflow-hidden flex items-center justify-center mb-6 relative z-10 shrink-0">
                     {unit.image_url ? (
                       <img
@@ -109,18 +118,23 @@ export default function Gateway() {
                           e.currentTarget.src =
                             'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=400&auto=format&fit=crop'
                         }}
-                        className="w-full h-full object-contain opacity-60 grayscale transition-all duration-500 group-hover:scale-105 group-hover:opacity-100"
+                        className="w-full h-full object-contain opacity-40 grayscale transition-all duration-500"
                       />
                     ) : (
-                      <Building2 className="w-10 h-10 text-[#0fa5b4]" />
+                      <Building2 className="w-10 h-10 text-slate-700" />
                     )}
                   </div>
-                  <h2 className="text-[1.35rem] font-bold text-white mb-3 relative z-10">
+
+                  <h2 className="text-[1.35rem] font-bold text-white mb-3 relative z-10 opacity-90">
                     {unit.name}
                   </h2>
-                  <p className="text-slate-400 leading-relaxed text-[15px] max-w-[280px] relative z-10">
+                  <p className="text-slate-400 mb-10 leading-relaxed text-[15px] max-w-[280px] relative z-10 opacity-80">
                     {unit.description}
                   </p>
+
+                  <div className="mt-auto flex items-center text-slate-600 font-semibold text-[15px] relative z-10 pointer-events-none">
+                    Acessar Portal <ArrowRight className="ml-2 w-4 h-4 opacity-50" />
+                  </div>
                 </div>
               ) : (
                 <Link
