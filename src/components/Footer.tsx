@@ -91,6 +91,14 @@ export function Footer() {
                   Análise de Risco em Leilões
                 </Link>
               </li>
+              <li>
+                <Link
+                  to="/servicos/assembleias-condominiais"
+                  className="text-white/60 hover:text-cyan text-sm block py-1.5 transition-colors"
+                >
+                  Participação em Assembleias
+                </Link>
+              </li>
             </ul>
           </div>
 
