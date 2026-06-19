@@ -9,7 +9,93 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      contact_leads: {
+        Row: {
+          created_at: string
+          email: string
+          id: string
+          message: string
+          name: string
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          id?: string
+          message: string
+          name: string
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          id?: string
+          message?: string
+          name?: string
+        }
+        Relationships: []
+      }
+      featured_projects: {
+        Row: {
+          category: string | null
+          created_at: string
+          description: string | null
+          id: string
+          image_url: string | null
+          link_url: string | null
+          name: string
+        }
+        Insert: {
+          category?: string | null
+          created_at?: string
+          description?: string | null
+          id?: string
+          image_url?: string | null
+          link_url?: string | null
+          name: string
+        }
+        Update: {
+          category?: string | null
+          created_at?: string
+          description?: string | null
+          id?: string
+          image_url?: string | null
+          link_url?: string | null
+          name?: string
+        }
+        Relationships: []
+      }
+      site_settings: {
+        Row: {
+          background_image_url: string | null
+          contact_email: string
+          created_at: string
+          hero_subtitle: string
+          hero_title: string
+          id: string
+          site_name: string
+          updated_at: string
+        }
+        Insert: {
+          background_image_url?: string | null
+          contact_email?: string
+          created_at?: string
+          hero_subtitle?: string
+          hero_title?: string
+          id?: string
+          site_name?: string
+          updated_at?: string
+        }
+        Update: {
+          background_image_url?: string | null
+          contact_email?: string
+          created_at?: string
+          hero_subtitle?: string
+          hero_title?: string
+          id?: string
+          site_name?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never

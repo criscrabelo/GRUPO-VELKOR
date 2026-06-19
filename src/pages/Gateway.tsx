@@ -26,8 +26,9 @@ export default function Gateway() {
         setSettings(
           settingsRes.data || {
             site_name: 'GRUPO VELKOR',
-            hero_title: 'Seja bem-vindo ao GRUPO VELKOR',
-            hero_subtitle: 'Explore nossos projetos e serviços em destaque.',
+            hero_title: 'Bem-vindo ao Grupo Velkor',
+            hero_subtitle:
+              'Excelência em gestão e operações corporativas, impulsionando o seu negócio para o futuro.',
             background_image_url: null,
             contact_email: 'contato@velkor.com.br',
           },
@@ -50,7 +51,7 @@ export default function Gateway() {
         <img
           src={
             settings?.background_image_url ||
-            'https://img.usecurling.com/p/1920/1080?q=modern%20architecture&color=black&dpr=2'
+            'https://img.usecurling.com/p/1920/1080?q=corporate%20office&color=black&dpr=2'
           }
           alt="Bg"
           className="w-full h-full object-cover opacity-30 mix-blend-overlay"
