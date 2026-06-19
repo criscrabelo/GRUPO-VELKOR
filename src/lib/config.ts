@@ -5,7 +5,7 @@ export const SITE_CONFIG = {
   // Meta description otimizada para SEO e conversão
   metaDescription:
     'Regularização de imóveis no Vale do Paraíba e em todo o Brasil. Certidões, ITBI, escritura, registro e averbações coordenados por especialistas. Sem vai-e-vem.',
-  whatsapp: '5512999999999', // digits only — atualize com o número real
+  whatsapp: '5512991313521', // digits only — atualize com o número real
   email: 'contato@velkor.com.br',
   instagram: 'https://instagram.com/velkor.imoveis', // atualize com o perfil real
   linkedin: 'https://linkedin.com/company/velkor', // atualize com o perfil real
