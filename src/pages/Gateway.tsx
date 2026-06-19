@@ -100,7 +100,7 @@ export default function Gateway() {
                     <span className="w-1.5 h-1.5 rounded-full bg-[#0fa5b4] animate-pulse" />
                     EM BREVE
                   </div>
-                  <div className="w-[5.5rem] h-[5.5rem] rounded-[1.25rem] overflow-hidden bg-[#1a2632] flex items-center justify-center mb-6 relative z-10 shadow-lg border border-white/5 shrink-0">
+                  <div className="w-full h-20 overflow-hidden flex items-center justify-center mb-6 relative z-10 shrink-0">
                     {unit.image_url ? (
                       <img
                         src={unit.image_url}
@@ -109,10 +109,10 @@ export default function Gateway() {
                           e.currentTarget.src =
                             'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=400&auto=format&fit=crop'
                         }}
-                        className="w-full h-full object-cover opacity-60 grayscale transition-all duration-500 group-hover:scale-110 group-hover:opacity-80"
+                        className="w-full h-full object-contain opacity-60 grayscale transition-all duration-500 group-hover:scale-105 group-hover:opacity-100"
                       />
                     ) : (
-                      <Building2 className="w-8 h-8 text-[#0fa5b4]" />
+                      <Building2 className="w-10 h-10 text-[#0fa5b4]" />
                     )}
                   </div>
                   <h2 className="text-[1.35rem] font-bold text-white mb-3 relative z-10">
@@ -128,7 +128,7 @@ export default function Gateway() {
                   to={unit.link_url || '#'}
                   className="group relative bg-white rounded-2xl p-10 shadow-2xl transition-all duration-300 hover:-translate-y-1 hover:shadow-[#0fa5b4]/10 flex flex-col items-center text-center overflow-hidden border border-transparent hover:border-[#0fa5b4]/20"
                 >
-                  <div className="w-[5.5rem] h-[5.5rem] rounded-[1.25rem] overflow-hidden bg-[#f0f7f9] flex items-center justify-center mb-6 relative z-10 shadow-md shrink-0">
+                  <div className="w-full h-20 overflow-hidden flex items-center justify-center mb-6 relative z-10 shrink-0">
                     {unit.image_url ? (
                       <img
                         src={unit.image_url}
@@ -137,10 +137,10 @@ export default function Gateway() {
                           e.currentTarget.src =
                             'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=400&auto=format&fit=crop'
                         }}
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                        className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
                       />
                     ) : (
-                      <Building2 className="w-8 h-8 text-[#0fa5b4]" />
+                      <Building2 className="w-10 h-10 text-[#0fa5b4]" />
                     )}
                   </div>
                   <h2 className="text-[1.35rem] font-bold text-[#0a1118] mb-3 relative z-10">
