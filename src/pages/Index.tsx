@@ -1,4 +1,5 @@
 import { HeroSection } from '@/components/sections/hero-section'
+import { ForWhomSection } from '@/components/sections/for-whom-section'
 import { EcosystemSection } from '@/components/sections/ecosystem-section'
 import { ServicesSection } from '@/components/sections/services-section'
 import { PricingSection } from '@/components/sections/pricing-section'
@@ -13,28 +14,33 @@ export default function Index() {
   return (
     <div className="min-h-screen bg-white flex flex-col">
       <HeroSection />
+      <ForWhomSection />
       <section className="py-16 md:py-24 bg-white relative" id="quem-somos">
         <div className="container mx-auto px-4 max-w-4xl text-center">
           <span className="text-cyan font-bold tracking-wider uppercase text-xs md:text-sm mb-3 md:mb-4 block">
             Quem Somos
           </span>
           <h2 className="text-2xl md:text-4xl font-display font-bold text-petrol mb-6 leading-tight">
-            Consultoria e Soluções Especializadas
+            Despachante documental imobiliário com atuação administrativa e rede de especialistas.
           </h2>
           <p className="text-base md:text-lg text-slate-600 leading-relaxed mb-6">
-            A VELKOR não é uma imobiliária, nem um escritório de advocacia. Nós atuamos como uma
-            verdadeira <strong>Consultoria de Soluções</strong> que coordena toda a jornada de
-            regularização e segurança documental. Sediados em{' '}
-            <strong>Taubaté, Vale do Paraíba</strong>, nossa estrutura nos permite oferecer{' '}
-            <strong>atendimento estratégico em todo o território nacional</strong>, garantindo
-            excelência onde quer que o seu patrimônio esteja. Não trabalhamos com venda, locação ou
-            corretagem direta de imóveis.
+            A VELKOR Soluções Imobiliárias atua na organização, emissão, conferência, protocolo
+            e acompanhamento de documentos relacionados a imóveis, escrituras, registros,
+            certidões, ITBI, averbações, financiamento documental, Habite-se, CND de obra e
+            regularização administrativa.
+          </p>
+          <p className="text-base md:text-lg text-slate-600 leading-relaxed mb-6">
+            Nosso trabalho é ajudar pessoas físicas, empresas, construtoras, incorporadoras e
+            holdings patrimoniais a entenderem quais documentos precisam providenciar, quais
+            pendências podem travar o processo e quais etapas devem ser acompanhadas perante
+            cartórios, prefeituras, bancos e órgãos públicos.
           </p>
           <p className="text-base md:text-lg text-slate-600 leading-relaxed">
-            Nosso papel é gerenciar e orquestrar o processo do início ao fim, acionando nossa
-            robusta rede de <strong>parceiros técnicos especializados</strong> apenas quando a
-            execução de atos privativos (como laudos de engenharia ou peças jurídicas) se faz
-            necessária.
+            A VELKOR não vende imóveis, não faz corretagem, não emite parecer jurídico e não
+            assina laudos técnicos. Quando a demanda exigir atuação privativa de advogado,
+            engenheiro, arquiteto, contador, corretor ou outro profissional regulamentado, o
+            cliente poderá ser direcionado a parceiros habilitados, mediante contratação própria e
+            independente.
           </p>
         </div>
       </section>
