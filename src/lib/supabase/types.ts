@@ -9,6 +9,39 @@ export type Database = {
   }
   public: {
     Tables: {
+      business_units: {
+        Row: {
+          created_at: string | null
+          description: string | null
+          id: string
+          image_url: string
+          is_coming_soon: boolean | null
+          link_url: string | null
+          name: string
+          order_index: number | null
+        }
+        Insert: {
+          created_at?: string | null
+          description?: string | null
+          id?: string
+          image_url: string
+          is_coming_soon?: boolean | null
+          link_url?: string | null
+          name: string
+          order_index?: number | null
+        }
+        Update: {
+          created_at?: string | null
+          description?: string | null
+          id?: string
+          image_url?: string
+          is_coming_soon?: boolean | null
+          link_url?: string | null
+          name?: string
+          order_index?: number | null
+        }
+        Relationships: []
+      }
       contact_leads: {
         Row: {
           created_at: string
