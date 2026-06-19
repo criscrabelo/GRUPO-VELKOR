@@ -37,7 +37,7 @@ export function Header() {
             <span className="flex items-center gap-1">
               <MapPin className="w-3 h-3 shrink-0" />
               <span className="hidden lg:inline">
-                Sediados em Taubaté - Vale do Paraíba | Atendimento em todo o Brasil
+                Despachante documental imobiliário | Taubaté - Vale do Paraíba | Atendimento em todo o Brasil
               </span>
               <span className="lg:hidden">Taubaté, SP | Atendimento Nacional</span>
             </span>
@@ -76,16 +76,22 @@ export function Header() {
 
           <nav className="hidden md:flex items-center gap-8">
             <a
-              href="/solucoes#ecossistema"
+              href="/solucoes#para-quem"
               className="text-sm font-semibold text-petrol hover:text-cyan transition-colors"
             >
-              Ecossistema
+              Para quem é
             </a>
             <a
-              href="/solucoes#faq"
+              href="/solucoes#servicos"
               className="text-sm font-semibold text-petrol hover:text-cyan transition-colors"
             >
-              FAQ
+              Serviços
+            </a>
+            <a
+              href="/solucoes#precos"
+              className="text-sm font-semibold text-petrol hover:text-cyan transition-colors"
+            >
+              Planos
             </a>
             <Link
               to="/contato"
@@ -106,7 +112,7 @@ export function Header() {
             </Link>
             <Link to="/contratar">
               <Button className="bg-petrol text-white hover:bg-petrol/90 shadow-lg shadow-petrol/20 font-bold">
-                Solicitar Solução
+                Solicitar atendimento
               </Button>
             </Link>
           </div>
@@ -133,46 +139,53 @@ export function Header() {
           <Accordion type="single" collapsible className="w-full mb-2">
             <AccordionItem value="solucoes" className="border-none">
               <AccordionTrigger className="text-base font-bold text-petrol py-3 px-3 hover:bg-cyan/5 rounded-lg no-underline hover:no-underline min-h-[44px]">
-                Soluções
+                Soluções Documentais
               </AccordionTrigger>
               <AccordionContent className="px-4 pb-2 space-y-1">
                 <Link
-                  to="/contratar"
+                  to="/servicos/diagnostico-documental"
                   onClick={() => setIsMobileMenuOpen(false)}
                   className="block py-3 text-slate-600 font-medium min-h-[44px] hover:text-cyan transition-colors"
                 >
-                  Check-up Imobiliário
+                  Diagnóstico Imobiliário
                 </Link>
                 <Link
-                  to="/contratar"
+                  to="/servicos/compra-segura-documental"
                   onClick={() => setIsMobileMenuOpen(false)}
                   className="block py-3 text-slate-600 font-medium min-h-[44px] hover:text-cyan transition-colors"
                 >
-                  Compra Segura
+                  Compra Segura VELKOR
                 </Link>
                 <Link
-                  to="/contratar"
+                  to="/servicos/escritura-registro-matricula"
                   onClick={() => setIsMobileMenuOpen(false)}
                   className="block py-3 text-slate-600 font-medium min-h-[44px] hover:text-cyan transition-colors"
                 >
-                  Assessoria em Leilões
+                  Escritura, Registro e Matrícula
+                </Link>
+                <Link
+                  to="/servicos/regularizacao-imoveis"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="block py-3 text-slate-600 font-medium min-h-[44px] hover:text-cyan transition-colors"
+                >
+                  Regularização de Imóveis
                 </Link>
               </AccordionContent>
             </AccordionItem>
           </Accordion>
           <a
-            href="/solucoes#ecossistema"
+            href="/solucoes#para-quem"
             onClick={() => setIsMobileMenuOpen(false)}
             className="text-base font-bold text-petrol p-3 hover:bg-cyan/5 rounded-lg block min-h-[44px]"
           >
-            Ecossistema
+            Para quem é
           </a>
           <a
-            href="/solucoes#faq"
+            href="/solucoes#precos"
             onClick={() => setIsMobileMenuOpen(false)}
             className="text-base font-bold text-petrol p-3 hover:bg-cyan/5 rounded-lg block min-h-[44px]"
           >
-            FAQ
+            Planos
           </a>
           <Link
             to="/contato"
@@ -190,7 +203,7 @@ export function Header() {
             </Link>
             <Link to="/contratar" className="w-full" onClick={() => setIsMobileMenuOpen(false)}>
               <Button className="w-full bg-cyan text-petrol hover:bg-cyan/90 font-bold h-12">
-                Solicitar Solução
+                Solicitar atendimento
               </Button>
             </Link>
           </div>

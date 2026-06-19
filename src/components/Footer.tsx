@@ -9,10 +9,7 @@ export function Footer() {
       <div className="container mx-auto px-4 max-w-7xl">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
           <div className="md:col-span-1">
-            <Link
-              to="/imobiliaria"
-              className="inline-block mb-6 hover:opacity-90 transition-opacity"
-            >
+            <Link to="/solucoes" className="inline-block mb-6 hover:opacity-90 transition-opacity">
               <VelkorLogo variant="light" className="h-12" />
             </Link>
             <p className="text-white/60 text-sm leading-relaxed mb-6">{SITE_CONFIG.slogan}</p>
@@ -56,34 +53,50 @@ export function Footer() {
             <ul className="space-y-3">
               <li>
                 <Link
-                  to="/imobiliaria"
+                  to="/servicos/diagnostico-documental"
                   className="text-white/60 hover:text-cyan text-sm block py-1.5 transition-colors"
                 >
-                  Check-up Imobiliário
+                  Diagnóstico Imobiliário
                 </Link>
               </li>
               <li>
                 <Link
-                  to="/imobiliaria"
+                  to="/servicos/compra-segura-documental"
                   className="text-white/60 hover:text-cyan text-sm block py-1.5 transition-colors"
                 >
-                  Compra Segura
+                  Compra Segura VELKOR
                 </Link>
               </li>
               <li>
                 <Link
-                  to="/imobiliaria"
+                  to="/servicos/escritura-registro-matricula"
                   className="text-white/60 hover:text-cyan text-sm block py-1.5 transition-colors"
                 >
-                  Assessoria em Leilões
+                  Escritura e Registro
                 </Link>
               </li>
               <li>
                 <Link
-                  to="/imobiliaria"
+                  to="/servicos/regularizacao-imoveis"
                   className="text-white/60 hover:text-cyan text-sm block py-1.5 transition-colors"
                 >
-                  Due Diligence
+                  Regularização de Imóveis
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/servicos/analise-risco-leiloes"
+                  className="text-white/60 hover:text-cyan text-sm block py-1.5 transition-colors"
+                >
+                  Análise de Risco em Leilões
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/servicos/assembleias-condominiais"
+                  className="text-white/60 hover:text-cyan text-sm block py-1.5 transition-colors"
+                >
+                  Participação em Assembleias
                 </Link>
               </li>
             </ul>
@@ -182,6 +195,23 @@ export function Footer() {
             {SITE_CONFIG.cnpj && (
               <p className="text-white/40 text-xs mt-2 font-bold">CNPJ: {SITE_CONFIG.cnpj}</p>
             )}
+            <div className="mt-4 flex flex-wrap justify-center lg:justify-start gap-x-4 gap-y-2 text-[11px]">
+              <a href="#" className="text-white/40 hover:text-cyan transition-colors">
+                Política de Privacidade
+              </a>
+              <a href="#" className="text-white/40 hover:text-cyan transition-colors">
+                Termos de Uso
+              </a>
+              <a href="#" className="text-white/40 hover:text-cyan transition-colors">
+                Política de Atendimento
+              </a>
+              <a href="#" className="text-white/40 hover:text-cyan transition-colors">
+                Aviso de Atuação Documental
+              </a>
+              <a href="#" className="text-white/40 hover:text-cyan transition-colors">
+                LGPD e Tratamento de Documentos
+              </a>
+            </div>
           </div>
           <p className="text-white/30 text-[10px] max-w-xl lg:text-right leading-relaxed lg:border-l border-white/10 lg:pl-6 w-full lg:w-auto">
             {SITE_CONFIG.servicesDisclaimer}

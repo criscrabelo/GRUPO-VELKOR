@@ -7,6 +7,9 @@ import { KoraChat } from './KoraChat'
 export function ContactDock() {
   const [show, setShow] = useState(false)
   const [isKoraOpen, setIsKoraOpen] = useState(false)
+  const whatsappMessage = encodeURIComponent(
+    'Olá, quero atendimento da VELKOR para documentação imobiliária.',
+  )
 
   useEffect(() => {
     const handleScroll = () => {
@@ -39,7 +42,7 @@ export function ContactDock() {
           </button>
 
           <a
-            href={`https://wa.me/${SITE_CONFIG.whatsapp}`}
+            href={`https://wa.me/${SITE_CONFIG.whatsapp}?text=${whatsappMessage}`}
             target="_blank"
             rel="noreferrer"
             className="flex flex-col md:flex-row items-center gap-1 md:gap-2 bg-[#25D366] text-white p-2 md:px-5 md:py-3 rounded-2xl md:rounded-full hover:bg-[#1EBE5C] transition-all flex-1 md:flex-initial justify-center shadow-md shadow-[#25D366]/20"
