@@ -100,7 +100,7 @@ export default function Gateway() {
                   <div className="absolute inset-0 bg-slate-900/60 z-0 pointer-events-none" />
 
                   <div className="absolute top-5 right-5 z-20">
-                    <div className="relative bg-gradient-to-r from-[#0fa5b4] to-petrol text-white text-[11px] uppercase font-black tracking-wider px-3.5 py-1.5 rounded-full flex items-center gap-2 shadow-[0_0_20px_rgba(15,165,180,0.4)] border border-[#0fa5b4]/30">
+                    <div className="relative bg-gradient-to-r from-[#0fa5b4] to-[#085a63] text-white text-[11px] uppercase font-black tracking-wider px-3.5 py-1.5 rounded-full flex items-center gap-2 shadow-[0_0_20px_rgba(15,165,180,0.4)] border border-[#0fa5b4]/30">
                       <span className="relative flex h-2 w-2">
                         <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
                         <span className="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
