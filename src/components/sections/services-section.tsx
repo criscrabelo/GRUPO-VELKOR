@@ -12,6 +12,7 @@ const featuredServiceIds = [
   'escritura-registro-matricula',
   'regularizacao-imoveis',
   'analise-risco-leiloes',
+  'assembleias-condominiais',
   'empresas-construtoras',
 ]
 
@@ -25,7 +26,7 @@ export function ServicesSection() {
         .map((id) => data.find((service) => service.id === id))
         .filter(Boolean) as Service[]
 
-      setServices(displayServices.length ? displayServices : data.slice(0, 6))
+      setServices(displayServices.length ? displayServices : data.slice(0, 7))
       setLoading(false)
     })
   }, [])
@@ -42,7 +43,8 @@ export function ServicesSection() {
           </h2>
           <p className="text-slate-600 text-lg max-w-3xl mx-auto">
             Organizamos certidões, protocolos, registros, averbações e regularizações, com
-            acompanhamento administrativo e rede de especialistas quando necessário.
+            acompanhamento administrativo, apoio em assembleias e rede de especialistas quando
+            necessário.
           </p>
         </div>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch max-w-7xl mx-auto min-h-[400px]">
@@ -75,8 +77,7 @@ export function ServicesSection() {
                     <div className="mb-6 bg-slate-50 border border-slate-100 p-3 rounded-lg flex items-start gap-2">
                       <Info className="w-4 h-4 text-cyan shrink-0 mt-0.5" />
                       <span className="text-xs text-slate-500 font-medium">
-                        Atos privativos são realizados por parceiros habilitados, com ajuste direto
-                        entre cliente e profissional.
+                        Profissionais parceiros habilitados podem atuar quando o caso exigir.
                       </span>
                     </div>
                   )}
