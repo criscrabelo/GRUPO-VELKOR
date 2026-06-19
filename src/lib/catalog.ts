@@ -174,6 +174,35 @@ export const SERVICE_CATALOG = [
     partnerNote: true,
   },
   {
+    id: 'assembleias-condominiais',
+    title: 'Participação em Assembleias',
+    name: 'Participação em Assembleias',
+    type: 'Condomínios, compradores e proprietários',
+    short_description:
+      'Acompanhamento administrativo em assembleias de condomínio para registrar deliberações, organizar documentos e orientar próximos passos documentais.',
+    description:
+      'Acompanhamento administrativo em assembleias de condomínio para registrar deliberações, organizar documentos e orientar próximos passos documentais.',
+    full_content:
+      'Apoio administrativo em assembleias condominiais relacionadas a obras, regularização, documentação do empreendimento, entrega de chaves, instalação de condomínio e pendências documentais, sem substituição de síndico, administradora ou advogado.',
+    icon_name: 'UsersRound',
+    price: 'Sob análise',
+    basePrice: 800,
+    methodology: [
+      'Alinhamento prévio da pauta e documentos envolvidos',
+      'Participação presencial ou online conforme contratação',
+      'Registro administrativo dos encaminhamentos documentais',
+      'Relatório com pendências, responsáveis e próximos passos',
+    ],
+    benefits: [
+      'Mais organização nas decisões relacionadas ao imóvel',
+      'Controle de pendências documentais discutidas em assembleia',
+      'Apoio para construtoras, compradores, proprietários e condomínios',
+    ],
+    features: ['Assembleias condominiais', 'Relatório administrativo', 'Pendências e próximos passos'],
+    featured: false,
+    partnerNote: true,
+  },
+  {
     id: 'empresas-construtoras',
     title: 'Empresas, Construtoras e Holdings',
     name: 'Empresas, Construtoras e Holdings',
