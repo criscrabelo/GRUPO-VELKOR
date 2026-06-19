@@ -4,41 +4,41 @@ import { Check, Info } from 'lucide-react'
 
 const plans = [
   {
-    name: 'Consultoria Online',
-    description: 'Orientação documental e administrativa remota.',
-    price: 'R$ 120 - R$ 450',
-    type: 'por serviço',
+    name: 'Diagnóstico Inicial',
+    description: 'Para entender o caso, documentos existentes e pendências que podem travar o processo.',
+    price: 'A partir de R$ 600',
+    type: 'por imóvel ou operação',
     features: [
       'Triagem documental',
-      'Checklist personalizado',
-      'Análise de pendências',
-      '100% pagamento antecipado',
+      'Matrícula, certidões e débitos',
+      'Relatório administrativo de pendências',
+      'Próximos passos documentais',
     ],
     highlighted: false,
   },
   {
-    name: 'Escritura + Registro',
-    description: 'Fluxo completo até a matrícula atualizada.',
-    price: 'R$ 1.500 - R$ 3.500',
-    type: 'por operação',
+    name: 'Gestão Documental Completa',
+    description: 'Para acompanhar ITBI, escritura, registro, averbações e matrícula atualizada.',
+    price: 'A partir de R$ 1.500',
+    type: 'por escopo aprovado',
     features: [
-      'Organização documental',
-      'Acompanhamento em tabelionato',
-      'Protocolo de registro',
-      'Pagamento: 50% sinal / 50% entrega',
+      'Organização da pasta documental',
+      'Acompanhamento em cartório e prefeitura',
+      'Controle de exigências administrativas',
+      'Atualizações sobre andamento',
     ],
     highlighted: true,
   },
   {
-    name: 'Diligência Regional',
-    description: 'Atuação presencial exclusiva no Vale do Paraíba.',
-    price: 'R$ 180 - R$ 350',
-    type: 'por saída',
+    name: 'Regularização Complexa',
+    description: 'Para casos com obra, Habite-se, CND, inventário documental, leilão ou carteira de imóveis.',
+    price: 'Sob análise',
+    type: 'proposta personalizada',
     features: [
-      'Cartórios e Prefeituras',
-      'SJC, Taubaté, Jacareí e região',
-      'Protocolos físicos e retiradas',
-      'Taxas de deslocamento incluídas',
+      'Escopo conforme complexidade',
+      'Rede de parceiros quando necessário',
+      'Relatórios gerenciais',
+      'Custos externos sempre separados',
     ],
     highlighted: false,
   },
@@ -57,7 +57,7 @@ export function PricingSection() {
               isVisible && 'animate-fade-in-up',
             )}
           >
-            Tabela Base - Vale do Paraíba
+            Planos sob diagnóstico
           </h2>
           <p
             className={cn(
@@ -66,8 +66,8 @@ export function PricingSection() {
             )}
             style={{ animationDelay: '100ms' }}
           >
-            Honorários claros e transparentes. Valores sugeridos para serviços operacionais em nossa
-            matriz regional.
+            Cada imóvel tem uma situação documental diferente. Após a análise inicial, a VELKOR
+            apresenta proposta personalizada com escopo, prazo estimado e custos externos separados.
           </p>
         </div>
 
@@ -86,11 +86,11 @@ export function PricingSection() {
             >
               {plan.highlighted && (
                 <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 px-4 py-1 bg-cyan text-petrol text-xs font-bold uppercase tracking-wider rounded-full shadow-sm">
-                  Destaque
+                  Mais completo
                 </div>
               )}
               <h3 className="text-xl font-display font-bold text-petrol mb-2">{plan.name}</h3>
-              <p className="text-sm text-slate-500 mb-6 min-h-[40px]">{plan.description}</p>
+              <p className="text-sm text-slate-500 mb-6 min-h-[56px]">{plan.description}</p>
               <div className="mb-6">
                 <span className="text-3xl font-display font-bold text-petrol">{plan.price}</span>
                 <span className="text-slate-500 block text-sm mt-1">{plan.type}</span>
@@ -111,9 +111,10 @@ export function PricingSection() {
         <div className="mt-12 max-w-3xl mx-auto flex items-start gap-4 p-5 bg-petrol/5 rounded-2xl border border-petrol/10 text-sm text-petrol font-medium">
           <Info className="w-6 h-6 shrink-0 text-cyan" />
           <p>
-            <strong>Atenção:</strong> Os valores acima referem-se exclusivamente aos honorários de
-            gestão e operação documental. Custas de cartórios, emolumentos, ITBI, taxas de
-            prefeitura e certidões pagas são cobrados separadamente mediante comprovação.
+            <strong>Atenção:</strong> os valores indicados referem-se aos honorários da VELKOR.
+            Taxas, emolumentos, certidões, ITBI, custas cartorárias, despesas de prefeitura,
+            deslocamentos e serviços de terceiros não estão incluídos, salvo previsão expressa na
+            proposta.
           </p>
         </div>
       </div>
