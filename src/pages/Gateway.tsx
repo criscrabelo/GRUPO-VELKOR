@@ -96,9 +96,8 @@ export default function Gateway() {
             )}
           >
             {units.map((unit) => {
-              const match = unit.name.match(/^(VELKOR)\s+(.*)$/i)
-              const brandName = match ? match[1].toUpperCase() : 'VELKOR'
-              const complement = match ? match[2] : unit.name
+              const match = unit.name.match(/^(VELKOR)/i)
+              const brandName = match ? match[1].toUpperCase() : unit.name
 
               const CardWrapper = unit.is_coming_soon || !unit.link_url ? 'div' : Link
 
@@ -143,14 +142,10 @@ export default function Gateway() {
                       <h2 className="text-white text-2xl md:text-3xl font-bold tracking-wider mb-1 uppercase">
                         {brandName}
                       </h2>
-                      <h3 className="text-cyan-400 text-lg md:text-xl font-medium mb-4">
-                        {complement}
-                      </h3>
-
                       {unit.description && (
-                        <p className="text-slate-400 text-sm md:text-base leading-relaxed line-clamp-3 max-w-sm">
+                        <h3 className="text-cyan-400 text-lg md:text-xl font-medium mb-4 line-clamp-3">
                           {unit.description}
-                        </p>
+                        </h3>
                       )}
                     </div>
 
