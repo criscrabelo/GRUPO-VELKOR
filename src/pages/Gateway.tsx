@@ -138,19 +138,19 @@ export default function Gateway() {
                   </div>
 
                   <div className="p-6 md:p-8 flex flex-col flex-1 items-center text-center">
-                    <div className="flex flex-col items-center justify-center flex-1">
-                      <h2 className="text-white text-2xl md:text-3xl font-bold tracking-wider mb-1 uppercase">
+                    <div className="flex flex-col items-center justify-start flex-1 w-full">
+                      <h2 className="text-white text-2xl md:text-3xl font-bold tracking-wider mb-2 uppercase">
                         {brandName}
                       </h2>
-                      {unit.description && (
-                        <h3 className="text-cyan-400 text-lg md:text-xl font-medium mb-4 line-clamp-3">
-                          {unit.description}
+                      <div className="min-h-[3.5rem] flex items-start justify-center w-full mb-4">
+                        <h3 className="text-cyan-400 text-lg md:text-xl font-medium line-clamp-2">
+                          {unit.description || '\u00A0'}
                         </h3>
-                      )}
+                      </div>
                     </div>
 
                     {!unit.is_coming_soon && unit.link_url && (
-                      <div className="mt-6 flex items-center text-cyan-400 font-medium text-sm md:text-base group-hover:text-cyan-300 transition-colors w-full justify-center">
+                      <div className="mt-auto pt-2 flex items-center text-cyan-400 font-medium text-sm md:text-base group-hover:text-cyan-300 transition-colors w-full justify-center shrink-0">
                         Acessar Portal
                         <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
                       </div>
