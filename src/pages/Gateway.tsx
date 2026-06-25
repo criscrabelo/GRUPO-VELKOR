@@ -26,10 +26,10 @@ export default function Gateway() {
           setSettings(settingsRes.data)
         } else {
           setSettings({
-            site_name: 'VELKOR Soluções Imobiliárias',
-            hero_title: 'Bem-vindo à VELKOR Soluções Imobiliárias',
+            site_name: 'GRUPO VELKOR',
+            hero_title: 'Bem-vindo ao GRUPO VELKOR',
             hero_subtitle:
-              'Acesse nossas soluções para proteger, organizar e resolver seu patrimônio.',
+              'Selecione a unidade de negócio para acessar nossos serviços e soluções.',
             background_image_url: null,
           })
         }
@@ -67,7 +67,7 @@ export default function Gateway() {
           <VelkorLogo variant="light" className="h-full w-auto" />
         </div>
         <span className="text-slate-300 font-medium tracking-wide text-sm">
-          {settings?.site_name || 'VELKOR Soluções Imobiliárias'}
+          {settings?.site_name || 'GRUPO VELKOR'}
         </span>
       </header>
 
@@ -81,11 +81,11 @@ export default function Gateway() {
           ) : (
             <>
               <h1 className="text-white text-3xl md:text-[44px] font-bold tracking-tight mb-5 leading-tight">
-                {settings?.hero_title || 'Bem-vindo à VELKOR Soluções Imobiliárias'}
+                {settings?.hero_title || 'Bem-vindo ao GRUPO VELKOR'}
               </h1>
               <p className="text-cyan-400 text-base md:text-[1.125rem] max-w-2xl mx-auto font-medium">
                 {settings?.hero_subtitle ||
-                  'Acesse nossas soluções para proteger, organizar e resolver seu patrimônio.'}
+                  'Selecione a unidade de negócio para acessar nossos serviços e soluções.'}
               </p>
             </>
           )}
@@ -189,8 +189,7 @@ export default function Gateway() {
 
       {/* Footer */}
       <footer className="w-full py-6 text-center z-10 text-slate-500/60 text-[13px] font-medium mt-auto">
-        &copy; 2026 {settings?.site_name || 'VELKOR Soluções Imobiliárias'}. Todos os direitos
-        reservados.
+        &copy; 2026 {settings?.site_name || 'GRUPO VELKOR'}. Todos os direitos reservados.
       </footer>
     </div>
   )
