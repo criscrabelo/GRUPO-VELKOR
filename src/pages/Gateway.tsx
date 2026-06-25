@@ -94,7 +94,7 @@ export default function Gateway() {
         {!isLoading && units.length > 0 && (
           <div
             className={cn(
-              'grid gap-6 w-full animate-fade-in-up mx-auto justify-center',
+              'grid gap-6 w-full animate-fade-in-up mx-auto justify-center auto-rows-fr',
               units.length === 1 ? 'max-w-[440px] grid-cols-1' : 'md:grid-cols-2 max-w-[880px]',
             )}
           >
@@ -102,7 +102,7 @@ export default function Gateway() {
               unit.is_coming_soon ? (
                 <div
                   key={unit.id}
-                  className="relative bg-[#121c25] rounded-2xl p-10 border border-slate-800/80 flex flex-col items-center text-center overflow-hidden cursor-not-allowed group"
+                  className="relative bg-[#121c25] rounded-2xl p-8 md:p-10 border border-slate-800/80 flex flex-col items-center text-center overflow-hidden cursor-not-allowed group h-full min-h-[420px]"
                 >
                   {/* Overlay to differentiate from active units */}
                   <div className="absolute inset-0 bg-slate-900/60 z-0 pointer-events-none" />
@@ -117,7 +117,13 @@ export default function Gateway() {
                     </div>
                   </div>
 
-                  <div className="w-full h-20 overflow-hidden flex items-center justify-center mb-6 relative z-10 shrink-0">
+                  <div className="relative z-10 mb-8 shrink-0 pt-2">
+                    <h3 className="text-2xl font-black tracking-[0.2em] text-white/90 uppercase">
+                      VELKOR
+                    </h3>
+                  </div>
+
+                  <div className="w-full h-24 overflow-hidden flex items-center justify-center relative z-10 shrink-0">
                     {unit.image_url ? (
                       <img
                         src={unit.image_url}
@@ -129,41 +135,39 @@ export default function Gateway() {
                         className="w-full h-full object-contain opacity-40 grayscale transition-all duration-500"
                       />
                     ) : (
-                      <Building2 className="w-10 h-10 text-slate-700" />
+                      <Building2 className="w-12 h-12 text-slate-700" />
                     )}
                   </div>
 
-                  <h2 className="text-[1.35rem] font-bold text-white mb-3 relative z-10 opacity-90 flex flex-col items-center text-center">
-                    {(() => {
-                      const match = unit.name.match(/^(VELKOR)\s+(.+)$/i)
-                      if (match) {
-                        return (
-                          <>
-                            <span className="block tracking-wide">{match[1].toUpperCase()}</span>
-                            <span className="block text-[1.15rem] font-medium text-slate-300 mt-0.5">
-                              {match[2]}
-                            </span>
-                          </>
-                        )
-                      }
-                      return unit.name
-                    })()}
-                  </h2>
-                  <p className="text-slate-400 mb-10 leading-relaxed text-[15px] max-w-[280px] relative z-10 opacity-80">
-                    {unit.description}
-                  </p>
+                  <div className="mt-auto pt-8 flex flex-col items-center relative z-10 shrink-0 w-full">
+                    <h2 className="text-[1.25rem] font-bold text-slate-300 mb-3 text-center">
+                      {(() => {
+                        const match = unit.name.match(/^(VELKOR)\s+(.+)$/i)
+                        return match ? match[2] : unit.name
+                      })()}
+                    </h2>
+                    <p className="text-slate-400 mb-6 leading-relaxed text-[15px] max-w-[280px] opacity-80">
+                      {unit.description}
+                    </p>
 
-                  <div className="mt-auto flex items-center text-slate-500 font-semibold text-[15px] relative z-10 pointer-events-none">
-                    Acessar Portal <ArrowRight className="ml-2 w-4 h-4 opacity-50" />
+                    <div className="flex items-center text-slate-500 font-semibold text-[15px] pointer-events-none">
+                      Acessar Portal <ArrowRight className="ml-2 w-4 h-4 opacity-50" />
+                    </div>
                   </div>
                 </div>
               ) : (
                 <Link
                   key={unit.id}
                   to={unit.link_url || '#'}
-                  className="group relative bg-white rounded-2xl p-10 shadow-2xl transition-all duration-300 hover:-translate-y-1 hover:shadow-cyan-500/10 flex flex-col items-center text-center overflow-hidden border border-transparent hover:border-cyan-500/20"
+                  className="group relative bg-white rounded-2xl p-8 md:p-10 shadow-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-cyan-500/10 flex flex-col items-center text-center overflow-hidden border border-transparent hover:border-cyan-500/20 h-full min-h-[420px]"
                 >
-                  <div className="w-full h-20 overflow-hidden flex items-center justify-center mb-6 relative z-10 shrink-0">
+                  <div className="relative z-10 mb-8 shrink-0 pt-2">
+                    <h3 className="text-2xl font-black tracking-[0.2em] text-[#0a1118] uppercase">
+                      VELKOR
+                    </h3>
+                  </div>
+
+                  <div className="w-full h-24 overflow-hidden flex items-center justify-center relative z-10 shrink-0">
                     {unit.image_url ? (
                       <img
                         src={unit.image_url}
@@ -175,30 +179,23 @@ export default function Gateway() {
                         className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
                       />
                     ) : (
-                      <Building2 className="w-10 h-10 text-[#0fa5b4]" />
+                      <Building2 className="w-12 h-12 text-[#0fa5b4]" />
                     )}
                   </div>
-                  <h2 className="text-[1.35rem] font-bold text-[#0a1118] mb-3 relative z-10 flex flex-col items-center text-center">
-                    {(() => {
-                      const match = unit.name.match(/^(VELKOR)\s+(.+)$/i)
-                      if (match) {
-                        return (
-                          <>
-                            <span className="block tracking-wide">{match[1].toUpperCase()}</span>
-                            <span className="block text-[1.15rem] font-medium text-slate-600 mt-0.5">
-                              {match[2]}
-                            </span>
-                          </>
-                        )
-                      }
-                      return unit.name
-                    })()}
-                  </h2>
-                  <p className="text-slate-500 mb-10 leading-relaxed text-[15px] max-w-[280px] relative z-10">
-                    {unit.description}
-                  </p>
-                  <div className="mt-auto flex items-center text-cyan-600 font-semibold text-[15px] group-hover:translate-x-1 transition-transform duration-300 relative z-10">
-                    Acessar Portal <ArrowRight className="ml-2 w-4 h-4" />
+
+                  <div className="mt-auto pt-8 flex flex-col items-center relative z-10 shrink-0 w-full">
+                    <h2 className="text-[1.25rem] font-bold text-slate-600 mb-3 text-center">
+                      {(() => {
+                        const match = unit.name.match(/^(VELKOR)\s+(.+)$/i)
+                        return match ? match[2] : unit.name
+                      })()}
+                    </h2>
+                    <p className="text-slate-500 mb-6 leading-relaxed text-[15px] max-w-[280px]">
+                      {unit.description}
+                    </p>
+                    <div className="flex items-center text-cyan-600 font-semibold text-[15px] group-hover:translate-x-1 transition-transform duration-300">
+                      Acessar Portal <ArrowRight className="ml-2 w-4 h-4" />
+                    </div>
                   </div>
                 </Link>
               ),
