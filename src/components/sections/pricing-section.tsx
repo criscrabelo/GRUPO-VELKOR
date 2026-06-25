@@ -5,45 +5,44 @@ import { SITE_CONFIG } from '@/lib/config'
 
 const plans = [
   {
-    name: 'Consultoria Online',
-    description: 'Orientação documental e administrativa remota.',
-    price: 'R$ 120 - R$ 450',
-    type: 'por serviço',
-    microtext: 'Inclui triagem, checklist personalizado e análise de pendências por escrito.',
+    name: 'Diagnóstico Inicial',
+    description: 'Levantamento da situação documental para identificar pendências.',
+    price: 'A partir de R$ 600',
+    type: 'por imóvel',
+    microtext: 'Análise minuciosa de matrículas, ônus e viabilidade administrativa.',
     features: [
-      'Triagem documental completa',
-      'Checklist personalizado',
-      'Análise de pendências',
-      '100% pagamento antecipado',
+      'Busca de certidões iniciais',
+      'Análise de matrícula',
+      'Parecer técnico administrativo',
+      'Checklist de regularização',
     ],
     highlighted: false,
   },
   {
-    name: 'Escritura + Registro',
-    description: 'Fluxo completo até a matrícula atualizada.',
-    price: 'R$ 1.500 - R$ 3.500',
-    type: 'por operação',
-    microtext:
-      'Inclui organização documental, acompanhamento em tabelionato e protocolo de registro.',
+    name: 'Gestão Documental Completa',
+    description: 'Coordenação total de transferência e registro de propriedade.',
+    price: 'A partir de R$ 1.500',
+    type: 'por processo',
+    microtext: 'Da guia de ITBI ao protocolo no Cartório de Imóveis, sem dor de cabeça.',
     features: [
-      'Organização documental',
+      'Emissão e cálculo de ITBI',
       'Acompanhamento em tabelionato',
-      'Protocolo de registro',
-      'Pagamento: 50% sinal / 50% entrega',
+      'Protocolo no Registro de Imóveis',
+      'Gestão de pendências simples',
     ],
     highlighted: true,
   },
   {
-    name: 'Diligência Regional',
-    description: 'Atuação presencial exclusiva no Vale do Paraíba.',
-    price: 'R$ 180 - R$ 350',
-    type: 'por saída',
-    microtext: 'Inclui cartórios, prefeituras, protocolos físicos e taxas de deslocamento.',
+    name: 'Regularização Complexa',
+    description: 'Averbações, Habite-se, CND de obras e leilões.',
+    price: 'Sob análise',
+    type: 'orçamento personalizado',
+    microtext: 'Projetos que envolvem múltiplos órgãos públicos e prefeituras.',
     features: [
-      'Cartórios e Prefeituras',
-      'SJC, Taubaté, Jacareí e região',
-      'Protocolos físicos e retiradas',
-      'Taxas de deslocamento incluídas',
+      'Análise em prefeitura e receita',
+      'Gestão de processos em lote',
+      'Atendimento a empresas/holdings',
+      'Desembaraço pós-leilão',
     ],
     highlighted: false,
   },
@@ -57,7 +56,7 @@ export function PricingSection() {
       <div className="container mx-auto px-4 md:px-6">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <span className="text-cyan font-bold tracking-wider uppercase text-sm mb-4 block">
-            Tabela de Referência
+            Planos sob diagnóstico
           </span>
           <h2
             className={cn(
@@ -65,7 +64,7 @@ export function PricingSection() {
               isVisible && 'animate-fade-in-up',
             )}
           >
-            Honorários claros, sem surpresas.
+            Investimento na sua tranquilidade.
           </h2>
           <p
             className={cn(
@@ -74,14 +73,7 @@ export function PricingSection() {
             )}
             style={{ animationDelay: '100ms' }}
           >
-            Valores sugeridos para serviços operacionais em nossa matriz regional — Vale do
-            Paraíba/SP.
-          </p>
-          <p
-            className={cn('text-sm text-slate-400 opacity-0', isVisible && 'animate-fade-in-up')}
-            style={{ animationDelay: '150ms' }}
-          >
-            Não incluem custas de cartório, ITBI, emolumentos ou despesas de terceiros.
+            Nossos honorários são formatados conforme a complexidade da sua demanda documental.
           </p>
         </div>
 
@@ -149,9 +141,11 @@ export function PricingSection() {
         <div className="mt-8 max-w-3xl mx-auto flex items-start gap-4 p-5 bg-petrol/5 rounded-2xl border border-petrol/10 text-sm text-petrol font-medium">
           <Info className="w-6 h-6 shrink-0 text-cyan" />
           <p>
-            <strong>Atenção:</strong> Os valores acima referem-se exclusivamente aos honorários de
-            gestão e operação documental. Custas de cartórios, emolumentos, ITBI, taxas de
-            prefeitura e certidões pagas são cobrados separadamente mediante comprovação.
+            <strong>Nota Exclusiva de Honorários:</strong> Os valores informados referem-se apenas
+            aos honorários da VELKOR como despachante documental imobiliário. Estes valores{' '}
+            <strong>excluem</strong> expressamente taxas, emissão de certidões, ITBI, emolumentos de
+            cartórios (notas e registro) e serviços de terceiros, que deverão ser arcados pelo
+            cliente.
           </p>
         </div>
       </div>

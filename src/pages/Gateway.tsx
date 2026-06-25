@@ -26,8 +26,9 @@ export default function Gateway() {
         } else {
           setSettings({
             site_name: 'Grupo VELKOR',
-            hero_title: 'Bem-vindo ao Grupo VELKOR',
-            hero_subtitle: 'Selecione a unidade de negócio para acessar nossos serviços.',
+            hero_title: 'Bem-vindo ao ecossistema VELKOR',
+            hero_subtitle:
+              'Escolha a unidade de negócio e acesse soluções para proteger, organizar e resolver.',
             background_image_url: null,
           })
         }
@@ -46,9 +47,9 @@ export default function Gateway() {
   }, [])
 
   return (
-    <div className="min-h-[100dvh] bg-[#0c151e] flex flex-col items-center relative overflow-hidden font-sans">
-      <div className="absolute top-[-20%] left-[-10%] w-[60%] h-[60%] bg-[#0fa5b4]/10 rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute bottom-[-20%] right-[-10%] w-[60%] h-[60%] bg-[#0fa5b4]/5 rounded-full blur-[140px] pointer-events-none" />
+    <div className="min-h-[100dvh] bg-[#0F172A] flex flex-col items-center relative overflow-hidden font-sans">
+      <div className="absolute top-[-20%] left-[-10%] w-[60%] h-[60%] bg-cyan-500/10 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute bottom-[-20%] right-[-10%] w-[60%] h-[60%] bg-cyan-500/5 rounded-full blur-[140px] pointer-events-none" />
 
       {settings?.background_image_url && (
         <div className="absolute inset-0 z-0 h-screen opacity-[0.03] mix-blend-overlay">
@@ -79,10 +80,11 @@ export default function Gateway() {
           ) : (
             <>
               <h1 className="text-white text-3xl md:text-[44px] font-bold tracking-tight mb-5 leading-tight">
-                {settings?.hero_title}
+                {settings?.hero_title || 'Bem-vindo ao ecossistema VELKOR'}
               </h1>
-              <p className="text-[#0fa5b4] text-base md:text-[1.125rem] max-w-2xl mx-auto font-medium">
-                {settings?.hero_subtitle}
+              <p className="text-cyan-400 text-base md:text-[1.125rem] max-w-2xl mx-auto font-medium">
+                {settings?.hero_subtitle ||
+                  'Escolha a unidade de negócio e acesse soluções para proteger, organizar e resolver.'}
               </p>
             </>
           )}
@@ -100,7 +102,7 @@ export default function Gateway() {
                   <div className="absolute inset-0 bg-slate-900/60 z-0 pointer-events-none" />
 
                   <div className="absolute top-5 right-5 z-20">
-                    <div className="relative bg-gradient-to-r from-[#0fa5b4] to-[#085a63] text-white text-[11px] uppercase font-black tracking-wider px-3.5 py-1.5 rounded-full flex items-center gap-2 shadow-[0_0_20px_rgba(15,165,180,0.4)] border border-[#0fa5b4]/30">
+                    <div className="relative bg-gradient-to-r from-cyan-500 to-cyan-700 text-white text-[11px] uppercase font-black tracking-wider px-3.5 py-1.5 rounded-full flex items-center gap-2 shadow-[0_0_20px_rgba(6,182,212,0.4)] border border-cyan-400/30">
                       <span className="relative flex h-2 w-2">
                         <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
                         <span className="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
@@ -132,7 +134,7 @@ export default function Gateway() {
                     {unit.description}
                   </p>
 
-                  <div className="mt-auto flex items-center text-slate-600 font-semibold text-[15px] relative z-10 pointer-events-none">
+                  <div className="mt-auto flex items-center text-slate-500 font-semibold text-[15px] relative z-10 pointer-events-none">
                     Acessar Portal <ArrowRight className="ml-2 w-4 h-4 opacity-50" />
                   </div>
                 </div>
@@ -140,7 +142,7 @@ export default function Gateway() {
                 <Link
                   key={unit.id}
                   to={unit.link_url || '#'}
-                  className="group relative bg-white rounded-2xl p-10 shadow-2xl transition-all duration-300 hover:-translate-y-1 hover:shadow-[#0fa5b4]/10 flex flex-col items-center text-center overflow-hidden border border-transparent hover:border-[#0fa5b4]/20"
+                  className="group relative bg-white rounded-2xl p-10 shadow-2xl transition-all duration-300 hover:-translate-y-1 hover:shadow-cyan-500/10 flex flex-col items-center text-center overflow-hidden border border-transparent hover:border-cyan-500/20"
                 >
                   <div className="w-full h-20 overflow-hidden flex items-center justify-center mb-6 relative z-10 shrink-0">
                     {unit.image_url ? (
@@ -163,7 +165,7 @@ export default function Gateway() {
                   <p className="text-slate-500 mb-10 leading-relaxed text-[15px] max-w-[280px] relative z-10">
                     {unit.description}
                   </p>
-                  <div className="mt-auto flex items-center text-[#0fa5b4] font-semibold text-[15px] group-hover:translate-x-1 transition-transform duration-300 relative z-10">
+                  <div className="mt-auto flex items-center text-cyan-600 font-semibold text-[15px] group-hover:translate-x-1 transition-transform duration-300 relative z-10">
                     Acessar Portal <ArrowRight className="ml-2 w-4 h-4" />
                   </div>
                 </Link>

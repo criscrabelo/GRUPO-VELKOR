@@ -13,42 +13,14 @@ export function ServicesSection() {
   useEffect(() => {
     db.services.findMany().then((data) => {
       // Show specific services matching original design
-      let displayServices = data.filter((s) =>
-        [
-          'checkup-imobiliario',
-          'compra-segura',
-          'assessoria-leiloes',
-          'leiloes-orgaos-publicos',
-          'leiloes',
-        ].includes(s.id),
-      )
-
-      if (!displayServices.find((s) => s.id === 'leiloes')) {
-        displayServices.unshift({
-          id: 'leiloes',
-          title: 'LEILOES',
-          short_description:
-            'Hub de Soluções Imobiliárias e Regularização Patrimonial. Estruturamos e coordenamos toda a esteira documental imobiliária. Tudo com inteligência, compliance e previsibilidade.',
-          full_content:
-            'Hub de Soluções Imobiliárias e Regularização Patrimonial. Estruturamos e coordenamos toda a esteira documental imobiliária. Tudo com inteligência, compliance e previsibilidade.',
-          icon_name: 'Gavel',
-          features: [
-            'Hub de Soluções Imobiliárias',
-            'Regularização Patrimonial',
-            'Inteligência e Compliance',
-            'Previsibilidade',
-          ],
-          featured: true,
-        })
-      }
-
-      setServices(displayServices.length ? displayServices : data.slice(0, 4))
+      // Show all specialized services
+      setServices(data)
       setLoading(false)
     })
   }, [])
 
   return (
-    <section className="py-24 bg-slate-50 relative">
+    <section id="servicos" className="py-24 bg-slate-50 relative">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-display font-bold text-petrol mb-4">
@@ -85,7 +57,17 @@ export function ServicesSection() {
                     {s.full_content || s.short_description}
                   </p>
 
-                  {s.partnerNote && (
+                  {s.id === 'assembleias' && (
+                    <div className="mb-6 bg-amber-50 border border-amber-200 p-3 rounded-lg flex items-start gap-2">
+                      <Info className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
+                      <span className="text-xs text-amber-800 font-medium">
+                        Não substitui síndico, administradora ou advogado. Atuação puramente
+                        administrativa.
+                      </span>
+                    </div>
+                  )}
+
+                  {s.partnerNote && s.id !== 'assembleias' && (
                     <div className="mb-6 bg-slate-50 border border-slate-100 p-3 rounded-lg flex items-start gap-2">
                       <Info className="w-4 h-4 text-cyan shrink-0 mt-0.5" />
                       <span className="text-xs text-slate-500 font-medium">

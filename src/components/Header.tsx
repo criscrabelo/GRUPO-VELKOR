@@ -74,18 +74,24 @@ export function Header() {
             />
           </Link>
 
-          <nav className="hidden md:flex items-center gap-8">
+          <nav className="hidden md:flex items-center gap-6 lg:gap-8">
             <a
-              href="/solucoes#ecossistema"
+              href="/solucoes#para-quem"
               className="text-sm font-semibold text-petrol hover:text-cyan transition-colors"
             >
-              Ecossistema
+              Para quem é
             </a>
             <a
-              href="/solucoes#faq"
+              href="/solucoes#servicos"
               className="text-sm font-semibold text-petrol hover:text-cyan transition-colors"
             >
-              FAQ
+              Serviços
+            </a>
+            <a
+              href="/solucoes#precos"
+              className="text-sm font-semibold text-petrol hover:text-cyan transition-colors"
+            >
+              Planos
             </a>
             <Link
               to="/contato"
@@ -106,7 +112,7 @@ export function Header() {
             </Link>
             <Link to="/contratar">
               <Button className="bg-petrol text-white hover:bg-petrol/90 shadow-lg shadow-petrol/20 font-bold">
-                Solicitar Solução
+                Solicitar atendimento
               </Button>
             </Link>
           </div>
@@ -130,49 +136,26 @@ export function Header() {
           >
             &larr; Voltar para Grupo VELKOR
           </Link>
-          <Accordion type="single" collapsible className="w-full mb-2">
-            <AccordionItem value="solucoes" className="border-none">
-              <AccordionTrigger className="text-base font-bold text-petrol py-3 px-3 hover:bg-cyan/5 rounded-lg no-underline hover:no-underline min-h-[44px]">
-                Soluções
-              </AccordionTrigger>
-              <AccordionContent className="px-4 pb-2 space-y-1">
-                <Link
-                  to="/contratar"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="block py-3 text-slate-600 font-medium min-h-[44px] hover:text-cyan transition-colors"
-                >
-                  Check-up Imobiliário
-                </Link>
-                <Link
-                  to="/contratar"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="block py-3 text-slate-600 font-medium min-h-[44px] hover:text-cyan transition-colors"
-                >
-                  Compra Segura
-                </Link>
-                <Link
-                  to="/contratar"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="block py-3 text-slate-600 font-medium min-h-[44px] hover:text-cyan transition-colors"
-                >
-                  Assessoria em Leilões
-                </Link>
-              </AccordionContent>
-            </AccordionItem>
-          </Accordion>
           <a
-            href="/solucoes#ecossistema"
+            href="/solucoes#para-quem"
             onClick={() => setIsMobileMenuOpen(false)}
             className="text-base font-bold text-petrol p-3 hover:bg-cyan/5 rounded-lg block min-h-[44px]"
           >
-            Ecossistema
+            Para quem é
           </a>
           <a
-            href="/solucoes#faq"
+            href="/solucoes#servicos"
             onClick={() => setIsMobileMenuOpen(false)}
             className="text-base font-bold text-petrol p-3 hover:bg-cyan/5 rounded-lg block min-h-[44px]"
           >
-            FAQ
+            Serviços
+          </a>
+          <a
+            href="/solucoes#precos"
+            onClick={() => setIsMobileMenuOpen(false)}
+            className="text-base font-bold text-petrol p-3 hover:bg-cyan/5 rounded-lg block min-h-[44px]"
+          >
+            Planos
           </a>
           <Link
             to="/contato"
@@ -190,7 +173,7 @@ export function Header() {
             </Link>
             <Link to="/contratar" className="w-full" onClick={() => setIsMobileMenuOpen(false)}>
               <Button className="w-full bg-cyan text-petrol hover:bg-cyan/90 font-bold h-12">
-                Solicitar Solução
+                Solicitar atendimento
               </Button>
             </Link>
           </div>

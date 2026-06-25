@@ -23,7 +23,7 @@ export function HeroSection() {
             className="text-4xl md:text-5xl lg:text-7xl font-display font-bold text-petrol leading-[1.1] mb-6 md:mb-8 animate-fade-in-up"
             style={{ animationDelay: '100ms' }}
           >
-            Sua única preocupação será a entrega das chaves.
+            Da documentação ao registro, sua única preocupação será receber as chaves.
           </h1>
 
           {/* Subtítulo reduzido — direto e objetivo */}
@@ -31,7 +31,9 @@ export function HeroSection() {
             className="text-lg md:text-xl text-slate-600 mb-8 md:mb-10 leading-relaxed max-w-xl animate-fade-in-up"
             style={{ animationDelay: '200ms' }}
           >
-            Coordenamos certidões, ITBI, escritura e registro — do início ao fim, sem vai-e-vem.
+            Coordenamos certidões, matrícula, ITBI, escritura, registro, averbações, Habite-se, CND
+            de obra, financiamento documental e acompanhamento institucional — do início ao fim, sem
+            vai-e-vem.
           </p>
 
           <div
@@ -56,7 +58,7 @@ export function HeroSection() {
               className="bg-cyan text-petrol hover:bg-cyan/90 font-bold h-14 px-8 text-base md:text-lg rounded-xl shadow-lg shadow-cyan/20 w-full sm:w-auto"
             >
               <Link to="/contratar">
-                Consultar Soluções
+                Quero regularizar meu imóvel
                 <ArrowRight className="w-5 h-5 ml-2" />
               </Link>
             </Button>
@@ -66,8 +68,12 @@ export function HeroSection() {
               variant="outline"
               className="h-14 px-8 text-base md:text-lg rounded-xl border-slate-200 hover:bg-slate-50 text-slate-700 font-bold w-full sm:w-auto"
             >
-              <a href={`https://wa.me/${SITE_CONFIG.whatsapp}`} target="_blank" rel="noreferrer">
-                Falar com Especialista
+              <a
+                href={`https://wa.me/${SITE_CONFIG.whatsapp}?text=${encodeURIComponent('Olá, quero falar com a VELKOR sobre regularização/documentação imobiliária.')}`}
+                target="_blank"
+                rel="noreferrer"
+              >
+                Falar no WhatsApp
               </a>
             </Button>
           </div>

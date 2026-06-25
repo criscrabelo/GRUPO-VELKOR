@@ -210,12 +210,57 @@ export function Footer() {
               </li>
             </ul>
 
+            {/* Institucional Links */}
+            <h4 className="font-bold text-lg mb-6 mt-8">Legal & Institucional</h4>
+            <ul className="space-y-3">
+              <li>
+                <Link
+                  to="#"
+                  className="text-white/60 hover:text-cyan text-sm block py-1.5 transition-colors"
+                >
+                  Política de Privacidade
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="#"
+                  className="text-white/60 hover:text-cyan text-sm block py-1.5 transition-colors"
+                >
+                  Termos de Uso
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="#"
+                  className="text-white/60 hover:text-cyan text-sm block py-1.5 transition-colors"
+                >
+                  Política de Atendimento
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="#"
+                  className="text-white/60 hover:text-cyan text-sm block py-1.5 transition-colors"
+                >
+                  Aviso de Atuação Documental
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="#"
+                  className="text-white/60 hover:text-cyan text-sm block py-1.5 transition-colors"
+                >
+                  LGPD
+                </Link>
+              </li>
+            </ul>
+
             {/* Limitação de atuação */}
             <div className="mt-8 p-4 rounded-xl bg-white/5 border border-white/10">
               <p className="text-white/40 text-xs leading-relaxed">
-                <strong className="text-white/60">Limites de atuação:</strong> A VELKOR atua
-                exclusivamente na esfera administrativa e documental. Não exercemos advocacia,
-                corretagem ou engenharia diretamente.
+                <strong className="text-white/60">Aviso Legal:</strong> A VELKOR atua como
+                despachante documental imobiliário, exclusivamente na esfera administrativa e
+                documental. Não exercemos advocacia, corretagem ou engenharia diretamente.
               </p>
             </div>
           </div>
