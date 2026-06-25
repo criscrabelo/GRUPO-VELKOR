@@ -94,96 +94,89 @@ export default function Gateway() {
         {!isLoading && units.length > 0 && (
           <div
             className={cn(
-              'grid gap-6 w-full animate-fade-in-up mx-auto justify-center auto-rows-fr',
+              'grid gap-6 w-full animate-fade-in-up mx-auto justify-center items-stretch',
               units.length === 1 ? 'max-w-[440px] grid-cols-1' : 'md:grid-cols-2 max-w-[880px]',
             )}
           >
             {units.map((unit) => {
-              let brandName = unit.name
-              let complement = ''
+              const match = unit.name.match(/^(VELKOR)\s+(.*)$/i)
+              const brandName = match ? match[1].toUpperCase() : 'VELKOR'
+              const complement = match ? match[2] : unit.name
 
-              if (unit.name.toUpperCase().startsWith('VELKOR ')) {
-                brandName = 'VELKOR'
-                complement = unit.name.substring(7)
-              } else if (unit.name.toUpperCase().startsWith('VELKOR')) {
-                brandName = 'VELKOR'
-                complement = unit.name.substring(6).trim()
-              }
-
-              const CardContent = () => (
-                <div className="flex flex-col h-full rounded-2xl bg-slate-900/80 border border-slate-700/50 overflow-hidden hover:bg-slate-800/80 hover:border-cyan-500/50 transition-all duration-300 group shadow-xl backdrop-blur-md">
-                  <div className="w-full h-48 sm:h-52 overflow-hidden relative border-b border-slate-700/50 shrink-0">
-                    <img
-                      src={unit.image_url}
-                      alt={unit.name}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent opacity-80" />
-                  </div>
-
-                  <div className="p-6 md:p-8 flex-1 flex flex-col text-center">
-                    <h2 className="text-2xl md:text-3xl font-black tracking-widest text-white mb-1 uppercase">
-                      {brandName}
-                    </h2>
-                    {complement && (
-                      <h3 className="text-base md:text-lg font-medium text-cyan-400 mb-4">
-                        {complement}
-                      </h3>
-                    )}
-
-                    {unit.description && (
-                      <p className="text-slate-400 text-sm md:text-base flex-1 mb-8">
-                        {unit.description}
-                      </p>
-                    )}
-
-                    <div className="mt-auto w-full">
-                      {unit.is_coming_soon ? (
-                        <span className="inline-flex items-center justify-center px-6 py-3 bg-slate-800 text-slate-500 text-sm font-semibold rounded-xl w-full border border-slate-700">
-                          Em breve
-                        </span>
-                      ) : (
-                        <span className="inline-flex items-center justify-center px-6 py-3 bg-cyan-600 hover:bg-cyan-500 text-white text-sm font-semibold rounded-xl w-full transition-all duration-300 group-hover:shadow-[0_0_20px_rgba(8,145,178,0.4)]">
-                          Acessar
-                          <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
-                        </span>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              )
-
-              if (unit.is_coming_soon) {
-                return (
-                  <div key={unit.id} className="cursor-default block h-full">
-                    <CardContent />
-                  </div>
-                )
-              }
-
-              if (unit.link_url?.startsWith('http')) {
-                return (
-                  <a
-                    key={unit.id}
-                    href={unit.link_url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block h-full"
-                  >
-                    <CardContent />
-                  </a>
-                )
-              }
+              const CardWrapper = unit.is_coming_soon || !unit.link_url ? 'div' : Link
 
               return (
-                <Link key={unit.id} to={unit.link_url || '#'} className="block h-full">
-                  <CardContent />
-                </Link>
+                <CardWrapper
+                  key={unit.id}
+                  to={unit.link_url || '#'}
+                  className={cn(
+                    'group relative overflow-hidden rounded-2xl bg-slate-900/50 border border-slate-800 backdrop-blur-sm hover:border-cyan-500/50 transition-all duration-500 hover:shadow-2xl hover:shadow-cyan-500/10 hover:-translate-y-1 flex flex-col h-full',
+                    (unit.is_coming_soon || !unit.link_url) &&
+                      'opacity-80 hover:translate-y-0 hover:shadow-none hover:border-slate-800 cursor-default',
+                  )}
+                >
+                  {unit.is_coming_soon && (
+                    <div className="absolute top-4 right-4 z-20">
+                      <span className="bg-slate-800/80 backdrop-blur-md text-cyan-400 text-xs font-semibold px-3 py-1.5 rounded-full border border-cyan-500/20">
+                        Em Breve
+                      </span>
+                    </div>
+                  )}
+
+                  <div className="relative w-full aspect-[16/9] overflow-hidden shrink-0 bg-slate-900">
+                    {unit.image_url ? (
+                      <img
+                        src={unit.image_url}
+                        alt={unit.name}
+                        className={cn(
+                          'w-full h-full object-cover transition-transform duration-700 ease-out',
+                          !unit.is_coming_soon && 'group-hover:scale-105',
+                        )}
+                      />
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center">
+                        <VelkorLogo variant="icon" className="w-12 h-12 opacity-20" />
+                      </div>
+                    )}
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/20 to-transparent pointer-events-none" />
+                  </div>
+
+                  <div className="p-6 md:p-8 flex flex-col flex-1 items-center text-center">
+                    <div className="flex flex-col items-center justify-center flex-1">
+                      <h2 className="text-white text-2xl md:text-3xl font-bold tracking-wider mb-1 uppercase">
+                        {brandName}
+                      </h2>
+                      <h3 className="text-cyan-400 text-lg md:text-xl font-medium mb-4">
+                        {complement}
+                      </h3>
+
+                      {unit.description && (
+                        <p className="text-slate-400 text-sm md:text-base leading-relaxed line-clamp-3 max-w-sm">
+                          {unit.description}
+                        </p>
+                      )}
+                    </div>
+
+                    {!unit.is_coming_soon && unit.link_url && (
+                      <div className="mt-6 flex items-center text-cyan-400 font-medium text-sm md:text-base group-hover:text-cyan-300 transition-colors w-full justify-center">
+                        Acessar Portal
+                        <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                      </div>
+                    )}
+                  </div>
+                </CardWrapper>
               )
             })}
           </div>
         )}
       </main>
+
+      <footer className="z-10 w-full py-6 text-center text-slate-500 text-xs md:text-sm">
+        <p>
+          © {new Date().getFullYear()} {settings?.site_name || 'GRUPO VELKOR'}. Todos os direitos
+          reservados.
+        </p>
+      </footer>
     </div>
   )
 }
