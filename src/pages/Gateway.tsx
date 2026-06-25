@@ -133,8 +133,21 @@ export default function Gateway() {
                     )}
                   </div>
 
-                  <h2 className="text-[1.35rem] font-bold text-white mb-3 relative z-10 opacity-90">
-                    {unit.name}
+                  <h2 className="text-[1.35rem] font-bold text-white mb-3 relative z-10 opacity-90 flex flex-col items-center text-center">
+                    {(() => {
+                      const match = unit.name.match(/^(VELKOR)\s+(.+)$/i)
+                      if (match) {
+                        return (
+                          <>
+                            <span className="block tracking-wide">{match[1].toUpperCase()}</span>
+                            <span className="block text-[1.15rem] font-medium text-slate-300 mt-0.5">
+                              {match[2]}
+                            </span>
+                          </>
+                        )
+                      }
+                      return unit.name
+                    })()}
                   </h2>
                   <p className="text-slate-400 mb-10 leading-relaxed text-[15px] max-w-[280px] relative z-10 opacity-80">
                     {unit.description}
@@ -165,8 +178,21 @@ export default function Gateway() {
                       <Building2 className="w-10 h-10 text-[#0fa5b4]" />
                     )}
                   </div>
-                  <h2 className="text-[1.35rem] font-bold text-[#0a1118] mb-3 relative z-10">
-                    {unit.name}
+                  <h2 className="text-[1.35rem] font-bold text-[#0a1118] mb-3 relative z-10 flex flex-col items-center text-center">
+                    {(() => {
+                      const match = unit.name.match(/^(VELKOR)\s+(.+)$/i)
+                      if (match) {
+                        return (
+                          <>
+                            <span className="block tracking-wide">{match[1].toUpperCase()}</span>
+                            <span className="block text-[1.15rem] font-medium text-slate-600 mt-0.5">
+                              {match[2]}
+                            </span>
+                          </>
+                        )
+                      }
+                      return unit.name
+                    })()}
                   </h2>
                   <p className="text-slate-500 mb-10 leading-relaxed text-[15px] max-w-[280px] relative z-10">
                     {unit.description}
