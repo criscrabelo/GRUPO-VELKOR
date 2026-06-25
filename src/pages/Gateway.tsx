@@ -62,13 +62,10 @@ export default function Gateway() {
         </div>
       )}
 
-      <header className="z-10 w-full pt-10 pb-6 flex justify-center items-center gap-3">
+      <header className="z-10 w-full pt-10 pb-6 flex justify-center items-center">
         <div className="h-6 flex items-center justify-center">
           <VelkorLogo variant="light" className="h-full w-auto" />
         </div>
-        <span className="text-slate-300 font-medium tracking-wide text-sm">
-          {settings?.site_name || 'GRUPO VELKOR'}
-        </span>
       </header>
 
       <main className="z-10 container px-6 w-full max-w-5xl flex-1 flex flex-col items-center justify-center pb-16">
