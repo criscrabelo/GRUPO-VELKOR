@@ -23,11 +23,11 @@ export default function Index() {
             Consultoria e Soluções Especializadas
           </h2>
           <p className="text-base md:text-lg text-slate-600 leading-relaxed mb-6">
-            A VELKOR não é uma imobiliária, nem um escritório de advocacia. Nós atuamos como um
-            autêntico <strong>Despachante Documental Imobiliário</strong>, com foco na organização,
-            protocolo e acompanhamento contínuo de processos administrativos. Sediados em{' '}
-            <strong>Taubaté, Vale do Paraíba</strong>, nossa estrutura permite atendimento ágil e
-            especializado em âmbito nacional.
+            A VELKOR Soluções Imobiliárias não é uma imobiliária, nem um escritório de advocacia.
+            Nós atuamos como um autêntico <strong>Despachante Documental Imobiliário</strong>, com
+            foco na organização, protocolo e acompanhamento contínuo de processos administrativos.
+            Sediados em <strong>Taubaté, Vale do Paraíba</strong>, nossa estrutura permite
+            atendimento ágil e especializado em âmbito nacional.
           </p>
           <p className="text-base md:text-lg text-slate-600 leading-relaxed">
             Nosso papel é orquestrar toda a sua jornada documental do início ao fim, coordenando

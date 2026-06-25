@@ -69,7 +69,7 @@ export function HeroSection() {
               className="h-14 px-8 text-base md:text-lg rounded-xl border-slate-200 hover:bg-slate-50 text-slate-700 font-bold w-full sm:w-auto"
             >
               <a
-                href={`https://wa.me/${SITE_CONFIG.whatsapp}?text=${encodeURIComponent('Olá, quero falar com a VELKOR sobre regularização/documentação imobiliária.')}`}
+                href={`https://wa.me/${SITE_CONFIG.whatsapp}?text=${encodeURIComponent('Olá, quero falar com a VELKOR Soluções Imobiliárias sobre regularização/documentação imobiliária.')}`}
                 target="_blank"
                 rel="noreferrer"
               >

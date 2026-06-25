@@ -1,5 +1,5 @@
 export const SITE_CONFIG = {
-  name: 'VELKOR',
+  name: 'VELKOR Soluções Imobiliárias',
   grupo: 'Parte do GRUPO VELKOR',
   slogan: 'Hub de Soluções Imobiliárias e Regularização Patrimonial',
   // Meta description otimizada para SEO e conversão
@@ -15,7 +15,7 @@ export const SITE_CONFIG = {
   logoUrl:
     'https://api.altan.ai/platform/media/c0352277-2fce-4c12-92ab-621cae528aab?account_id=45753086-63e2-45e0-81f1-0bc4cb5499dd',
   servicesDisclaimer:
-    'A VELKOR não presta serviços diretos de corretagem imobiliária ou advocacia. Atuamos como um HUB coordenador: toda a parte estratégica e administrativa é nossa, enquanto atos privativos (peças jurídicas, laudos, ART/RRT) são executados exclusivamente por nossa rede de parceiros técnicos credenciados.',
+    'A VELKOR Soluções Imobiliárias não presta serviços diretos de corretagem imobiliária ou advocacia. Atuamos como um HUB coordenador: toda a parte estratégica e administrativa é nossa, enquanto atos privativos (peças jurídicas, laudos, ART/RRT) são executados exclusivamente por nossa rede de parceiros técnicos credenciados.',
   partnerCategories: [
     { id: 'legal', label: 'Consultoria Jurídica', icon: 'Scale' },
     { id: 'engineering', label: 'Engenharia Civil', icon: 'HardHat' },

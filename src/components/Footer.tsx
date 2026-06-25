@@ -25,7 +25,7 @@ export function Footer() {
                   target="_blank"
                   rel="noreferrer"
                   className="w-11 h-11 rounded-full bg-white/5 flex items-center justify-center hover:bg-cyan hover:text-petrol transition-colors focus:ring-2 focus:ring-cyan focus:outline-none"
-                  aria-label="Instagram VELKOR"
+                  aria-label="Instagram VELKOR Soluções Imobiliárias"
                 >
                   <Instagram className="w-5 h-5" />
                 </a>
@@ -36,7 +36,7 @@ export function Footer() {
                   target="_blank"
                   rel="noreferrer"
                   className="w-11 h-11 rounded-full bg-white/5 flex items-center justify-center hover:bg-cyan hover:text-petrol transition-colors focus:ring-2 focus:ring-cyan focus:outline-none"
-                  aria-label="LinkedIn VELKOR"
+                  aria-label="LinkedIn VELKOR Soluções Imobiliárias"
                 >
                   <Linkedin className="w-5 h-5" />
                 </a>
@@ -46,7 +46,7 @@ export function Footer() {
                 target="_blank"
                 rel="noreferrer"
                 className="w-11 h-11 rounded-full bg-white/5 flex items-center justify-center hover:bg-cyan hover:text-petrol transition-colors focus:ring-2 focus:ring-cyan focus:outline-none"
-                aria-label="Facebook VELKOR"
+                aria-label="Facebook VELKOR Soluções Imobiliárias"
               >
                 <Facebook className="w-5 h-5" />
               </a>
@@ -59,7 +59,7 @@ export function Footer() {
                 target="_blank"
                 rel="noreferrer"
                 className="flex items-center gap-3 text-white/60 hover:text-[#25D366] transition-colors text-sm group"
-                aria-label="WhatsApp Business VELKOR"
+                aria-label="WhatsApp Business VELKOR Soluções Imobiliárias"
               >
                 <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center group-hover:bg-[#25D366]/20 transition-colors shrink-0">
                   <MessageCircle className="w-4 h-4" />
@@ -69,7 +69,7 @@ export function Footer() {
               <a
                 href={mailtoUrl}
                 className="flex items-center gap-3 text-white/60 hover:text-cyan transition-colors text-sm group"
-                aria-label="E-mail VELKOR"
+                aria-label="E-mail VELKOR Soluções Imobiliárias"
               >
                 <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center group-hover:bg-cyan/20 transition-colors shrink-0">
                   <Mail className="w-4 h-4" />
@@ -139,7 +139,7 @@ export function Footer() {
                   to="/solucoes"
                   className="text-white/60 hover:text-cyan text-sm block py-1.5 transition-colors"
                 >
-                  Sobre a VELKOR
+                  Sobre a VELKOR Soluções Imobiliárias
                 </Link>
               </li>
               <li>
@@ -258,9 +258,10 @@ export function Footer() {
             {/* Limitação de atuação */}
             <div className="mt-8 p-4 rounded-xl bg-white/5 border border-white/10">
               <p className="text-white/40 text-xs leading-relaxed">
-                <strong className="text-white/60">Aviso Legal:</strong> A VELKOR atua como
-                despachante documental imobiliário, exclusivamente na esfera administrativa e
-                documental. Não exercemos advocacia, corretagem ou engenharia diretamente.
+                <strong className="text-white/60">Aviso Legal:</strong> A VELKOR Soluções
+                Imobiliárias atua como despachante documental imobiliário, exclusivamente na esfera
+                administrativa e documental. Não exercemos advocacia, corretagem ou engenharia
+                diretamente.
               </p>
             </div>
           </div>
