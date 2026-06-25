@@ -205,7 +205,7 @@ export function Footer() {
                   to="/"
                   className="text-white/60 hover:text-cyan text-sm block py-1.5 transition-colors"
                 >
-                  ← Grupo VELKOR
+                  ← Acessar Portal
                 </Link>
               </li>
             </ul>
@@ -274,8 +274,6 @@ export function Footer() {
           </p>
           <div className="flex items-center gap-2 text-white/30 text-xs">
             <span>CNPJ {SITE_CONFIG.cnpj}</span>
-            <span>·</span>
-            <span>Uma empresa do Grupo VELKOR</span>
           </div>
         </div>
       </div>

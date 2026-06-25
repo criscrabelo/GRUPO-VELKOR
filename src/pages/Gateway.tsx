@@ -4,6 +4,7 @@ import { Building2, Shield, ArrowRight } from 'lucide-react'
 import { VelkorLogo } from '@/components/VelkorLogo'
 import { Skeleton } from '@/components/ui/skeleton'
 import { supabase } from '@/lib/supabase/client'
+import { cn } from '@/lib/utils'
 
 export default function Gateway() {
   const [settings, setSettings] = useState<any>(null)
@@ -25,10 +26,10 @@ export default function Gateway() {
           setSettings(settingsRes.data)
         } else {
           setSettings({
-            site_name: 'Grupo VELKOR',
-            hero_title: 'Bem-vindo ao ecossistema VELKOR',
+            site_name: 'VELKOR Soluções Imobiliárias',
+            hero_title: 'Bem-vindo à VELKOR Soluções Imobiliárias',
             hero_subtitle:
-              'Escolha a unidade de negócio e acesse soluções para proteger, organizar e resolver.',
+              'Acesse nossas soluções para proteger, organizar e resolver seu patrimônio.',
             background_image_url: null,
           })
         }
@@ -66,7 +67,7 @@ export default function Gateway() {
           <VelkorLogo variant="light" className="h-full w-auto" />
         </div>
         <span className="text-slate-300 font-medium tracking-wide text-sm">
-          {settings?.site_name || 'Grupo VELKOR'}
+          {settings?.site_name || 'VELKOR Soluções Imobiliárias'}
         </span>
       </header>
 
@@ -80,18 +81,23 @@ export default function Gateway() {
           ) : (
             <>
               <h1 className="text-white text-3xl md:text-[44px] font-bold tracking-tight mb-5 leading-tight">
-                {settings?.hero_title || 'Bem-vindo ao ecossistema VELKOR'}
+                {settings?.hero_title || 'Bem-vindo à VELKOR Soluções Imobiliárias'}
               </h1>
               <p className="text-cyan-400 text-base md:text-[1.125rem] max-w-2xl mx-auto font-medium">
                 {settings?.hero_subtitle ||
-                  'Escolha a unidade de negócio e acesse soluções para proteger, organizar e resolver.'}
+                  'Acesse nossas soluções para proteger, organizar e resolver seu patrimônio.'}
               </p>
             </>
           )}
         </div>
 
         {!isLoading && units.length > 0 && (
-          <div className="grid md:grid-cols-2 gap-6 w-full max-w-[880px] animate-fade-in-up">
+          <div
+            className={cn(
+              'grid gap-6 w-full animate-fade-in-up mx-auto justify-center',
+              units.length === 1 ? 'max-w-[440px] grid-cols-1' : 'md:grid-cols-2 max-w-[880px]',
+            )}
+          >
             {units.map((unit) =>
               unit.is_coming_soon ? (
                 <div
@@ -175,16 +181,16 @@ export default function Gateway() {
         )}
 
         {isLoading && (
-          <div className="grid md:grid-cols-2 gap-6 w-full max-w-[880px] animate-fade-in-up">
+          <div className="grid gap-6 w-full max-w-[440px] animate-fade-in-up mx-auto">
             <Skeleton className="h-[360px] w-full rounded-2xl bg-white/5" />
-            <Skeleton className="h-[360px] w-full rounded-2xl bg-[#121c25]/50" />
           </div>
         )}
       </main>
 
       {/* Footer */}
       <footer className="w-full py-6 text-center z-10 text-slate-500/60 text-[13px] font-medium mt-auto">
-        &copy; 2026 {settings?.site_name || 'Grupo VELKOR'}. Todos os direitos reservados.
+        &copy; 2026 {settings?.site_name || 'VELKOR Soluções Imobiliárias'}. Todos os direitos
+        reservados.
       </footer>
     </div>
   )

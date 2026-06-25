@@ -43,7 +43,7 @@ export function Header() {
             </span>
             <span className="hidden sm:inline text-white/50 px-2">|</span>
             <Link to="/" className="hidden sm:inline hover:text-cyan transition-colors font-medium">
-              Voltar para Grupo VELKOR
+              Acessar Portal
             </Link>
             <span className="hidden sm:flex items-center gap-1">
               <Mail className="w-3 h-3" /> {SITE_CONFIG.email}
@@ -134,7 +134,7 @@ export function Header() {
             onClick={() => setIsMobileMenuOpen(false)}
             className="text-base font-bold text-cyan p-3 hover:bg-cyan/5 rounded-lg mb-2 flex items-center min-h-[44px]"
           >
-            &larr; Voltar para Grupo VELKOR
+            &larr; Acessar Portal
           </Link>
           <a
             href="/solucoes#para-quem"
