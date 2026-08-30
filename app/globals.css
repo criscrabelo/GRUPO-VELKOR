@@ -36,3 +36,36 @@ body {
   font-family: var(--font-source-serif);
   letter-spacing: -0.015em;
 }
+
+.prose-legal h2 {
+  font-family: var(--font-source-serif);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #10282d;
+  margin-top: 2rem;
+}
+
+.prose-legal h3 {
+  font-weight: 700;
+  color: #10282d;
+  margin-top: 1.5rem;
+}
+
+.prose-legal ul {
+  list-style: disc;
+  padding-left: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.prose-legal strong {
+  color: #10282d;
+}
+
+.prose-legal mark {
+  background-color: #fffbf3;
+  color: #8a5a0c;
+  padding: 0 0.2em;
+  border-radius: 3px;
+}
