@@ -20,8 +20,14 @@ export function LandingApp() {
   const [avancarMsg, setAvancarMsg] = useState(false)
   const [ultimoOrcamento, setUltimoOrcamento] = useState<string | null>(null)
   const solucoesRef = useRef<HTMLDivElement>(null)
+  // Cada evento de funil conta no máximo uma vez por visita à página —
+  // sem isso, o StrictMode (dev) e cliques repetidos inflariam o funil.
+  const visitaRegistrada = useRef(false)
+  const pacoteRegistrado = useRef(false)
 
   useEffect(() => {
+    if (visitaRegistrada.current) return
+    visitaRegistrada.current = true
     registrarEvento('visita')
   }, [])
 
@@ -57,7 +63,10 @@ export function LandingApp() {
   }
 
   function avancarComPacote() {
-    registrarEvento('pacote_montado')
+    if (!pacoteRegistrado.current) {
+      pacoteRegistrado.current = true
+      registrarEvento('pacote_montado')
+    }
     setAvancarMsg(true)
   }
 

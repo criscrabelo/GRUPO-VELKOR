@@ -11,7 +11,14 @@ export function ClientesTab({ operacoes }: { operacoes: OperacaoComTag[] | null 
   const clientes = useMemo(() => {
     const porCliente = new Map<
       string,
-      { email: string; operacoes: number; total: number; pendenciasAbertas: number; ultimaAtualizacao: string }
+      {
+        userId: string
+        email: string
+        operacoes: number
+        total: number
+        pendenciasAbertas: number
+        ultimaAtualizacao: string
+      }
     >()
 
     for (const op of operacoes ?? []) {
@@ -21,6 +28,7 @@ export function ClientesTab({ operacoes }: { operacoes: OperacaoComTag[] | null 
 
       if (!atual) {
         porCliente.set(chave, {
+          userId: chave,
           email: op.cliente_email ?? 'Sem e-mail registrado',
           operacoes: 1,
           total: op.valor ?? 0,
@@ -67,7 +75,7 @@ export function ClientesTab({ operacoes }: { operacoes: OperacaoComTag[] | null 
           </thead>
           <tbody className="divide-y divide-border">
             {clientes.map((c) => (
-              <tr key={c.email}>
+              <tr key={c.userId}>
                 <td className="px-5 py-4 font-medium text-ink-primary">{c.email}</td>
                 <td className="px-5 py-4 text-ink-secondary">{c.operacoes}</td>
                 <td className="px-5 py-4 text-ink-secondary">{formatBRL(c.total)}</td>

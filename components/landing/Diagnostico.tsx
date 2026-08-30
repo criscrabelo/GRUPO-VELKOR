@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { ArrowLeft, RotateCcw } from 'lucide-react'
 import { PERGUNTAS, PERFIS, PASSOS, type ServiceProfile } from '@/lib/catalog'
 import { registrarEvento } from '@/lib/analytics'
@@ -8,16 +8,26 @@ import { registrarEvento } from '@/lib/analytics'
 export function Diagnostico({ onVerCaminho }: { onVerCaminho: (perfil: ServiceProfile) => void }) {
   const [passo, setPasso] = useState(0) // 0..2 = perguntas, 3 = resultado
   const [respostas, setRespostas] = useState<string[]>([])
+  // Um mesmo visitante conta uma vez em cada etapa do funil, mesmo que
+  // volte ou refaça o diagnóstico na mesma visita.
+  const iniciadoRegistrado = useRef(false)
+  const concluidoRegistrado = useRef(false)
 
   const progresso = Math.min(passo, PERGUNTAS.length) / PERGUNTAS.length
 
   function responder(valor: string) {
-    if (passo === 0) registrarEvento('diagnostico_iniciado')
+    if (passo === 0 && !iniciadoRegistrado.current) {
+      iniciadoRegistrado.current = true
+      registrarEvento('diagnostico_iniciado')
+    }
     const novas = [...respostas.slice(0, passo), valor]
     setRespostas(novas)
     const proximoPasso = passo + 1
     setPasso(proximoPasso)
-    if (proximoPasso === PERGUNTAS.length) registrarEvento('diagnostico_concluido')
+    if (proximoPasso === PERGUNTAS.length && !concluidoRegistrado.current) {
+      concluidoRegistrado.current = true
+      registrarEvento('diagnostico_concluido')
+    }
   }
 
   function voltar() {

@@ -67,14 +67,24 @@ export function EnviarDocumentoModal({
       storage_path: caminho,
     })
 
-    if (pendenciaId) {
-      await supabase
-        .from('pendencias')
-        .update({ status: 'em_conferencia', atualizado_em: new Date().toISOString() })
-        .eq('id', pendenciaId)
+    if (insertError) {
+      // Não deixa o arquivo órfão no Storage se o registro falhou.
+      await supabase.storage.from('documentos-clientes').remove([caminho])
+      setEnviando(false)
+      setErro('O arquivo subiu, mas não foi possível registrar o documento. Nada foi salvo — tente novamente.')
+      return
     }
 
-    await supabase.from('historico_eventos').insert({
+    let pendenciaError: unknown = null
+    if (pendenciaId) {
+      const { error, count } = await supabase
+        .from('pendencias')
+        .update({ status: 'em_conferencia', atualizado_em: new Date().toISOString() }, { count: 'exact' })
+        .eq('id', pendenciaId)
+      pendenciaError = error ?? (count === 0 ? new Error('pendência não atualizada') : null)
+    }
+
+    const { error: historicoError } = await supabase.from('historico_eventos').insert({
       operacao_id: operacaoId,
       cliente_user_id: userId,
       titulo: `Documento enviado por você: ${arquivo.name}`,
@@ -83,8 +93,11 @@ export function EnviarDocumentoModal({
 
     setEnviando(false)
 
-    if (insertError) {
-      setErro('O arquivo foi enviado, mas houve um problema ao registrar o documento.')
+    if (pendenciaError || historicoError) {
+      setErro(
+        'O documento foi salvo, mas a atualização da pendência ou do histórico falhou. ' +
+          'A equipe Velkor ainda verá o documento na conferência.',
+      )
       return
     }
 

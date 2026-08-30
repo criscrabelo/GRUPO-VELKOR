@@ -58,12 +58,16 @@ export function DossieDigital({ userId }: { userId: string }) {
       return
     }
 
-    await supabase.from('historico_eventos').insert({
+    const { error: registroError } = await supabase.from('historico_eventos').insert({
       operacao_id: doc.operacao_id,
       cliente_user_id: userId,
       titulo: `Documento baixado por você: ${doc.nome}`,
       autor: 'Cliente',
     })
+    if (registroError) {
+      // O download segue mesmo assim, mas a falha de registro não pode ser silenciosa.
+      console.warn('Falha ao registrar download no histórico:', registroError.message)
+    }
 
     window.open(data.signedUrl, '_blank', 'noopener,noreferrer')
   }

@@ -121,7 +121,9 @@ export function Dashboard({ equipe }: { equipe: EquipeVelkorRow }) {
 
       <main className="container mx-auto px-4 py-8 max-w-6xl">
         <p className="section-label text-teal-action mb-2">Painel administrativo</p>
-        <h1 className="heading-serif text-2xl font-bold text-ink-primary mb-6">Operações</h1>
+        <h1 className="heading-serif text-2xl font-bold text-ink-primary mb-6">
+          {ABAS.find((a) => a.key === aba)?.label}
+        </h1>
 
         {erro && (
           <div className="rounded-card border border-red-200 bg-red-50 text-red-700 text-sm p-4 mb-6">

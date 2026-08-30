@@ -65,7 +65,14 @@ export function VisaoGeral({ userId, email }: { userId: string; email: string })
 
   const ativas = operacoes?.filter((o) => tagOperacao(o.pendencias) !== 'concluida').length ?? 0
   const comVoce =
-    operacoes?.filter((o) => tagOperacao(o.pendencias) === 'aguardando_voce').length ?? 0
+    operacoes?.reduce(
+      (acc, o) =>
+        acc +
+        o.pendencias.filter(
+          (p) => p.responsavel === 'cliente' && (p.status === 'aberta' || p.status === 'devolvida'),
+        ).length,
+      0,
+    ) ?? 0
 
   return (
     <div className="min-h-screen bg-page">

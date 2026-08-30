@@ -24,6 +24,7 @@ export const metadata: Metadata = {
   description:
     'Regularização e documentação de imóveis em Taubaté/SP e em todo o Brasil: matrícula, certidões, ITBI, registro e boletos acompanhados em um painel digital. Diagnóstico inicial gratuito.',
   alternates: { canonical: SITE_URL },
+  icons: { icon: '/favicon.ico' },
   openGraph: {
     type: 'website',
     url: SITE_URL,
@@ -31,9 +32,11 @@ export const metadata: Metadata = {
     title: 'Velkor Soluções Imobiliárias — documentação de imóveis em um painel digital',
     description:
       'Regularização e documentação de imóveis: matrícula, certidões, ITBI, registro e boletos acompanhados em um painel digital.',
+    images: [{ url: '/og-image.png', width: 1200, height: 630 }],
   },
   twitter: {
     card: 'summary_large_image',
+    images: ['/og-image.png'],
   },
 }
 
