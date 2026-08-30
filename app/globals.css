@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-source-serif: 'Source Serif 4', Georgia, serif;
+  --font-libre-franklin: 'Libre Franklin', system-ui, sans-serif;
+}
+
+* {
+  text-wrap: pretty;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #f6fafa;
+  color: #10282d;
+}
+
+:focus-visible {
+  outline: 3px solid #2fb6dc;
+  outline-offset: 2px;
+}
+
+.section-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.heading-serif {
+  font-family: var(--font-source-serif);
+  letter-spacing: -0.015em;
+}

@@ -16,6 +16,11 @@ dev-dist-ssr
 .pnpm-store
 .pnpm
 
+# Next.js
+.next/
+out/
+next-env.d.ts
+
 # pods-manager atomic build operations (rename/restore leftovers).
 # AppManager creates these during build (set-aside previous output before
 # running pnpm build, restore on failure). Success path cleans them up;
@@ -42,9 +47,9 @@ screenshot.png
 .eslintcache
 .oxlintcache
 
-# Environment variables
-.env*
-!.env
+# Environment variables — .env.local (matched by *.local above) is never
+# committed. .env.example is tracked as a template with placeholder values.
 
 # Linux kernel core dumps (e.g. when oxfmt or pnpm crash)
 core.[0-9]*
+tsconfig.tsbuildinfo
