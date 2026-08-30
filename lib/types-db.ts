@@ -65,9 +65,12 @@ export type OperacaoTag = 'em_andamento' | 'concluida' | 'aguardando_voce'
  * próprio — mesma regra do painel administrativo do protótipo.
  */
 export function tagOperacao(pendencias: PendenciaRow[]): OperacaoTag {
-  const abertas = pendencias.filter((p) => p.status === 'aberta' || p.status === 'devolvida')
-  if (abertas.length === 0) return 'concluida'
-  if (abertas.some((p) => p.responsavel === 'cliente')) return 'aguardando_voce'
+  const naoResolvidas = pendencias.filter((p) => p.status !== 'resolvida')
+  if (naoResolvidas.length === 0) return 'concluida'
+  const aguardandoCliente = naoResolvidas.some(
+    (p) => p.responsavel === 'cliente' && (p.status === 'aberta' || p.status === 'devolvida'),
+  )
+  if (aguardandoCliente) return 'aguardando_voce'
   return 'em_andamento'
 }
 
