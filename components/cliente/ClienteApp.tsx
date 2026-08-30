@@ -1,35 +1,12 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-import type { Session } from '@supabase/supabase-js'
-import { supabase } from '@/lib/supabase'
-import { LoginForm } from './LoginForm'
-import { PainelPlaceholder } from './PainelPlaceholder'
+import { RequireClienteAuth } from './RequireClienteAuth'
+import { VisaoGeral } from './VisaoGeral'
 
 export function ClienteApp() {
-  const [session, setSession] = useState<Session | null | undefined>(undefined)
-
-  useEffect(() => {
-    supabase.auth.getSession().then(({ data }) => setSession(data.session))
-
-    const { data: listener } = supabase.auth.onAuthStateChange((_event, newSession) => {
-      setSession(newSession)
-    })
-
-    return () => listener.subscription.unsubscribe()
-  }, [])
-
-  if (session === undefined) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-page text-ink-tertiary text-sm">
-        Verificando sessão...
-      </div>
-    )
-  }
-
-  if (session === null) {
-    return <LoginForm />
-  }
-
-  return <PainelPlaceholder email={session.user.email ?? ''} />
+  return (
+    <RequireClienteAuth>
+      {(session) => <VisaoGeral userId={session.user.id} email={session.user.email ?? ''} />}
+    </RequireClienteAuth>
+  )
 }
