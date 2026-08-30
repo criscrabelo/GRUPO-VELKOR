@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 import type { Session } from '@supabase/supabase-js'
 import { supabase } from '@/lib/supabase'
-import { LoginForm } from './LoginForm'
+import { LoginForm } from '@/components/auth/LoginForm'
 
 export function RequireClienteAuth({
   children,

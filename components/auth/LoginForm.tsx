@@ -9,7 +9,19 @@ import { VelkorLogo } from '@/components/landing/VelkorLogo'
 const REENVIO_SEGUNDOS = 60
 const MAX_TENTATIVAS = 5
 
-export function LoginForm({ onEntrar }: { onEntrar?: () => void }) {
+export function LoginForm({
+  onEntrar,
+  titulo = 'Área do cliente',
+  faixaTitulo = 'Documentação imobiliária organizada, acompanhada, sem burocracia e 100% digital.',
+  faixaTexto = 'Acesso restrito ao titular da operação. Nunca compartilhe o código recebido por e-mail.',
+  rodape = 'Acesso restrito ao titular da operação. Documentos e dados sensíveis devem ser enviados apenas por aqui, nunca por WhatsApp, e-mail ou pela Kora.',
+}: {
+  onEntrar?: () => void
+  titulo?: string
+  faixaTitulo?: string
+  faixaTexto?: string
+  rodape?: string
+}) {
   const [etapa, setEtapa] = useState<'email' | 'codigo'>('email')
   const [email, setEmail] = useState('')
   const [codigo, setCodigo] = useState('')
@@ -83,12 +95,8 @@ export function LoginForm({ onEntrar }: { onEntrar?: () => void }) {
           <VelkorLogo heightClassName="h-8 brightness-0 invert" />
         </Link>
         <div>
-          <h1 className="heading-serif text-3xl font-bold mb-4 max-w-sm">
-            Documentação imobiliária organizada, acompanhada, sem burocracia e 100% digital.
-          </h1>
-          <p className="text-white/70 max-w-sm">
-            Acesso restrito ao titular da operação. Nunca compartilhe o código recebido por e-mail.
-          </p>
+          <h1 className="heading-serif text-3xl font-bold mb-4 max-w-sm">{faixaTitulo}</h1>
+          <p className="text-white/70 max-w-sm">{faixaTexto}</p>
         </div>
         <p className="text-xs text-white/50">Conforme a LGPD — Lei nº 13.709/2018.</p>
       </div>
@@ -101,9 +109,7 @@ export function LoginForm({ onEntrar }: { onEntrar?: () => void }) {
             </Link>
           </div>
 
-          <h2 className="heading-serif text-2xl font-bold text-ink-primary mb-2">
-            Área do cliente
-          </h2>
+          <h2 className="heading-serif text-2xl font-bold text-ink-primary mb-2">{titulo}</h2>
           <p className="text-ink-secondary text-sm mb-8">
             {etapa === 'email'
               ? 'Informe seu e-mail para receber um código de acesso.'
@@ -205,10 +211,7 @@ export function LoginForm({ onEntrar }: { onEntrar?: () => void }) {
             </form>
           )}
 
-          <p className="text-xs text-ink-tertiary mt-8">
-            Acesso restrito ao titular da operação. Documentos e dados sensíveis devem ser
-            enviados apenas por aqui, nunca por WhatsApp, e-mail ou pela Kora.
-          </p>
+          <p className="text-xs text-ink-tertiary mt-8">{rodape}</p>
         </div>
       </div>
     </div>
