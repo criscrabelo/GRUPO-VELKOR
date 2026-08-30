@@ -1,0 +1,58 @@
+name: CI
+
+on:
+  push:
+    branches: ['**']
+  pull_request:
+
+jobs:
+  test:
+    name: Typecheck, lint, unit tests, build
+    runs-on: ubuntu-latest
+    env:
+      # Placeholders — suficientes para o build e os testes de landing, que
+      # não dependem de uma conexão real com o Supabase. Nunca colocar
+      # segredos reais aqui: este workflow roda em qualquer push, inclusive
+      # de forks.
+      NEXT_PUBLIC_SUPABASE_URL: https://placeholder.supabase.co
+      NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: placeholder-key
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Instalar dependências
+        run: pnpm install --frozen-lockfile
+
+      - name: Checagem de tipos
+        run: pnpm typecheck
+
+      - name: Lint
+        run: pnpm lint
+
+      - name: Testes unitários (catálogo, desconto, status)
+        run: pnpm test
+
+      - name: Build de produção
+        run: pnpm build
+
+      - name: Instalar navegadores do Playwright
+        run: pnpm exec playwright install --with-deps chromium
+
+      - name: Testes end-to-end (diagnóstico, simulador, guardas de rota)
+        run: pnpm test:e2e
+
+      - name: Publicar relatório do Playwright em caso de falha
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 14
