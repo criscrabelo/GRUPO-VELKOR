@@ -126,13 +126,16 @@ export function VisaoGeral({ userId, email }: { userId: string; email: string })
             </span>
             <span className="text-xs text-ink-tertiary">Próximo vencimento</span>
           </div>
-          <div className="rounded-card border border-border bg-surface p-4">
+          <Link
+            href="/cliente/dossie"
+            className="rounded-card border border-border bg-surface p-4 hover:border-cyan-brand transition-colors"
+          >
             <FileStack className="w-5 h-5 text-cyan-brand mb-2" />
             <span className="block heading-serif text-2xl font-bold text-ink-primary">
               {totalDocumentos ?? '—'}
             </span>
             <span className="text-xs text-ink-tertiary">Documentos no dossiê</span>
-          </div>
+          </Link>
         </div>
 
         <h2 className="font-bold text-sm uppercase tracking-wider text-ink-tertiary mb-4">

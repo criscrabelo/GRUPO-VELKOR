@@ -38,6 +38,14 @@ export interface DocumentoRow {
   criado_em: string
 }
 
+export const DOCUMENTO_STATUS_LABEL: Record<DocumentoRow['status'], string> = {
+  conferido: 'Conferido',
+  aguarda_pagamento: 'Aguarda pagamento',
+  disponivel: 'Disponível',
+  arquivado: 'Arquivado',
+  em_conferencia: 'Em conferência',
+}
+
 export interface HistoricoEventoRow {
   id: string
   operacao_id: string

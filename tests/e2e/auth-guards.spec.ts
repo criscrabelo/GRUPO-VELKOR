@@ -14,6 +14,11 @@ test.describe('Proteção de rotas — sem sessão', () => {
     await expect(page.getByRole('heading', { name: 'Área do cliente' })).toBeVisible()
   })
 
+  test('/cliente/dossie sem sessão também cai no login', async ({ page }) => {
+    await page.goto('/cliente/dossie')
+    await expect(page.getByRole('heading', { name: 'Área do cliente' })).toBeVisible()
+  })
+
   test('/admin mostra o login administrativo, com texto diferente do login do cliente', async ({ page }) => {
     await page.goto('/admin')
     await expect(page.getByRole('heading', { name: 'Painel administrativo' })).toBeVisible()
