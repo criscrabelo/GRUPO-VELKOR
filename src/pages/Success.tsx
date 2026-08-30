@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom'
-import { CheckCircle, LayoutDashboard } from 'lucide-react'
+import { CheckCircle } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 
 export default function Success() {
@@ -22,12 +22,19 @@ export default function Success() {
           className="text-3xl font-display font-bold text-petrol mb-2 animate-fade-in-up"
           style={{ animationDelay: '100ms' }}
         >
-          Pedido Confirmado!
+          Solicitação registrada
         </h1>
 
-        <p className="text-slate-600 mb-6 animate-fade-in-up" style={{ animationDelay: '200ms' }}>
-          Recebemos sua solicitação. Acompanhe o status do seu pedido com o número de protocolo
-          abaixo.
+        <p className="text-slate-600 mb-2 animate-fade-in-up" style={{ animationDelay: '200ms' }}>
+          Recebemos sua solicitação. Acompanhe o andamento com o número de protocolo abaixo.
+        </p>
+
+        <p
+          className="text-amber-700 text-sm bg-amber-50 border border-amber-200 rounded-lg px-4 py-2 mb-6 animate-fade-in-up"
+          style={{ animationDelay: '250ms' }}
+        >
+          Esta é uma etapa de demonstração: o pagamento e a contratação ainda não são processados
+          por um sistema real. Nossa equipe entrará em contato para confirmar os próximos passos.
         </p>
 
         <div
@@ -43,11 +50,6 @@ export default function Success() {
         <div className="flex flex-col gap-3 animate-fade-in-up" style={{ animationDelay: '400ms' }}>
           <Button asChild size="lg" className="w-full bg-petrol hover:bg-petrol/90 text-white">
             <Link to="/">Voltar ao Início</Link>
-          </Button>
-          <Button asChild variant="outline" size="lg" className="w-full">
-            <Link to="/admin/login">
-              Acessar Painel <LayoutDashboard className="ml-2 w-4 h-4" />
-            </Link>
           </Button>
         </div>
       </div>

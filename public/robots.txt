@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /admin/
+Disallow: /painel
+
+Sitemap: https://velkor.com.br/sitemap.xml

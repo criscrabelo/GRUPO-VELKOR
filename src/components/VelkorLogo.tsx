@@ -6,7 +6,7 @@ export function VelkorLogo({
   variant = 'light',
 }: {
   className?: string
-  variant?: 'light' | 'dark'
+  variant?: 'light' | 'dark' | 'icon'
 }) {
   return (
     <img

@@ -72,7 +72,7 @@ export default function Contratar() {
         service: selectedService?.name,
         email: formData.email,
         date: new Date().toISOString(),
-        status: 'pago',
+        status: 'novo', // demonstração local — nenhum pagamento real foi processado
       }),
     )
     navigate('/success', { state: { protocol } })
@@ -536,22 +536,17 @@ export default function Contratar() {
                   </div>
 
                   <div>
-                    <p className="text-xs text-slate-500 mb-4 text-center">
-                      <ShieldCheck className="w-4 h-4 inline-block mr-1 text-green-600" />
-                      Ambiente 100% seguro. Pagamento processado via Gateway Público.
-                    </p>
                     <div className="mb-4 p-3 bg-amber-50 border border-amber-200 rounded-lg text-xs text-amber-700">
-                      <strong>Nota de Integração:</strong> Atualmente sem conexão de backend. Os
-                      dados de contratação e "pagamento" são gerenciados localmente no estado do
-                      frontend. A persistência real exige uma conexão de banco de dados (Skip Cloud
-                      ou Supabase).
+                      <strong>Ambiente de demonstração:</strong> este checkout ainda não está
+                      conectado a um gateway de pagamento real. Nenhum dado de cartão é enviado ou
+                      processado, e nenhuma cobrança é efetuada ao continuar.
                     </div>
                     <Button
                       onClick={handleSubmitPayment}
                       size="lg"
                       className="w-full bg-petrol hover:bg-petrol/90 text-white font-bold h-14 rounded-xl shadow-lg"
                     >
-                      Finalizar Pagamento <CreditCard className="w-5 h-5 ml-2" />
+                      Continuar (demonstração) <CreditCard className="w-5 h-5 ml-2" />
                     </Button>
                   </div>
                 </div>

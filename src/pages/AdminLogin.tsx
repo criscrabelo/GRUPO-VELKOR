@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { AlertCircle, Lock, Mail } from 'lucide-react'
+import { supabase } from '@/lib/supabase/client'
 
 export default function AdminLogin() {
   const navigate = useNavigate()
@@ -12,19 +13,24 @@ export default function AdminLogin() {
   const [error, setError] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsLoading(true)
     setError(false)
 
-    setTimeout(() => {
-      if (email === 'admin' && password === 'velkor2026') {
-        navigate('/admin/dashboard')
-      } else {
-        setError(true)
-        setIsLoading(false)
-      }
-    }, 800)
+    const { error: authError } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    })
+
+    setIsLoading(false)
+
+    if (authError) {
+      setError(true)
+      return
+    }
+
+    navigate('/admin/dashboard')
   }
 
   return (
@@ -51,8 +57,8 @@ export default function AdminLogin() {
               <Mail className="absolute left-3 top-3 h-5 w-5 text-white/40" />
               <Input
                 id="email"
-                type="text"
-                placeholder="admin"
+                type="email"
+                placeholder="seu-email@velkor.com.br"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="pl-10 bg-white/5 border-white/10 text-white placeholder:text-white/30 focus-visible:border-cyan focus-visible:ring-cyan/20"
@@ -80,7 +86,7 @@ export default function AdminLogin() {
           {error && (
             <div className="bg-red-500/10 border border-red-500/20 text-red-400 p-3 rounded-lg text-sm flex items-center">
               <AlertCircle className="w-4 h-4 mr-2" />
-              Credenciais inválidas. Tente admin / velkor2026
+              Credenciais inválidas.
             </div>
           )}
 

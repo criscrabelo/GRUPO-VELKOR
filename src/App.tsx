@@ -13,6 +13,7 @@ import AdminDashboard from './pages/AdminDashboard'
 import NotFound from './pages/NotFound'
 import { Layout } from './components/Layout'
 import Gateway from './pages/Gateway'
+import { RequireAdminAuth } from './components/admin/RequireAdminAuth'
 
 const App = () => (
   <BrowserRouter>
@@ -31,8 +32,22 @@ const App = () => (
         </Route>
         <Route path="/admin/login" element={<AdminLogin />} />
         <Route path="/admin" element={<AdminLogin />} />
-        <Route path="/painel" element={<AdminDashboard />} />
-        <Route path="/admin/dashboard" element={<AdminDashboard />} />
+        <Route
+          path="/painel"
+          element={
+            <RequireAdminAuth>
+              <AdminDashboard />
+            </RequireAdminAuth>
+          }
+        />
+        <Route
+          path="/admin/dashboard"
+          element={
+            <RequireAdminAuth>
+              <AdminDashboard />
+            </RequireAdminAuth>
+          }
+        />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </TooltipProvider>

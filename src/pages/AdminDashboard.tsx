@@ -13,6 +13,7 @@ import { PartnersView } from '@/components/admin/PartnersView'
 import { useNavigate } from 'react-router-dom'
 import { LogOut } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { supabase } from '@/lib/supabase/client'
 
 export default function AdminDashboard() {
   const [activeView, setActiveView] = useState<AdminView>('overview')
@@ -49,7 +50,10 @@ export default function AdminDashboard() {
               </div>
               <Button
                 variant="ghost"
-                onClick={() => navigate('/admin/login')}
+                onClick={async () => {
+                  await supabase.auth.signOut()
+                  navigate('/admin/login')
+                }}
                 className="text-slate-500 hover:text-red-600 hover:bg-red-50 font-semibold"
               >
                 <LogOut className="w-4 h-4 mr-2" />
