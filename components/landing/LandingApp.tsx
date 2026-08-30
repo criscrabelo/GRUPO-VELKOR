@@ -1,6 +1,7 @@
 'use client'
 
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import { registrarEvento } from '@/lib/analytics'
 import { Header } from './Header'
 import { Hero } from './Hero'
 import { Diagnostico } from './Diagnostico'
@@ -19,6 +20,10 @@ export function LandingApp() {
   const [avancarMsg, setAvancarMsg] = useState(false)
   const [ultimoOrcamento, setUltimoOrcamento] = useState<string | null>(null)
   const solucoesRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    registrarEvento('visita')
+  }, [])
 
   function toggleServico(id: string) {
     setSelecionados((prev) => {
@@ -52,6 +57,7 @@ export function LandingApp() {
   }
 
   function avancarComPacote() {
+    registrarEvento('pacote_montado')
     setAvancarMsg(true)
   }
 

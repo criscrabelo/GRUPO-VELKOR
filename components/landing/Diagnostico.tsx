@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { ArrowLeft, RotateCcw } from 'lucide-react'
 import { PERGUNTAS, PERFIS, PASSOS, type ServiceProfile } from '@/lib/catalog'
+import { registrarEvento } from '@/lib/analytics'
 
 export function Diagnostico({ onVerCaminho }: { onVerCaminho: (perfil: ServiceProfile) => void }) {
   const [passo, setPasso] = useState(0) // 0..2 = perguntas, 3 = resultado
@@ -11,9 +12,12 @@ export function Diagnostico({ onVerCaminho }: { onVerCaminho: (perfil: ServicePr
   const progresso = Math.min(passo, PERGUNTAS.length) / PERGUNTAS.length
 
   function responder(valor: string) {
+    if (passo === 0) registrarEvento('diagnostico_iniciado')
     const novas = [...respostas.slice(0, passo), valor]
     setRespostas(novas)
-    setPasso(passo + 1)
+    const proximoPasso = passo + 1
+    setPasso(proximoPasso)
+    if (proximoPasso === PERGUNTAS.length) registrarEvento('diagnostico_concluido')
   }
 
   function voltar() {
