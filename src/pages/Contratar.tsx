@@ -24,7 +24,9 @@ import {
   TableRow,
 } from '@/components/ui/table'
 import { cn } from '@/lib/utils'
-import { SERVICE_CATALOG } from '@/lib/catalog'
+import { SERVICE_CATALOG, formatBRL } from '@/lib/catalog'
+
+const PURCHASABLE_SERVICES = SERVICE_CATALOG.filter((s) => s.inSimulator)
 
 export default function Contratar() {
   const navigate = useNavigate()
@@ -61,7 +63,7 @@ export default function Contratar() {
     setStep(3)
   }
 
-  const selectedService = SERVICE_CATALOG.find((s) => s.id === selectedServiceId)
+  const selectedService = PURCHASABLE_SERVICES.find((s) => s.id === selectedServiceId)
 
   const handleSubmitPayment = () => {
     const protocol = `VK-${Math.floor(1000 + Math.random() * 9000)}`
@@ -70,6 +72,7 @@ export default function Contratar() {
       JSON.stringify({
         protocol,
         service: selectedService?.name,
+        code: selectedService?.code,
         email: formData.email,
         date: new Date().toISOString(),
         status: 'novo', // demonstração local — nenhum pagamento real foi processado
@@ -146,6 +149,15 @@ export default function Contratar() {
                 Selecione o serviço desejado
               </h2>
 
+              <p className="text-sm text-slate-500 text-center -mt-4">
+                O diagnóstico documental inicial (VLK01) é gratuito e não passa por este checkout.
+                Serviços "sob consulta" dependem de análise do caso —{' '}
+                <a href="/solucoes" className="text-cyan underline">
+                  peça um orçamento no catálogo completo
+                </a>
+                .
+              </p>
+
               <div className="rounded-xl border border-slate-200 overflow-hidden bg-white">
                 <div className="overflow-x-auto">
                   <Table>
@@ -155,13 +167,13 @@ export default function Contratar() {
                           Serviço
                         </TableHead>
                         <TableHead className="min-w-[300px]">Descrição</TableHead>
-                        <TableHead className="min-w-[150px]">Categoria</TableHead>
-                        <TableHead className="min-w-[150px]">Valor Estimado</TableHead>
+                        <TableHead className="min-w-[150px]">Família</TableHead>
+                        <TableHead className="min-w-[150px]">Valor</TableHead>
                         <TableHead className="text-right min-w-[120px]">Ação</TableHead>
                       </TableRow>
                     </TableHeader>
                     <TableBody>
-                      {SERVICE_CATALOG.map((service) => (
+                      {PURCHASABLE_SERVICES.map((service) => (
                         <TableRow
                           key={service.id}
                           className={cn(
@@ -175,19 +187,19 @@ export default function Contratar() {
                               href={`/servicos/${service.id}`}
                               className="hover:text-cyan hover:underline transition-colors block"
                             >
-                              {service.name}
+                              {service.code} · {service.name}
                             </a>
                           </TableCell>
                           <TableCell className="text-slate-500 text-sm align-top pt-4">
-                            {service.description}
+                            {service.shortDescription}
                           </TableCell>
                           <TableCell className="align-top pt-4">
                             <span className="inline-block bg-slate-100 text-slate-600 text-xs px-2 py-1 rounded-md font-medium">
-                              {service.type}
+                              {service.family}
                             </span>
                           </TableCell>
                           <TableCell className="font-medium text-petrol align-top pt-4">
-                            {service.price}
+                            {service.priceLabel}
                           </TableCell>
                           <TableCell className="text-right align-top pt-4">
                             <div className="flex flex-col gap-2">
@@ -382,12 +394,12 @@ export default function Contratar() {
                   <CardContent className="pt-5 space-y-4">
                     <div>
                       <p className="font-bold text-petrol">{selectedService?.name}</p>
-                      <p className="text-sm text-slate-500 mt-1">{selectedService?.description}</p>
+                      <p className="text-sm text-slate-500 mt-1">{selectedService?.shortDescription}</p>
                     </div>
                     <div className="pt-4 border-t border-slate-200 flex justify-between items-center">
-                      <span className="text-slate-600 font-medium">Investimento Estimado</span>
+                      <span className="text-slate-600 font-medium">Valor do serviço Velkor</span>
                       <span className="text-xl font-display font-bold text-cyan">
-                        {selectedService?.price}
+                        {selectedService?.priceLabel}
                       </span>
                     </div>
                   </CardContent>
@@ -524,14 +536,18 @@ export default function Contratar() {
                         <span className="font-medium text-petrol text-right">{formData.email}</span>
                       </div>
                       <div className="pt-4 mt-2 border-t border-slate-200 flex justify-between items-center">
-                        <span className="font-bold text-slate-700">Total a Pagar:</span>
+                        <span className="font-bold text-slate-700">Total (serviço Velkor):</span>
                         <span className="text-xl font-display font-bold text-cyan">
-                          R${' '}
-                          {selectedService?.basePrice?.toLocaleString('pt-BR', {
-                            minimumFractionDigits: 2,
-                          })}
+                          {selectedService && selectedService.price !== null
+                            ? formatBRL(selectedService.price)
+                            : selectedService?.priceLabel}
                         </span>
                       </div>
+                      <p className="text-xs text-slate-400">
+                        Taxas de cartório, ITBI, emolumentos, guias, boletos e demais custos de
+                        terceiros não estão incluídos e são pagos pelo cliente diretamente ao
+                        órgão competente.
+                      </p>
                     </div>
                   </div>
 

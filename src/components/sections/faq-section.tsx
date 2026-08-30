@@ -16,8 +16,8 @@ export function FaqSection() {
       a: 'Não. A VELKOR atua estritamente na coordenação administrativa. Sempre que um ato privativo for necessário durante a regularização, ele será executado exclusivamente por nossa rede de escritórios parceiros inscritos na OAB.',
     },
     {
-      q: 'O que exatamente está incluso no Check-up Imobiliário?',
-      a: 'O serviço engloba o levantamento completo da situação da matrícula imobiliária, verificação de ônus, apontamentos e bloqueios judiciais, além de pendências de IPTU e análise preliminar da cadeia sucessória do imóvel para garantir clareza no negócio.',
+      q: 'Por onde eu começo?',
+      a: 'Pelo Diagnóstico documental inicial (VLK01), gratuito. Em três perguntas identificamos seu perfil (comprar, vender, alugar ou regularizar) e indicamos quais dos 22 serviços do catálogo fazem sentido para o seu caso.',
     },
     {
       q: 'Como funciona a rede de especialistas?',

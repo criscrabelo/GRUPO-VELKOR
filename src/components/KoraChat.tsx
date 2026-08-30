@@ -16,7 +16,7 @@ export function KoraChat({
   const [messages, setMessages] = useState<{ role: 'kora' | 'user'; text: string }[]>([
     {
       role: 'kora',
-      text: 'Olá! Sou a Kora, assistente virtual inteligente da VELKOR - Sua Central de Regularização e Gestão Patrimonial. Como posso te ajudar hoje?',
+      text: 'Olá! Sou a Kora, assistente de catálogo da Velkor. Consigo indicar serviços, preços e prazos do nosso catálogo oficial. Para dúvidas mais específicas, transfiro para o time humano por WhatsApp.',
     },
   ])
   const [input, setInput] = useState('')
@@ -55,16 +55,21 @@ export function KoraChat({
     const matchedService = SERVICE_CATALOG.find(
       (s) =>
         lowerInput.includes(s.name.toLowerCase().split(' ')[0]) ||
-        lowerInput.includes(s.id.replace('-', ' ')),
+        lowerInput.includes(s.code.toLowerCase()) ||
+        lowerInput.includes(s.id.replace(/-/g, ' ')),
     )
 
     if (matchedService) {
+      const priceNote =
+        matchedService.pricingType === 'sob-consulta'
+          ? 'O valor é sob consulta, pois depende da análise do seu caso.'
+          : `O valor do serviço Velkor é ${matchedService.priceLabel}. Taxas oficiais, custas, ITBI, emolumentos, guias e boletos de terceiros não estão inclusos.`
       setTimeout(() => {
         setMessages((prev) => [
           ...prev,
           {
             role: 'kora',
-            text: `Temos o serviço ideal para isso: **${matchedService.name}**. ${matchedService.description} O valor base é ${matchedService.price}. Deseja que eu transfira para um especialista seguir com a contratação?`,
+            text: `Temos o serviço ${matchedService.code} — ${matchedService.name}. ${matchedService.shortDescription} ${priceNote} Posso te encaminhar para o diagnóstico ou para o WhatsApp da equipe.`,
           },
         ])
       }, 800)
@@ -98,10 +103,10 @@ export function KoraChat({
               </span>
             </div>
             <div>
-              <h3 className="font-display font-bold text-lg leading-tight">Kora AI</h3>
+              <h3 className="font-display font-bold text-lg leading-tight">Kora</h3>
               <p className="text-xs text-cyan flex items-center gap-1 font-semibold">
-                <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
-                Online / Live
+                <span className="w-1.5 h-1.5 rounded-full bg-green-500"></span>
+                Assistente de catálogo
               </p>
             </div>
           </div>

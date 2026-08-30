@@ -1,107 +1,109 @@
-import { useEffect, useState } from 'react'
-import { Check, ArrowRight, ShieldCheck, Info } from 'lucide-react'
+import { useMemo, useState } from 'react'
+import { ArrowRight, ShieldCheck, Info } from 'lucide-react'
 import * as LucideIcons from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Link } from 'react-router-dom'
 import { SITE_CONFIG } from '@/lib/config'
-import { db, Service } from '@/lib/db'
+import { SERVICE_CATALOG, SERVICE_FILTERS, filterServices, type ServiceProfile } from '@/lib/catalog'
 
 export function ServicesSection() {
-  const [services, setServices] = useState<Service[]>([])
-  const [loading, setLoading] = useState(true)
+  const [filter, setFilter] = useState<ServiceProfile | 'sob-consulta' | 'todas'>('todas')
 
-  useEffect(() => {
-    db.services.findMany().then((data) => {
-      // Show specific services matching original design
-      // Show all specialized services
-      setServices(data)
-      setLoading(false)
-    })
-  }, [])
+  const services = useMemo(() => filterServices(filter), [filter])
 
   return (
     <section id="servicos" className="py-24 bg-slate-50 relative">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
+        <div className="text-center mb-10">
           <h2 className="text-3xl md:text-4xl font-display font-bold text-petrol mb-4">
-            Portfólio de Soluções
+            Catálogo de Soluções
           </h2>
           <p className="text-slate-600 text-lg max-w-2xl mx-auto">
-            Consultoria especializada e gestão ponta a ponta para assegurar a conformidade
-            patrimonial das suas operações e investimentos.
+            {SERVICE_CATALOG.length} serviços de documentação e organização administrativa
+            imobiliária, do diagnóstico gratuito ao dossiê final.
           </p>
         </div>
-        <div className="grid md:grid-cols-2 gap-8 items-stretch max-w-5xl mx-auto min-h-[400px]">
-          {loading ? (
-            <div className="col-span-2 flex items-center justify-center">
-              <div className="w-8 h-8 border-4 border-cyan border-t-transparent rounded-full animate-spin"></div>
-            </div>
-          ) : (
-            services.map((s) => {
-              const Icon = (LucideIcons as any)[s.icon_name || 'Circle'] || LucideIcons.Circle
-              return (
-                <div
-                  key={s.title}
-                  className={`rounded-3xl p-8 flex flex-col transition-all duration-300 relative bg-white ${s.featured ? 'border-2 border-cyan shadow-xl shadow-cyan/10 scale-105 md:z-10' : 'border border-slate-200 hover:border-cyan hover:shadow-xl'}`}
-                >
-                  {s.featured && (
-                    <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-cyan text-petrol px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest shadow-sm">
-                      Mais Procurado
-                    </div>
-                  )}
-                  <div className="w-12 h-12 bg-petrol/5 rounded-xl flex items-center justify-center text-petrol mb-6">
-                    <Icon className="w-6 h-6" />
+
+        <div
+          className="flex flex-wrap justify-center gap-2 mb-12"
+          role="group"
+          aria-label="Filtrar soluções"
+        >
+          {SERVICE_FILTERS.map((f) => (
+            <button
+              key={f.value}
+              type="button"
+              aria-pressed={filter === f.value}
+              onClick={() => setFilter(f.value)}
+              className={`px-4 py-2 rounded-full text-sm font-bold transition-colors border ${
+                filter === f.value
+                  ? 'bg-petrol text-white border-petrol'
+                  : 'bg-white text-slate-600 border-slate-200 hover:border-petrol/40'
+              }`}
+            >
+              {f.label}
+            </button>
+          ))}
+        </div>
+
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch max-w-6xl mx-auto">
+          {services.map((s) => {
+            const Icon = (LucideIcons as any)[s.iconName] || LucideIcons.Circle
+            return (
+              <div
+                key={s.code}
+                className="rounded-2xl p-6 flex flex-col bg-white border border-slate-200 hover:border-cyan hover:shadow-lg transition-all duration-300"
+              >
+                <div className="flex items-center justify-between mb-4">
+                  <div className="w-10 h-10 bg-petrol/5 rounded-xl flex items-center justify-center text-petrol">
+                    <Icon className="w-5 h-5" />
                   </div>
-                  <h3 className="text-xl font-display font-bold text-petrol mb-3">{s.title}</h3>
-                  <p className="text-slate-600 text-sm mb-4 flex-1">
-                    {s.full_content || s.short_description}
-                  </p>
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400">
+                    {s.code}
+                  </span>
+                </div>
+                <h3 className="text-lg font-display font-bold text-petrol mb-2">{s.name}</h3>
+                <p className="text-slate-600 text-sm mb-4 flex-1">{s.shortDescription}</p>
 
-                  {s.id === 'assembleias' && (
-                    <div className="mb-6 bg-amber-50 border border-amber-200 p-3 rounded-lg flex items-start gap-2">
-                      <Info className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
-                      <span className="text-xs text-amber-800 font-medium">
-                        Não substitui síndico, administradora ou advogado. Atuação puramente
-                        administrativa.
-                      </span>
-                    </div>
-                  )}
+                {s.pricingType === 'sob-consulta' && (
+                  <div className="mb-4 bg-slate-50 border border-slate-100 p-3 rounded-lg flex items-start gap-2">
+                    <Info className="w-4 h-4 text-cyan shrink-0 mt-0.5" />
+                    <span className="text-xs text-slate-500 font-medium">
+                      Depende da análise do caso e, quando necessário, de parceiro habilitado.
+                    </span>
+                  </div>
+                )}
 
-                  {s.partnerNote && s.id !== 'assembleias' && (
-                    <div className="mb-6 bg-slate-50 border border-slate-100 p-3 rounded-lg flex items-start gap-2">
-                      <Info className="w-4 h-4 text-cyan shrink-0 mt-0.5" />
-                      <span className="text-xs text-slate-500 font-medium">
-                        Serviços técnicos e peças jurídicas executados por nossa rede de parceiros
-                        especializados.
-                      </span>
-                    </div>
-                  )}
-
-                  <ul className="space-y-3 mb-8 flex-1">
-                    {(s.features || []).map((f) => (
-                      <li key={f} className="flex items-start text-slate-600 text-sm font-medium">
-                        <Check className="w-5 h-5 text-cyan mr-3 shrink-0" /> {f}
-                      </li>
-                    ))}
-                  </ul>
-                  <Link to={`/servicos/${s.id}`} className="block w-full mt-auto pt-4">
+                <div className="flex items-center justify-between mt-auto pt-4 border-t border-slate-100">
+                  <span className="font-display font-bold text-petrol">
+                    {s.priceLabel}
+                  </span>
+                  <Link to={`/servicos/${s.id}`}>
                     <Button
-                      className={`w-full font-bold h-14 rounded-xl transition-all duration-300 ${s.featured ? 'bg-petrol text-white hover:bg-petrol/90 hover:shadow-lg' : 'bg-slate-50 text-petrol hover:bg-cyan/10 border border-slate-200 hover:border-cyan/30'}`}
+                      size="sm"
+                      variant="outline"
+                      className="text-petrol border-slate-200 hover:bg-cyan/10 hover:border-cyan/30"
                     >
-                      Consultar Solução <ArrowRight className="w-4 h-4 ml-2" />
+                      Ver detalhes <ArrowRight className="w-3.5 h-3.5 ml-1" />
                     </Button>
                   </Link>
                 </div>
-              )
-            })
-          )}
+              </div>
+            )
+          })}
         </div>
+
         <div className="mt-16 text-center max-w-4xl mx-auto">
           <div className="inline-block bg-white border border-slate-200 p-6 rounded-2xl text-sm font-medium shadow-sm text-left">
             <h4 className="font-bold text-petrol mb-2 flex items-center gap-2">
               <ShieldCheck className="w-5 h-5 text-cyan" /> Nota Importante
             </h4>
             <p className="text-slate-500 leading-relaxed">{SITE_CONFIG.servicesDisclaimer}</p>
+            <p className="text-slate-500 leading-relaxed mt-2">
+              Os valores acima referem-se exclusivamente à gestão e execução Velkor. Taxas
+              oficiais, custas de cartório, ITBI, emolumentos, guias e boletos de terceiros não
+              estão inclusos e são pagos diretamente pelo cliente ao órgão competente.
+            </p>
           </div>
         </div>
       </div>
