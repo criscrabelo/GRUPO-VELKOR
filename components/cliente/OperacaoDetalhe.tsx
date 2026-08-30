@@ -1,10 +1,11 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import Link from 'next/link'
-import { ArrowLeft, LogOut, AlertTriangle, CheckCircle2 } from 'lucide-react'
+import { ArrowLeft, LogOut, AlertTriangle, CheckCircle2, Upload } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
 import { VelkorLogo } from '@/components/landing/VelkorLogo'
+import { EnviarDocumentoModal } from './EnviarDocumentoModal'
 import {
   tagOperacao,
   TAG_LABEL,
@@ -14,39 +15,41 @@ import {
   type VencimentoRow,
 } from '@/lib/types-db'
 
+const STATUS_PENDENCIA_LABEL: Record<PendenciaRow['status'], string> = {
+  aberta: 'Aguardando envio',
+  em_conferencia: 'Em conferência pela Velkor',
+  resolvida: 'Resolvida',
+  devolvida: 'Devolvida — novo envio necessário',
+}
+
 export function OperacaoDetalhe({ userId, operacaoId }: { userId: string; operacaoId: string }) {
   const [operacao, setOperacao] = useState<OperacaoRow | null | undefined>(undefined)
   const [pendencias, setPendencias] = useState<PendenciaRow[]>([])
   const [historico, setHistorico] = useState<HistoricoEventoRow[]>([])
   const [vencimentos, setVencimentos] = useState<VencimentoRow[]>([])
+  const [pendenciaParaEnvio, setPendenciaParaEnvio] = useState<PendenciaRow | null>(null)
+
+  const carregar = useCallback(async () => {
+    const [opRes, pendRes, histRes, vencRes] = await Promise.all([
+      supabase.from('operacoes').select('*').eq('id', operacaoId).eq('cliente_user_id', userId).maybeSingle(),
+      supabase.from('pendencias').select('*').eq('operacao_id', operacaoId).order('criado_em'),
+      supabase
+        .from('historico_eventos')
+        .select('*')
+        .eq('operacao_id', operacaoId)
+        .order('criado_em', { ascending: false }),
+      supabase.from('vencimentos').select('*').eq('operacao_id', operacaoId).order('vence_em'),
+    ])
+
+    setOperacao(opRes.data ?? null)
+    setPendencias(pendRes.data ?? [])
+    setHistorico(histRes.data ?? [])
+    setVencimentos(vencRes.data ?? [])
+  }, [userId, operacaoId])
 
   useEffect(() => {
-    let cancelado = false
-
-    async function carregar() {
-      const [opRes, pendRes, histRes, vencRes] = await Promise.all([
-        supabase.from('operacoes').select('*').eq('id', operacaoId).eq('cliente_user_id', userId).maybeSingle(),
-        supabase.from('pendencias').select('*').eq('operacao_id', operacaoId).order('criado_em'),
-        supabase
-          .from('historico_eventos')
-          .select('*')
-          .eq('operacao_id', operacaoId)
-          .order('criado_em', { ascending: false }),
-        supabase.from('vencimentos').select('*').eq('operacao_id', operacaoId).order('vence_em'),
-      ])
-
-      if (cancelado) return
-      setOperacao(opRes.data ?? null)
-      setPendencias(pendRes.data ?? [])
-      setHistorico(histRes.data ?? [])
-      setVencimentos(vencRes.data ?? [])
-    }
-
     carregar()
-    return () => {
-      cancelado = true
-    }
-  }, [userId, operacaoId])
+  }, [carregar])
 
   if (operacao === undefined) {
     return <div className="min-h-screen flex items-center justify-center text-ink-tertiary text-sm">Carregando...</div>
@@ -138,15 +141,34 @@ export function OperacaoDetalhe({ userId, operacaoId }: { userId: string; operac
                 <p className="text-sm text-ink-tertiary">Nenhuma pendência com você no momento.</p>
               ) : (
                 <ul className="space-y-3">
-                  {pendenciasCliente.map((p) => (
-                    <li
-                      key={p.id}
-                      className="rounded-card border border-attention-border bg-attention-bg p-4"
-                    >
-                      <p className="font-bold text-attention-text mb-1">{p.nome}</p>
-                      {p.nota && <p className="text-sm text-attention-text/80">{p.nota}</p>}
-                    </li>
-                  ))}
+                  {pendenciasCliente.map((p) => {
+                    const podeEnviar = p.status === 'aberta' || p.status === 'devolvida'
+                    return (
+                      <li
+                        key={p.id}
+                        className="rounded-card border border-attention-border bg-attention-bg p-4"
+                      >
+                        <div className="flex items-start justify-between gap-3">
+                          <div>
+                            <p className="font-bold text-attention-text mb-1">{p.nome}</p>
+                            {p.nota && <p className="text-sm text-attention-text/80 mb-1">{p.nota}</p>}
+                            <p className="text-xs text-attention-text/70 font-medium">
+                              {STATUS_PENDENCIA_LABEL[p.status]}
+                            </p>
+                          </div>
+                          {podeEnviar && (
+                            <button
+                              type="button"
+                              onClick={() => setPendenciaParaEnvio(p)}
+                              className="shrink-0 inline-flex items-center gap-1.5 rounded-button bg-teal-institutional text-white text-sm font-bold px-3.5 py-2 hover:bg-teal-institutional/90 transition-colors min-h-[40px]"
+                            >
+                              <Upload className="w-3.5 h-3.5" /> Enviar
+                            </button>
+                          )}
+                        </div>
+                      </li>
+                    )
+                  })}
                 </ul>
               )}
             </section>
@@ -225,6 +247,19 @@ export function OperacaoDetalhe({ userId, operacaoId }: { userId: string; operac
           </aside>
         </div>
       </main>
+
+      {pendenciaParaEnvio && (
+        <EnviarDocumentoModal
+          userId={userId}
+          operacaoId={operacaoId}
+          pendenciaId={pendenciaParaEnvio.id}
+          onFechar={() => setPendenciaParaEnvio(null)}
+          onEnviado={() => {
+            setPendenciaParaEnvio(null)
+            carregar()
+          }}
+        />
+      )}
     </div>
   )
 }
