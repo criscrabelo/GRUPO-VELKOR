@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Link from 'next/link'
 import { Menu, X } from 'lucide-react'
 import { VelkorLogo } from './VelkorLogo'
 
@@ -35,12 +36,12 @@ export function Header() {
         </nav>
 
         <div className="hidden nav:flex items-center gap-3">
-          <a
+          <Link
             href="/cliente"
             className="text-sm font-bold text-white/90 hover:text-white px-3 py-2 transition-colors"
           >
             Área do cliente
-          </a>
+          </Link>
           <a
             href="#diagnostico"
             className="rounded-button bg-cyan-brand text-teal-institutional font-bold text-sm px-4 py-2.5 hover:bg-cyan-brand/90 transition-colors min-h-[44px] flex items-center"
@@ -75,13 +76,13 @@ export function Header() {
               {link.label}
             </a>
           ))}
-          <a
+          <Link
             href="/cliente"
             onClick={() => setMenuAberto(false)}
             className="block px-2 py-3 text-white/90 font-bold min-h-[44px]"
           >
             Área do cliente
-          </a>
+          </Link>
           <a
             href="#diagnostico"
             onClick={() => setMenuAberto(false)}

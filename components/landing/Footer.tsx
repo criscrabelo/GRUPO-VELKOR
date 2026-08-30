@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { VelkorLogo } from './VelkorLogo'
 
 export function Footer() {
@@ -28,9 +29,9 @@ export function Footer() {
                 </a>
               </li>
               <li>
-                <a href="/cliente" className="hover:text-white">
+                <Link href="/cliente" className="hover:text-white">
                   Área do cliente
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
