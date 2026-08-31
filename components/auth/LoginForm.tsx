@@ -91,7 +91,7 @@ export function LoginForm({
   return (
     <div className="min-h-screen grid nav:grid-cols-2 bg-page">
       <div className="hidden nav:flex flex-col justify-between bg-teal-institutional text-white p-12">
-        <Link href="/">
+        <Link href="/imobiliaria">
           <VelkorLogo heightClassName="h-8 brightness-0 invert" />
         </Link>
         <div>
@@ -104,7 +104,7 @@ export function LoginForm({
       <div className="flex items-center justify-center p-6 sm:p-12">
         <div className="w-full max-w-sm">
           <div className="nav:hidden mb-8 flex justify-center">
-            <Link href="/">
+            <Link href="/imobiliaria">
               <VelkorLogo heightClassName="h-8" />
             </Link>
           </div>

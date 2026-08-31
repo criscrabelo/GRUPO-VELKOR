@@ -18,6 +18,8 @@ export interface CatalogService {
   consulta?: boolean
   mensal?: boolean
   preco?: number
+  /** Rota da página de detalhe do serviço, quando existir (ex.: VLK04). */
+  detalhe?: string
 }
 
 export const SERVICOS: CatalogService[] = [
@@ -64,6 +66,7 @@ export const SERVICOS: CatalogService[] = [
     preco: 999,
     prazo: '7 a 15 dias úteis',
     perfis: ['comprar', 'vender', 'regularizar'],
+    detalhe: '/servicos/dossie-de-certidoes',
   },
   {
     id: 'vlk05',

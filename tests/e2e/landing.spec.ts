@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test.describe('Landing — catálogo, diagnóstico e simulador', () => {
   test('catálogo mostra os 22 serviços e os filtros funcionam', async ({ page }) => {
-    await page.goto('/')
+    await page.goto('/imobiliaria')
 
     const filtros = page.getByLabel('Filtrar soluções')
     await expect(filtros.getByRole('button', { name: 'Todas as soluções' })).toBeVisible()
@@ -15,7 +15,7 @@ test.describe('Landing — catálogo, diagnóstico e simulador', () => {
   })
 
   test('diagnóstico completo aplica o filtro certo em Soluções', async ({ page }) => {
-    await page.goto('/')
+    await page.goto('/imobiliaria')
 
     await page.getByRole('link', { name: /Começar diagnóstico gratuito/i }).click()
     const diagnostico = page.locator('#diagnostico')
@@ -33,7 +33,7 @@ test.describe('Landing — catálogo, diagnóstico e simulador', () => {
   })
 
   test('voltar e refazer o diagnóstico funcionam', async ({ page }) => {
-    await page.goto('/#diagnostico')
+    await page.goto('/imobiliaria#diagnostico')
     const diagnostico = page.locator('#diagnostico')
 
     await diagnostico.getByRole('button', { name: 'Alugar' }).click()
@@ -52,7 +52,7 @@ test.describe('Landing — catálogo, diagnóstico e simulador', () => {
   })
 
   test('simulador calcula subtotal, desconto e total corretamente', async ({ page }) => {
-    await page.goto('/#solucoes')
+    await page.goto('/imobiliaria#solucoes')
 
     async function adicionar(codigo: string) {
       const card = page.locator('.rounded-card', { hasText: codigo })
@@ -76,7 +76,7 @@ test.describe('Landing — catálogo, diagnóstico e simulador', () => {
   })
 
   test('serviço gratuito e sob consulta não têm botão de adicionar ao pacote', async ({ page }) => {
-    await page.goto('/#solucoes')
+    await page.goto('/imobiliaria#solucoes')
     const filtros = page.getByLabel('Filtrar soluções')
     await filtros.getByRole('button', { name: 'Sob consulta' }).click()
 
@@ -90,7 +90,7 @@ test.describe('Landing — catálogo, diagnóstico e simulador', () => {
 
   test('menu mobile abre e fecha, sem rolagem horizontal', async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 })
-    await page.goto('/')
+    await page.goto('/imobiliaria')
 
     const scrollWidth = await page.evaluate(() => document.documentElement.scrollWidth)
     const clientWidth = await page.evaluate(() => document.documentElement.clientWidth)

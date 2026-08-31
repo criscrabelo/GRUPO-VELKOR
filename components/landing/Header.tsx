@@ -19,9 +19,9 @@ export function Header() {
   return (
     <header className="fixed top-0 inset-x-0 z-50 bg-teal-institutional/95 backdrop-blur-sm border-b border-white/10">
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
-        <a href="#inicio" aria-label="Velkor Soluções Imobiliárias — início">
-          <VelkorLogo heightClassName="h-8 brightness-0 invert" />
-        </a>
+        <Link href="/" aria-label="Voltar ao Grupo Velkor">
+          <VelkorLogo heightClassName="h-11 brightness-0 invert" />
+        </Link>
 
         <nav className="hidden nav:flex items-center gap-6" aria-label="Navegação principal">
           {NAV_LINKS.map((link) => (

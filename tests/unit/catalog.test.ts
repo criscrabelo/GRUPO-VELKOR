@@ -83,6 +83,12 @@ describe('catálogo oficial VLK01-VLK22', () => {
     expect(precoLabel(vlk10)).toBe('R$ 390,00/mês')
   })
 
+  it('apenas VLK04 tem página de detalhe, apontando para a rota correta', () => {
+    const comDetalhe = SERVICOS.filter((s) => s.detalhe)
+    expect(comDetalhe.map((s) => s.code)).toEqual(['VLK04'])
+    expect(comDetalhe[0].detalhe).toBe('/servicos/dossie-de-certidoes')
+  })
+
   it('getServicoById encontra um serviço existente e não encontra um inexistente', () => {
     expect(getServicoById('vlk01')?.code).toBe('VLK01')
     expect(getServicoById('servico-que-nao-existe')).toBeUndefined()

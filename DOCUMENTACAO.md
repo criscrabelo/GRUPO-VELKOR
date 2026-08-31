@@ -36,12 +36,14 @@ Site e plataforma da Velkor Soluções Imobiliárias: documentação imobiliári
 
 ### Tokens de design (tailwind.config.ts)
 
-Paleta extraída do logotipo oficial, conforme o handoff: teal institucional `#144C55`, teal profundo `#0F3A42`, teal de ação `#14646F`, ciano de marca `#2FB6DC`, ciano claro `#9DE5F8`, fundo `#F6FAFA`, bordas `#E4EDEE`, textos `#10282D`/`#4E6A6F`/`#5C7A80`, sucesso `#0E6C5F`, atenção `#8A5A0C`/`#FFFBF3`/`#F0E2C6`. Breakpoints do design: nav vira hambúrguer abaixo de **1080px** (`nav:`), grids empilham abaixo de **940px** (`grid-stack:`). Foco visível global: outline 3px ciano.
+Paleta extraída do logotipo oficial, conforme o handoff: teal institucional `#144C55`, teal profundo `#0F3A42`, teal de ação `#14646F`, ciano de marca `#2FB6DC`, ciano claro `#9DE5F8`, fundo `#F6FAFA`, bordas `#E4EDEE`, textos `#10282D`/`#4E6A6F`/`#5C7A80`, sucesso `#0E6C5F`, atenção `#8A5A0C`/`#FFFBF3`/`#F0E2C6`. Handoff v2 acrescentou `ink.deep` `#0B1D20` (fundo do portal do grupo e total do simulador) e `cyan.ghost` `#32C5E6` (CTAs ghost e destaques do portal). Breakpoints do design: nav vira hambúrguer abaixo de **1080px** (`nav:`), grids empilham abaixo de **940px** (`grid-stack:`); handoff v2 acrescentou `duo:` (**761px**, cards do portal lado a lado) e `detail:` (**901px**, páginas de detalhe em 2 colunas). Foco visível global: outline 3px ciano.
 
 ### Marca
 
 - `public/brand/velkor-logo.png` — logotipo oficial. **Dimensão real do arquivo, medida na auditoria: 1230×350 px** (o documento antigo do handoff citava 1208×336; vale o arquivo). Fundo transparente. **Sempre altura fixa + largura automática; nunca esticar** (componente `VelkorLogo`, que declara width 1230 / height 350 e `w-auto`).
 - `public/brand/kora-avatar.png` — avatar da Kora (440×440). **Sem uso no código atual** — reservado para quando a Kora for implementada.
+- `public/brand/grupo-velkor-logo.png` — logotipo do Grupo Velkor (623×132), usado no portal `/` a 75px de altura com brilho ciano. Nunca esticar.
+- `public/brand/velkor-seguros-logo.png` — logotipo da Velkor Seguros (3586×933), usado em `/seguros` a 76px de altura. Nunca esticar.
 - `public/favicon.ico` — símbolo "V" recortado do logotipo oficial (16/32/48px).
 - `public/og-image.png` — cartão de compartilhamento 1200×630 (logo branco sobre teal + tagline), referenciado em `og:image`/`twitter:image`.
 
@@ -51,7 +53,10 @@ Paleta extraída do logotipo oficial, conforme o handoff: teal institucional `#1
 
 | Rota | O quê | Acesso |
 |---|---|---|
-| `/` | Landing completa: hero, diagnóstico, por que a Velkor, como funciona, soluções (catálogo com filtros), simulador de pacote, limites/FAQ, contato, rodapé | Pública |
+| `/` | Portal do Grupo Velkor: escolha entre Soluções Imobiliárias e Seguros & Consórcios (handoff v2) | Pública |
+| `/imobiliaria` | Landing completa da Velkor Soluções Imobiliárias: hero, diagnóstico, por que a Velkor, como funciona, soluções (catálogo com filtros), simulador de pacote, limites/FAQ, contato, rodapé | Pública |
+| `/seguros` | Página provisória da Velkor Seguros e Consórcios ("site em construção", contato WhatsApp (12) 99664-1194) | Pública |
+| `/servicos/dossie-de-certidoes` | Página de detalhe do serviço VLK04 (piloto "página por serviço" para SEO/anúncios): preço e prazo vêm de `lib/catalog.ts`, incluído/não incluído, como funciona, FAQ, CTAs | Pública |
 | `/cliente` | Área do cliente: login por e-mail + código, visão geral com KPIs e lista de operações | Sessão de cliente |
 | `/cliente/operacoes/[id]` | Detalhe da operação: pendências (com você / com a Velkor), envio de documento, histórico, vencimentos | Sessão + RLS (só a própria operação) |
 | `/cliente/dossie` | Dossiê digital: tabela de documentos com download real (link temporário de 60s) | Sessão + RLS |
@@ -76,6 +81,7 @@ As três páginas legais têm banner fixo "Rascunho — pendente de revisão jur
 - **Desconto progressivo** (só sobre serviços de preço fixo/mensal): 2 → 3% · 3 → 5% · 4 → 7% · 5 → 10% · 6 → 15% · 7+ → 20%.
 - Nota em Soluções, no simulador e no rodapé: taxas oficiais, custas de cartório, ITBI, emolumentos, guias e boletos de terceiros **não** estão inclusos e são pagos pelo cliente diretamente ao órgão.
 - Filtros: Todas · Comprar · Vender · Alugar · Arrematar · Regularizar · Sob consulta.
+- **Campo opcional `detalhe`** (handoff v2): rota da página de detalhe do serviço, quando existir. Hoje só o VLK04 tem (`/servicos/dossie-de-certidoes`); o card na landing ganha o link "Ver página do serviço →". Coberto por teste unitário.
 
 ### Diagnóstico (3 perguntas)
 
@@ -175,7 +181,7 @@ pnpm test:e2e     # 12 testes end-to-end (Playwright; builda e sobe o servidor s
 ### Cobertura
 
 - **Unitários** (`tests/unit/`): integridade dos 22 códigos VLK (ordem, sem ausência/duplicidade), regras de gratuito/sob consulta/mensal, elegibilidade de desconto, faixas de desconto, cálculo de pacote real (R$ 1.547,00 → 5% → R$ 1.469,65), formatação BRL, filtros, e as derivações de status cliente/admin. **Um destes testes encontrou e travou um bug real** (operação "em conferência" aparecendo como "Concluída").
-- **E2E** (`tests/e2e/`): catálogo e filtros, diagnóstico completo (incl. voltar/refazer e filtro aplicado), simulador com valores exatos na tela e recálculo ao remover, ausência de botão "Adicionar" em gratuitos/sob consulta, menu mobile sem rolagem horizontal, e guardas de rota (todas as rotas protegidas caem no login sem sessão).
+- **E2E** (`tests/e2e/`): catálogo e filtros, diagnóstico completo (incl. voltar/refazer e filtro aplicado), simulador com valores exatos na tela e recálculo ao remover, ausência de botão "Adicionar" em gratuitos/sob consulta, menu mobile sem rolagem horizontal, guardas de rota (todas as rotas protegidas caem no login sem sessão), e as páginas do handoff v2 (portal do grupo com navegação entre divisões, página da Velkor Seguros com contato, link do card VLK04 para a página do serviço e conteúdo/CTAs dessa página).
 - **Resultado da última execução completa (auditoria de 30/08/2026):** 34 unitários aprovados, 0 falhas · 12 e2e definidos, **11 aprovados, 0 falhas, 1 pulado**. O teste pulado é, nominalmente, `auth-guards.spec.ts › "login não aceita qualquer código de 6 dígitos (requer rede até *.supabase.co)"` — ele se autopula (com mensagem explicando o motivo) em qualquer ambiente sem rede até o Supabase, incluindo o sandbox em que o projeto foi desenvolvido, e **deve ser executado em homologação**.
 - **CI**: todo push e PR rodam typecheck → lint → unitários → build → e2e, com relatório do Playwright publicado como artefato em caso de falha. Usa placeholders de env (nunca segredos — roda em qualquer push).
 
@@ -205,7 +211,7 @@ Sem essas variáveis o **build não quebra** (usa placeholders com aviso no cons
 - Dossiê digital com download real e registro no histórico
 - Painel admin: KPIs derivados, abas Operações/Clientes/Funil
 - Funil de conversão real e anônimo
-- SEO básico: title/description/OG/twitter card com imagem da marca, JSON-LD, canonical, robots.txt, sitemap.xml, favicon da marca
+- SEO básico: title/description/OG/twitter card com imagem da marca, JSON-LD (na `/imobiliaria`), canonical por rota, robots.txt, sitemap.xml (/, /imobiliaria, /seguros, /servicos/dossie-de-certidoes), favicon da marca
 - 46 testes automatizados definidos — 45 aprovados, 0 falhas, 1 pulado por limitação de rede (seção 9) — + CI em todo push
 
 ### ⏳ Pendente — depende de credencial/decisão externa
@@ -276,7 +282,7 @@ O sandbox onde este trabalho foi feito **não alcança `*.supabase.co` pelo nave
 5. Download pelo dossiê com link assinado real (60s) e registro no histórico.
 6. Eventos de funil registrados a partir do navegador.
 7. Leitura das telas do cliente e do admin com duas contas reais distintas, confirmando o isolamento na prática.
-8. OG-image, favicon, canonical, robots e sitemap **no domínio definitivo** — hoje todas as URLs estão fixas em `https://velkor.com.br` (`app/layout.tsx`, `public/robots.txt`, `public/sitemap.xml`); se o domínio final for outro, atualizar os três lugares.
+8. OG-image, favicon, canonical, robots e sitemap **no domínio definitivo** — hoje todas as URLs estão fixas em `https://velkor.com.br` (constante única em `lib/site.ts`, mais `public/robots.txt` e `public/sitemap.xml`); se o domínio final for outro, atualizar os três lugares.
 
 ### Requisitos antes de produção (além do checklist acima)
 

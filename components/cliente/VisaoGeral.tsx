@@ -78,7 +78,7 @@ export function VisaoGeral({ userId, email }: { userId: string; email: string })
     <div className="min-h-screen bg-page">
       <header className="bg-teal-institutional text-white">
         <div className="container mx-auto px-4 h-16 flex items-center justify-between">
-          <Link href="/">
+          <Link href="/imobiliaria">
             <VelkorLogo heightClassName="h-8 brightness-0 invert" />
           </Link>
           <button
@@ -160,7 +160,7 @@ export function VisaoGeral({ userId, email }: { userId: string; email: string })
               Quando você contratar um serviço, a operação aparece aqui automaticamente.
             </p>
             <Link
-              href="/#solucoes"
+              href="/imobiliaria#solucoes"
               className="inline-flex rounded-button bg-cyan-brand text-teal-institutional font-bold text-sm px-5 py-3 hover:bg-cyan-brand/90 transition-colors min-h-[44px] items-center"
             >
               Ver soluções

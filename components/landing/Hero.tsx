@@ -19,11 +19,11 @@ export function Hero() {
             <h1 className="heading-serif text-4xl md:text-5xl lg:text-[52px] font-bold leading-tight mb-6">
               Documentação imobiliária organizada, acompanhada, sem burocracia e 100% digital.
             </h1>
-            <p className="text-lg text-white/80 max-w-xl mb-10">
+            <p className="text-lg text-white/[0.88] leading-relaxed max-w-xl mb-10">
               Mais clareza, menos deslocamentos e acompanhamento de cada etapa em um só lugar.
             </p>
 
-            <div className="flex flex-col xs:flex-row gap-4 mb-12">
+            <div className="flex flex-col xs:flex-row gap-4">
               <a
                 href="#diagnostico"
                 className="inline-flex items-center justify-center gap-2 rounded-button bg-cyan-brand text-teal-institutional font-bold px-6 py-4 hover:bg-cyan-brand/90 transition-colors min-h-[44px]"
@@ -32,13 +32,13 @@ export function Hero() {
               </a>
               <a
                 href="#pacote"
-                className="inline-flex items-center justify-center gap-2 rounded-button border border-white/30 text-white font-bold px-6 py-4 hover:bg-white/5 transition-colors min-h-[44px]"
+                className="inline-flex items-center justify-center gap-2 rounded-button border-[1.5px] border-cyan-ghost text-cyan-ghost font-bold px-6 py-4 transition-all hover:bg-cyan-ghost/10 hover:shadow-[0_0_12px_rgba(50,197,230,0.2)] min-h-[44px]"
               >
                 Montar meu pacote
               </a>
             </div>
 
-            <dl className="grid grid-cols-3 gap-6 max-w-md">
+            <dl className="grid grid-cols-3 gap-10 max-w-md mt-12 border-t border-white/[0.08] pt-6">
               <div>
                 <dt className="sr-only">Serviços no catálogo</dt>
                 <dd className="heading-serif text-2xl font-bold">22</dd>

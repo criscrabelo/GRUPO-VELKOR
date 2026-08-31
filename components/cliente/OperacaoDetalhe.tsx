@@ -74,7 +74,7 @@ export function OperacaoDetalhe({ userId, operacaoId }: { userId: string; operac
     <div className="min-h-screen bg-page">
       <header className="bg-teal-institutional text-white">
         <div className="container mx-auto px-4 h-16 flex items-center justify-between">
-          <Link href="/">
+          <Link href="/imobiliaria">
             <VelkorLogo heightClassName="h-8 brightness-0 invert" />
           </Link>
           <button

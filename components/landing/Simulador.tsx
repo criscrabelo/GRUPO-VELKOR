@@ -49,7 +49,7 @@ export function Simulador({
               Serviços selecionados
             </h3>
             {itens.length === 0 ? (
-              <p className="text-white/50 text-sm py-8 text-center">
+              <p className="text-white/50 text-sm py-8 px-4 text-center border-[1.5px] border-dashed border-white/20 rounded-button">
                 Nenhum serviço selecionado ainda. Escolha na seção Soluções acima.
               </p>
             ) : (
@@ -94,9 +94,11 @@ export function Simulador({
                 <span className="text-ink-secondary">Desconto progressivo ({percentual}%)</span>
                 <span className="font-medium text-success">- {brl(desconto)}</span>
               </div>
-              <div className="flex justify-between pt-3 border-t border-border">
+              <div className="flex justify-between items-center mt-[22px] pt-[22px] border-t border-[#E2E8F0]">
                 <span className="font-bold">Total para contratação</span>
-                <span className="font-bold heading-serif text-lg">{brl(total)}</span>
+                <span className="font-bold text-[31px] leading-none tracking-[-0.01em] text-ink-deep">
+                  {brl(total)}
+                </span>
               </div>
             </div>
 
@@ -119,7 +121,7 @@ export function Simulador({
               type="button"
               disabled={itens.length === 0}
               onClick={onAvancar}
-              className="mt-auto rounded-button bg-cyan-brand text-teal-institutional font-bold px-6 py-3.5 hover:bg-cyan-brand/90 transition-colors disabled:opacity-40 disabled:cursor-not-allowed min-h-[44px]"
+              className="mt-auto rounded-button bg-teal-action text-white font-bold px-6 py-3.5 hover:bg-teal-deep transition-colors disabled:bg-[#F1F5F9] disabled:text-[#94A3B8] disabled:border disabled:border-[#E2E8F0] disabled:cursor-not-allowed min-h-[44px]"
             >
               Aplicar meu desconto e avançar
             </button>

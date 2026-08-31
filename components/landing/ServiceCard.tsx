@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link'
 import { CatalogService, precoLabel } from '@/lib/catalog'
 import { Check, Plus, Info } from 'lucide-react'
 
@@ -34,6 +35,15 @@ export function ServiceCard({
       </h3>
       <p className="text-sm text-ink-secondary mb-3 flex-1">{servico.desc}</p>
       <p className="text-xs text-ink-tertiary mb-4">Inclui: {servico.inclui}</p>
+
+      {servico.detalhe && (
+        <Link
+          href={servico.detalhe}
+          className="text-[12.5px] font-semibold text-teal-action hover:text-teal-deep mb-4 -mt-2"
+        >
+          Ver página do serviço →
+        </Link>
+      )}
 
       {servico.consulta && (
         <div className="mb-4 flex items-start gap-2 rounded-lg border border-attention-border bg-attention-bg p-3">
