@@ -123,6 +123,7 @@ Bucket privado **`documentos-clientes`**: limite 10 MB por arquivo, tipos `appli
 - Fluxo completo de upload do cliente passa (insert documento + pendência → em_conferencia + histórico).
 - Cliente **não** consegue marcar pendência como `resolvida` (erro 42501).
 - Cliente A **não** consegue anexar documento na operação do cliente B (erro 42501).
+- Membro da equipe com papel `leitura` **não** consegue aprovar/devolver pendência (RLS filtra a atualização a 0 linhas) nem inserir evento no histórico (erro 42501); continua enxergando tudo via `SELECT`. `operador` e `admin` conseguem escrever normalmente.
 
 ---
 
@@ -130,7 +131,7 @@ Bucket privado **`documentos-clientes`**: limite 10 MB por arquivo, tipos `appli
 
 - **Login sem senha** (cliente e equipe): e-mail → código de 6 dígitos (Supabase Auth OTP, `signInWithOtp`/`verifyOtp`). Limite de 5 tentativas de código; cooldown de 60s para reenvio; "usar outro e-mail". Código incorreto é rejeitado de verdade (validação a homologar em rede aberta — ver seção 14).
 - **Autorização do admin é por pertencimento à equipe, não por login separado**: quem loga em `/admin` sem registro ativo em `equipe_velkor` vê "Acesso restrito" e nenhum dado (o RLS bloqueia no servidor, não só na tela).
-- ⚠️ **Os papéis `admin`/`operador`/`leitura` existem no schema, mas ainda NÃO diferenciam permissões** — confirmado em auditoria por teste direto no banco: um membro com papel `leitura` consegue aprovar/devolver pendências, porque tanto o RLS quanto a interface checam apenas o pertencimento à equipe (`is_staff()`), não o papel. Enquanto essa diferenciação não for implementada, **todo membro cadastrado em `equipe_velkor` tem os mesmos poderes de um admin** — cadastre na equipe apenas quem pode aprovar/devolver.
+- **Papéis `admin`/`operador`/`leitura` diferenciados no RLS** (corrigido — a auditoria anterior havia comprovado por teste direto no banco que `leitura` conseguia aprovar/devolver pendências, porque as políticas de escrita checavam só `is_staff()`, o pertencimento à equipe, não o papel). Agora existem duas funções: `is_staff()` (pertence à equipe e está ativo — usada nas políticas de **leitura**, então `leitura` continua enxergando tudo) e `staff_pode_editar()` (pertence à equipe, está ativo **e** o papel é `admin` ou `operador` — usada nas políticas de **escrita**: aprovar/devolver pendência, inserir evento no histórico, atualizar operação). Reprovado com o mesmo tipo de teste (transação com rollback, três papéis simulados): `leitura` tenta aprovar/devolver/inserir e é bloqueado (UPDATE filtrado a 0 linhas pelo RLS; INSERT retorna 42501); `operador` e `admin` conseguem normalmente; `leitura` continua vendo tudo via SELECT. Na interface, `OperacoesTab` também deixa de oferecer os botões "Aprovar"/"Devolver" para quem tem papel `leitura` (mostra "Seu papel (leitura) permite apenas visualizar." no lugar), e o `Dashboard` passa a checar a contagem de linhas afetadas pelo `update`, avisando na tela se alguma escrita for bloqueada pelo RLS por qualquer motivo.
 - **Proteção de rotas é em duas camadas**: a guarda de tela (`RequireClienteAuth`/`RequireStaffAuth`) roda no navegador — não há middleware no servidor —, e a proteção real dos **dados** é o RLS no banco. Ou seja: o código JavaScript das páginas é público (como em qualquer SPA), mas nenhum dado de cliente sai do banco sem sessão válida e política que permita.
 - Sessão persistida em `localStorage` (padrão do supabase-js, com auto-refresh de token). Implicação: um ataque XSS bem-sucedido poderia ler o token. Mitigações atuais: React escapa todo conteúdo dinâmico, não há renderização de HTML vindo de usuário, e o único `dangerouslySetInnerHTML` do projeto injeta um JSON-LD estático. **Não há Content Security Policy configurada** — recomendada antes da produção (seção 14).
 
@@ -266,12 +267,14 @@ Sem essas variáveis o **build não quebra** (usa placeholders com aviso no cons
 11. `feat(admin)` — abas Clientes e Funil, com funil real (não fictício).
 12. `docs(legal)` — rascunhos jurídicos com lacunas marcadas.
 13. `fix` — revisão geral: **upload estava bloqueado por RLS** (corrigido e provado), og-image/favicon eram do template Skip (substituídos pela marca), robots/sitemap desatualizados, eventos de funil duplicados, e mais 6 itens menores.
+14. `feat(handoff-v2)` — portal do Grupo Velkor em `/`, landing movida para `/imobiliaria`, páginas novas `/seguros` e `/servicos/dossie-de-certidoes`, refinamentos visuais do handoff v2.
+15. `fix(rls)` — **papéis `admin`/`operador`/`leitura` diferenciados no RLS** (leitura só via `is_staff()`, escrita agora exige `staff_pode_editar()`): corrige a falha comprovada em que `leitura` conseguia aprovar/devolver pendências; interface deixa de oferecer as ações a quem não pode usá-las.
 
 ---
 
 ## 14. Validações pendentes de homologação e requisitos de produção
 
-O sandbox onde este trabalho foi feito **não alcança `*.supabase.co` pelo navegador** (política de rede do ambiente, não um defeito do código). Tudo que exige essa rede foi validado por caminhos alternativos — schema, políticas e fluxos testados **diretamente no banco**, incluindo testes negativos de segurança (cliente não se auto-aprova; cliente A não lê nem escreve dados, documentos ou arquivos do cliente B; papel de equipe verificado) — mas precisa ser reconferido de ponta a ponta pela interface.
+O sandbox onde este trabalho foi feito **não alcança `*.supabase.co` pelo navegador** (política de rede do ambiente, não um defeito do código). Tudo que exige essa rede foi validado por caminhos alternativos — schema, políticas e fluxos testados **diretamente no banco**, incluindo testes negativos de segurança (cliente não se auto-aprova; cliente A não lê nem escreve dados, documentos ou arquivos do cliente B; papel `leitura` não escreve, só `admin`/`operador`) — mas precisa ser reconferido de ponta a ponta pela interface.
 
 ### Checklist de homologação (primeiro ambiente com rede aberta)
 
@@ -288,7 +291,6 @@ O sandbox onde este trabalho foi feito **não alcança `*.supabase.co` pelo nave
 
 - **Content Security Policy** (headers no `next.config.mjs` ou na hospedagem) — não existe hoje; mitiga o risco de XSS sobre a sessão em `localStorage`.
 - **Rate limiting / anti-bot** na borda (WAF da hospedagem) — protege o funil e o endpoint de OTP contra abuso.
-- **Diferenciação real dos papéis** `admin`/`operador`/`leitura` no RLS e na interface — hoje todo membro da equipe tem os mesmos poderes (seção 6).
 - **Antivírus/inspeção de conteúdo no upload** — o bucket valida tamanho e MIME type declarado, não o conteúdo do arquivo.
 - **Risco residual de arquivo órfão no Storage**: o caminho principal remove o arquivo se o registro falhar, mas fechar a aba entre o upload e o registro (ou uma falha na própria remoção) pode deixar um arquivo sem registro correspondente — prever uma rotina de limpeza periódica.
 - **Transferência internacional de dados (LGPD, arts. 33–36)**: o Supabase deste projeto roda em `us-east-1` (Estados Unidos) — banco, autenticação e documentos dos clientes ficam fisicamente fora do Brasil. Isso já está declarado no rascunho da Política de Privacidade, mas **precisa ser avaliado formalmente pelo advogado/DPO** (adequação das salvaguardas, ou migração para a região `sa-east-1`/São Paulo do Supabase antes de haver dados reais de clientes, o que é muito mais barato de fazer agora do que depois).

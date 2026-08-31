@@ -24,10 +24,13 @@ function formatBRL(v: number) {
 
 export function OperacoesTab({
   operacoes,
+  podeEditar,
   onAprovar,
   onDevolver,
 }: {
   operacoes: OperacaoComTag[] | null
+  /** false para papel 'leitura': RLS já bloqueia a escrita no banco; aqui só evitamos oferecer uma ação que vai falhar. */
+  podeEditar: boolean
   onAprovar: (pendenciaId: string, nome: string, operacaoId: string) => void
   onDevolver: (pendenciaId: string, nome: string, operacaoId: string) => void
 }) {
@@ -157,22 +160,28 @@ export function OperacoesTab({
                           {conferir.map((p) => (
                             <li key={p.id} className="text-sm bg-surface rounded-button p-3 border border-cyan-brand/40">
                               <p className="mb-2">{p.nome}</p>
-                              <div className="flex gap-2">
-                                <button
-                                  type="button"
-                                  onClick={() => onAprovar(p.id, p.nome, op.id)}
-                                  className="flex-1 inline-flex items-center justify-center gap-1 rounded-button bg-success text-white text-xs font-bold py-2 hover:bg-success/90"
-                                >
-                                  <Check className="w-3.5 h-3.5" /> Aprovar
-                                </button>
-                                <button
-                                  type="button"
-                                  onClick={() => onDevolver(p.id, p.nome, op.id)}
-                                  className="flex-1 inline-flex items-center justify-center gap-1 rounded-button border border-attention-border text-attention-text text-xs font-bold py-2 hover:bg-attention-bg"
-                                >
-                                  <Undo2 className="w-3.5 h-3.5" /> Devolver
-                                </button>
-                              </div>
+                              {podeEditar ? (
+                                <div className="flex gap-2">
+                                  <button
+                                    type="button"
+                                    onClick={() => onAprovar(p.id, p.nome, op.id)}
+                                    className="flex-1 inline-flex items-center justify-center gap-1 rounded-button bg-success text-white text-xs font-bold py-2 hover:bg-success/90"
+                                  >
+                                    <Check className="w-3.5 h-3.5" /> Aprovar
+                                  </button>
+                                  <button
+                                    type="button"
+                                    onClick={() => onDevolver(p.id, p.nome, op.id)}
+                                    className="flex-1 inline-flex items-center justify-center gap-1 rounded-button border border-attention-border text-attention-text text-xs font-bold py-2 hover:bg-attention-bg"
+                                  >
+                                    <Undo2 className="w-3.5 h-3.5" /> Devolver
+                                  </button>
+                                </div>
+                              ) : (
+                                <p className="text-xs text-ink-tertiary italic">
+                                  Seu papel (leitura) permite apenas visualizar.
+                                </p>
+                              )}
                             </li>
                           ))}
                         </ul>

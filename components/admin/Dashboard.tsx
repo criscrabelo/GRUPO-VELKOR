@@ -67,11 +67,19 @@ export function Dashboard({ equipe }: { equipe: EquipeVelkorRow }) {
     return { ativas, conferencia, travadas, receitaMes }
   }, [operacoesComTag])
 
+  // Só admin/operador podem escrever (RLS: staff_pode_editar()); leitura só
+  // enxerga. A tela já esconde os botões para leitura (ver OperacoesTab),
+  // mas o count aqui é a segunda camada: se o RLS filtrar a linha (0
+  // atualizadas) por qualquer motivo, avisamos em vez de fingir sucesso.
   async function aprovar(pendenciaId: string, nome: string, operacaoId: string) {
-    await supabase
+    const { count, error } = await supabase
       .from('pendencias')
-      .update({ status: 'resolvida', atualizado_em: new Date().toISOString() })
+      .update({ status: 'resolvida', atualizado_em: new Date().toISOString() }, { count: 'exact' })
       .eq('id', pendenciaId)
+    if (error || !count) {
+      setErro('Não foi possível aprovar esta pendência. Seu papel pode não ter permissão de edição.')
+      return
+    }
     await supabase.from('historico_eventos').insert({
       operacao_id: operacaoId,
       cliente_user_id: operacoesComTag?.find((o) => o.id === operacaoId)?.cliente_user_id,
@@ -82,14 +90,21 @@ export function Dashboard({ equipe }: { equipe: EquipeVelkorRow }) {
   }
 
   async function devolver(pendenciaId: string, nome: string, operacaoId: string) {
-    await supabase
+    const { count, error } = await supabase
       .from('pendencias')
-      .update({
-        status: 'devolvida',
-        nota: 'Devolvido ao cliente para novo envio',
-        atualizado_em: new Date().toISOString(),
-      })
+      .update(
+        {
+          status: 'devolvida',
+          nota: 'Devolvido ao cliente para novo envio',
+          atualizado_em: new Date().toISOString(),
+        },
+        { count: 'exact' },
+      )
       .eq('id', pendenciaId)
+    if (error || !count) {
+      setErro('Não foi possível devolver esta pendência. Seu papel pode não ter permissão de edição.')
+      return
+    }
     await supabase.from('historico_eventos').insert({
       operacao_id: operacaoId,
       cliente_user_id: operacoesComTag?.find((o) => o.id === operacaoId)?.cliente_user_id,
@@ -183,7 +198,12 @@ export function Dashboard({ equipe }: { equipe: EquipeVelkorRow }) {
         </div>
 
         {aba === 'operacoes' && (
-          <OperacoesTab operacoes={operacoesComTag} onAprovar={aprovar} onDevolver={devolver} />
+          <OperacoesTab
+            operacoes={operacoesComTag}
+            podeEditar={equipe.papel !== 'leitura'}
+            onAprovar={aprovar}
+            onDevolver={devolver}
+          />
         )}
         {aba === 'clientes' && <ClientesTab operacoes={operacoesComTag} />}
         {aba === 'funil' && <FunilTab operacoes={operacoesComTag} />}
